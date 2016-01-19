@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 
-3809697272
+3234310604
 
-9-488007924
+9-213273092
 202067075309
-Views\NavBar.xaml;Views\ShowBookLocation.xaml;Views\SystemSetting.xaml;
+Views\BookLocationShowView.xaml;Views\NavBarView.xaml;Views\SystemSettingView.xaml;
 
 False
 

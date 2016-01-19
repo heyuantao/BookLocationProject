@@ -4,20 +4,27 @@
         xmlns:prism="http://www.codeplex.com/prism"
         Title="Shell">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <ItemsControl Name="MainRegion" Grid.Column="0"
+        <StackPanel Orientation="Horizontal" Background="#FF878686">
+            <TextBlock FontSize="20" VerticalAlignment="Center" Margin="30,0,0,0">系统设置</TextBlock>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ItemsControl Name="NavRegion" Grid.Row="1" Grid.Column="0" 
                       VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                       VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"
                       prism:RegionManager.RegionName="NavRegion"></ItemsControl>
-        <ItemsControl Name="OtherRegion" Grid.Column="1"
+            <ItemsControl Name="MainRegion" Grid.Row="1" Grid.Column="1"
                       VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                       VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"
                       prism:RegionManager.RegionName="MainRegion"></ItemsControl>
+        </Grid>
     </Grid>
+    
 </Window>

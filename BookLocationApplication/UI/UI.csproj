@@ -74,35 +74,35 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UIModule.cs" />
-    <Compile Include="Views\NavBar.xaml.cs">
-      <DependentUpon>NavBar.xaml</DependentUpon>
+    <Compile Include="Views\BookLocationShowView.xaml.cs">
+      <DependentUpon>BookLocationShowView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ShowBookLocation.xaml.cs">
-      <DependentUpon>ShowBookLocation.xaml</DependentUpon>
+    <Compile Include="Views\NavBarView.xaml.cs">
+      <DependentUpon>NavBarView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SystemSetting.xaml.cs">
-      <DependentUpon>SystemSetting.xaml</DependentUpon>
+    <Compile Include="Views\SystemSettingView.xaml.cs">
+      <DependentUpon>SystemSettingView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\NavBar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ShowBookLocation.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SystemSetting.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModels\" />
+    <Page Include="Views\BookLocationShowView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NavBarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SystemSettingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -21,11 +21,12 @@ namespace UI
         }
         public void Initialize()
         {
-            container.RegisterType<NavBar, NavBar>();
-            container.RegisterType<ShowBookLocation, ShowBookLocation>();
-            container.RegisterType<SystemSetting, SystemSetting>();
-            regionManager.RegisterViewWithRegion("MainRegion", typeof(SystemSetting));
-            regionManager.RegisterViewWithRegion("NavRegion", typeof(NavBar));
+            container.RegisterType<NavBarView, NavBarView>();
+            container.RegisterType<BookLocationShowView, BookLocationShowView>();
+            container.RegisterType<SystemSettingView, SystemSettingView>();
+
+            regionManager.RegisterViewWithRegion("NavRegion", typeof(NavBarView));
+            regionManager.RegisterViewWithRegion("MainRegion", typeof(SystemSettingView));
         }
     }
 }
