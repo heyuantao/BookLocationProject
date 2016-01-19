@@ -14,10 +14,10 @@
         <ItemsControl Name="MainRegion" Grid.Column="0"
                       VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                       VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"
-                      prism:RegionManager.RegionName="MainRegion"></ItemsControl>
+                      prism:RegionManager.RegionName="NavRegion"></ItemsControl>
         <ItemsControl Name="OtherRegion" Grid.Column="1"
                       VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                       VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"
-                      prism:RegionManager.RegionName="OtherRegion"></ItemsControl>
+                      prism:RegionManager.RegionName="MainRegion"></ItemsControl>
     </Grid>
 </Window>

@@ -28,3 +28,12 @@ D:\Files\文档\Visual Studio 2013\Projects\BookLocationApplication\UI\bin\Debug
 D:\Files\文档\Visual Studio 2013\Projects\BookLocationApplication\UI\bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll
 D:\Files\文档\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\UI.dll
 D:\Files\文档\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\UI.pdb
+D:\Files\文档\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\UI.csprojResolveAssemblyReference.cache
+D:\Files\文档\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\Views\NavBar.baml
+D:\Files\文档\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\Views\ShowBookLocation.baml
+D:\Files\文档\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\Views\SystemSetting.baml
+D:\Files\文档\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\Views\NavBar.g.cs
+D:\Files\文档\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\Views\ShowBookLocation.g.cs
+D:\Files\文档\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\Views\SystemSetting.g.cs
+D:\Files\文档\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\UI_MarkupCompile.cache
+D:\Files\文档\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\UI.g.resources
