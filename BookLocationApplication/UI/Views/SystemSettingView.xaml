@@ -4,28 +4,35 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             Width="auto" Height="auto">
+             Width="auto" Height="auto" d:DesignWidth="1075" d:DesignHeight="394">
     <Grid Margin="30,30,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0" Width="300">
-            <TextBlock Width="60" Height="19" Margin="31,10,209,275" RenderTransformOrigin="-0.883,0.368">图书信息服务器</TextBlock>
-            <TextBlock Width="60" Height="19" Margin="31,48,209,237">服务器地址</TextBlock>
-            <TextBlock Width="60" Height="19" Margin="31,86,209,199">用户名</TextBlock>
-            <TextBlock Width="60" Height="19" Margin="31,124,209,161">密码</TextBlock>
-            <TextBox Width="150" Height="19" Margin="100,48,40,236" ></TextBox>
-            <TextBox Width="150" Height="19" Margin="100,124,40,161" RenderTransformOrigin="0.317,0.579" ></TextBox>
-            <TextBox Width="150" Height="19" Margin="100,86,40,199" RenderTransformOrigin="-0.217,0.684" ></TextBox>
-            <Button Width="80" Height="19" Margin="110,167,110,119">保存</Button>
+        <Grid Grid.Column="0" Width="400">
+            <TextBlock Height="25"  FontSize="18" Margin="24,22,228,287" RenderTransformOrigin="-0.883,0.368">图书信息服务器</TextBlock>
+            <TextBlock Width="100" Height="25"  FontSize="18" Margin="24,84,276,227" RenderTransformOrigin="-0.01,0.56">服务器地址</TextBlock>
+            <TextBlock Width="100" Height="25"  FontSize="18" Margin="24,141,276,171">用户名</TextBlock>
+            <TextBlock Width="100" Height="25"  FontSize="18" Margin="24,205,276,115">密码</TextBlock>
+            <TextBox Width="150" Height="25" Margin="129,90,121,227" RenderTransformOrigin="-0.26,3.132" ></TextBox>
+            <TextBox Width="150" Height="25" Margin="129,204,121,117" RenderTransformOrigin="0.027,4.684" ></TextBox>
+            <TextBox Width="150" Height="25" Margin="129,146,121,171" RenderTransformOrigin="-0.217,0.684" ></TextBox>
+            <Button Width="80" Height="25" Margin="129,281,191,58">保存</Button>
         </Grid>
-        <Grid Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,-273,0">
-            <TextBlock Width="150" Height="19" Margin="28,24,149,292" >图书位置服务器</TextBlock>
-            <TextBlock Width="150" Height="19" Margin="28,59,149,257" >服务器地址</TextBlock>
-            <TextBlock Width="150" Height="19" Margin="28,94,149,222" >用户名</TextBlock>
-            <TextBlock Width="150" Height="19" Margin="28,132,149,184" >密码</TextBlock>
+        <Grid Grid.Column="1" Margin="0,0,-284,0">
+            <TextBlock Height="25"  FontSize="18" Margin="28,25,79,293" >图书位置服务器</TextBlock>
+            <TextBlock Width="100" Height="25"  FontSize="18" Margin="28,100,504,239" >服务器地址</TextBlock>
+            <TextBlock Width="100" Height="25"  FontSize="18" Margin="28,156,504,183" >用户名</TextBlock>
+            <TextBlock Width="100" Height="25"  FontSize="18" Margin="28,214,504,125" >密码</TextBlock>
+            <TextBox Width="150" Height="25" Margin="151,100,331,240" RenderTransformOrigin="-0.26,3.132" ></TextBox>
+            <TextBox Width="150" Height="25" Margin="151,156,331,183" RenderTransformOrigin="0.027,4.684" ></TextBox>
+            <TextBox Width="150" Height="25" Margin="151,214,331,125" RenderTransformOrigin="-0.217,0.684" ></TextBox>
+            <Button Width="80" Height="25" Margin="151,277,401,62">保存</Button>
+        </Grid>
+        <Grid Grid.Column="2"  Margin="0,0,-284,0">
+            <TextBlock Height="25"  FontSize="18" Margin="28,36,422,304" >串口设置</TextBlock>
         </Grid>
     </Grid>
 </UserControl>
