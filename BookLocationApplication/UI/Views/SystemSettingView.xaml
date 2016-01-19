@@ -33,6 +33,11 @@
         </Grid>
         <Grid Grid.Column="2"  Margin="0,0,-284,0">
             <TextBlock Height="25"  FontSize="18" Margin="28,36,422,304" >串口设置</TextBlock>
+            <TextBlock Height="25"  FontSize="18" Margin="28,100,508,239" >串口</TextBlock>
+            <TextBlock Height="25"  FontSize="18" Margin="28,148,508,191" >连接速度</TextBlock>
+            <ComboBox Width="100" Height="25"  FontSize="18" Margin="146,100,387,239" ></ComboBox>
+            <ComboBox Width="100" Height="25"  FontSize="18" Margin="146,148,387,191" ></ComboBox>
+            <Button Width="80" Height="25" Margin="146,206,407,133">保存</Button>
         </Grid>
     </Grid>
 </UserControl>
