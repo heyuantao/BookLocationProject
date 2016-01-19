@@ -71,7 +71,10 @@ namespace RFID{
             //Thread.Sleep(510); 不需要等待了，这个地方是最可能出错的地方。
             //设置状态位为false时，后台线程可能在睡眠，所以等线程醒来后就先检查状态位，
             //发现是false的话就不会再读取串口设备，避免了竞争条件。
-            rfidDevice.closeSerialPort(HardwareInterface);
+            if (rfidDevice != null)
+            {
+                rfidDevice.closeSerialPort(HardwareInterface);
+            }            
         }
         private void mainTask()  
         {//这个用于扫描的后台线程永远不会退出，如果状态为为false，他将不做任何工作，仅仅是不断睡眠并等待状态为变为true

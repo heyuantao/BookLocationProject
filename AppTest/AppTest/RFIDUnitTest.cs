@@ -11,14 +11,14 @@ namespace AppTest
 {
     class RFIDUnitTest
     {
-        public static void testRFID(UnityContainer container)
+        public static void testRFID(UnityContainer container)  //测试程序入口
         {
             IEventAggregator eventAggregator = container.Resolve<IEventAggregator>();
             eventAggregator.GetEvent<RFIDHardwareEvent>().Subscribe(RFIDFailureHander);
             eventAggregator.GetEvent<RFIDNewItemEvent>().Subscribe(RFIDNewItemHander);
             IRFIDService rfidService = container.Resolve<IRFIDService>();
-            rfidService.HardwareInterface = "COM5";
-            rfidService.HardwareInterfaceConnectionSpeed = "115200";
+            rfidService.HardwareInterface = "";
+            rfidService.HardwareInterfaceConnectionSpeed = "";
             rfidService.start();
             readInputAndChangeStatus(container);
             Console.ReadLine();
@@ -41,6 +41,16 @@ namespace AppTest
                 {
                     rfidService.stop();
                     Console.WriteLine("Stop RFID！");
+                }
+                if (command.StartsWith("set"))
+                {
+                    String[] strArray=command.Split(' ');
+                    if (strArray.Length != 3)
+                    {
+                        continue;
+                    }
+                    rfidService.HardwareInterface = strArray[1];
+                    rfidService.HardwareInterfaceConnectionSpeed = strArray[2];
                 }
             }
         }
