@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="TestUnit.TestUserControlForBookLocation"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Height="443" Width="576">
+    <Grid>
+        <TextBlock Width="125" Height="23" Margin="10,23,441,397">IP</TextBlock>
+        <TextBlock Width="125" Height="23" Margin="302,23,149,397">Port</TextBlock>
+        <TextBlock Width="125" Height="23" Margin="10,62,441,358">Username</TextBlock>
+        <TextBlock Width="125" Height="23" Margin="302,62,149,358">Password</TextBlock>
+        <TextBlock Height="23" Margin="10,111,508,309">ShelfRfid</TextBlock>
+        <TextBlock Height="23" Margin="10,147,494,273">BookRfid</TextBlock>
+        <TextBox Text="{Binding IP}" Width="125" Height="23" Margin="120,23,331,397" ></TextBox>
+        <TextBox Text="{Binding Port}" Width="125" Height="23" Margin="394,23,57,397" ></TextBox>
+        <TextBox Text="{Binding Username}" Width="125" Height="23" Margin="120,62,331,358" ></TextBox>
+        <TextBox Text="{Binding Password}" Width="125" Height="23" Margin="394,62,57,358" ></TextBox>
+        <TextBox Text="{Binding ShelfRfidString}" Width="125" Height="23" Margin="120,106,331,314" ></TextBox>
+        <TextBox Text="{Binding BookRfidString}" Height="23" Margin="120,147,57,273" />
+        <Button Command="{Binding RecodeBookLocationCommand}" Width="125" Height="23" Margin="394,106,57,314" Content="Insert"></Button>
+    </Grid>
+</UserControl>

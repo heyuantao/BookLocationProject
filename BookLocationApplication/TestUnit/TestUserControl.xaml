@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="TestUnit.TestUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Height="443" Width="576">
+    <Grid Margin="0,0,10,10">
+        <TextBox x:Name="rfidCode" Text="{Binding IP}" HorizontalAlignment="Left" Height="23" Margin="100,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="125"/>
+        <Button x:Name="scan" Command="{Binding saveCommand}" Content="Save" HorizontalAlignment="Left" Margin="464,24,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBox x:Name="Result" Text="{Binding QueryResult}" HorizontalAlignment="Left" Height="211" Margin="35,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="504"/>
+        <TextBlock HorizontalAlignment="Left" Margin="35,28,0,0" TextWrapping="Wrap" Text="IP" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="245,28,0,0" TextWrapping="Wrap" Text="Port" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Text="{Binding Port}" Height="23" Margin="316,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Text="{Binding Username}" Height="23" Margin="100,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="125"/>
+        <TextBox HorizontalAlignment="Left" Text="{Binding Password}" Height="23" Margin="316,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="31,78,0,0" TextWrapping="Wrap" Text="UserName" VerticalAlignment="Top" RenderTransformOrigin="-0.145,0.067"/>
+        <TextBlock HorizontalAlignment="Left" Margin="243,77,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Text="{Binding QuerySource}" Height="21" Margin="35,139,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="401"/>
+        <Button Content="Query" Command="{Binding queryCommand}" HorizontalAlignment="Left" Margin="464,138,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Clear" Command="{Binding clearCommand}" HorizontalAlignment="Left" Margin="464,404,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.493,0.947"/>
+
+    </Grid>
+</UserControl>

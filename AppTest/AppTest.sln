@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppTest", "AppTest\AppTest.csproj", "{A1AF5529-6EE1-42C8-948C-7A8B05A07CA8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "..\BookLocationApplication\Infrastructure\Infrastructure.csproj", "{F05C22DE-0CE9-436D-915B-A94AFCC67362}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RFID", "..\BookLocationApplication\RFID\RFID.csproj", "{8DC45067-7AC6-409B-9ACF-8F50450E4280}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A1AF5529-6EE1-42C8-948C-7A8B05A07CA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1AF5529-6EE1-42C8-948C-7A8B05A07CA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1AF5529-6EE1-42C8-948C-7A8B05A07CA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1AF5529-6EE1-42C8-948C-7A8B05A07CA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F05C22DE-0CE9-436D-915B-A94AFCC67362}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F05C22DE-0CE9-436D-915B-A94AFCC67362}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F05C22DE-0CE9-436D-915B-A94AFCC67362}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F05C22DE-0CE9-436D-915B-A94AFCC67362}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DC45067-7AC6-409B-9ACF-8F50450E4280}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DC45067-7AC6-409B-9ACF-8F50450E4280}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DC45067-7AC6-409B-9ACF-8F50450E4280}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DC45067-7AC6-409B-9ACF-8F50450E4280}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
