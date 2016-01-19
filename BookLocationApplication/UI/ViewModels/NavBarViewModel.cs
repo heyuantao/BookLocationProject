@@ -1,17 +1,23 @@
-﻿using Prism.Commands;
+﻿using Microsoft.Practices.Unity;
+using Prism.Commands;
+using Prism.Regions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using UI.Views;
 
 namespace UI.ViewModels
 {
     public class NavBarViewModel
     {
-        public NavBarViewModel()
+        IUnityContainer container;
+        IRegionManager regionManager;
+        public NavBarViewModel(IUnityContainer container,IRegionManager regionManager)
         {
+            this.container = container; this.regionManager = regionManager;
         }
         public ICommand BookLocationShowViewICommand
         {
@@ -24,12 +30,14 @@ namespace UI.ViewModels
 
         private void switchSystemSettingView()
         {
-            int b = 3;
+            regionManager.RequestNavigate("MainRegion", new Uri("SystemSettingView", UriKind.Relative));
         }
 
         private void switchBookLocationShowView()
         {
-            int a = 3;
+            //regionManager.Regions["MainRegion"].Deactivate;
+            regionManager.RequestNavigate("MainRegion", new Uri("BookLocationShowView", UriKind.Relative));
+            //regionManager.RegisterViewWithRegion("MainRegion", ()=>container.Resolve<BookLocationShowView>());
         }
     }
 }

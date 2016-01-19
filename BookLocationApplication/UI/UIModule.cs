@@ -26,6 +26,7 @@ namespace UI
 
             container.RegisterType<NavBarView, NavBarView>();
             container.RegisterType<BookLocationShowView, BookLocationShowView>();
+            //container.RegisterInstance<BookLocationShowView>(new BookLocationShowView());
             container.RegisterType<SystemSettingView, SystemSettingView>();
 
             regionManager.RegisterViewWithRegion("NavRegion", typeof(NavBarView));

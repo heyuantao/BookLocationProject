@@ -20,10 +20,10 @@
                       VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                       VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"
                       prism:RegionManager.RegionName="NavRegion"></ItemsControl>
-            <ItemsControl Name="MainRegion" Grid.Row="1" Grid.Column="1"
+            <ContentControl Name="MainRegion" Grid.Row="1" Grid.Column="1"
                       VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                       VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"
-                      prism:RegionManager.RegionName="MainRegion"></ItemsControl>
+                      prism:RegionManager.RegionName="MainRegion"></ContentControl>
         </Grid>
     </Grid>
     
