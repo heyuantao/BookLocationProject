@@ -143,9 +143,9 @@
       <Project>{8bb1c6fd-6376-458d-a32b-b61a948c82a1}</Project>
       <Name>BookLocation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TestUnit\TestUnit.csproj">
-      <Project>{22b3755f-5288-4bd1-8c5a-c574ead0ff7e}</Project>
-      <Name>TestUnit</Name>
+    <ProjectReference Include="..\UI\UI.csproj">
+      <Project>{57344e3a-eb41-49e0-b403-d6048c958542}</Project>
+      <Name>UI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

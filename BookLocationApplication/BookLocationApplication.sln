@@ -5,8 +5,6 @@ VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookLocationApplication", "BookLocationApplication\BookLocationApplication.csproj", "{478D6547-88E6-4C9B-B16B-089D36FE452B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestUnit", "TestUnit\TestUnit.csproj", "{22B3755F-5288-4BD1-8C5A-C574EAD0FF7E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RFID", "RFID\RFID.csproj", "{8DC45067-7AC6-409B-9ACF-8F50450E4280}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookInformation", "BookInformation\BookInformation.csproj", "{F15FC549-C387-4A6A-8FAA-CE8C7D7C8054}"
@@ -14,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookLocation", "BookLocation\BookLocation.csproj", "{8BB1C6FD-6376-458D-A32B-B61A948C82A1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{F05C22DE-0CE9-436D-915B-A94AFCC67362}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{57344E3A-EB41-49E0-B403-D6048C958542}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +25,6 @@ Global
 		{478D6547-88E6-4C9B-B16B-089D36FE452B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{478D6547-88E6-4C9B-B16B-089D36FE452B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{478D6547-88E6-4C9B-B16B-089D36FE452B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{22B3755F-5288-4BD1-8C5A-C574EAD0FF7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{22B3755F-5288-4BD1-8C5A-C574EAD0FF7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{22B3755F-5288-4BD1-8C5A-C574EAD0FF7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{22B3755F-5288-4BD1-8C5A-C574EAD0FF7E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8DC45067-7AC6-409B-9ACF-8F50450E4280}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8DC45067-7AC6-409B-9ACF-8F50450E4280}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DC45067-7AC6-409B-9ACF-8F50450E4280}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,6 +41,10 @@ Global
 		{F05C22DE-0CE9-436D-915B-A94AFCC67362}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F05C22DE-0CE9-436D-915B-A94AFCC67362}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F05C22DE-0CE9-436D-915B-A94AFCC67362}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57344E3A-EB41-49E0-B403-D6048C958542}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57344E3A-EB41-49E0-B403-D6048C958542}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57344E3A-EB41-49E0-B403-D6048C958542}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57344E3A-EB41-49E0-B403-D6048C958542}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

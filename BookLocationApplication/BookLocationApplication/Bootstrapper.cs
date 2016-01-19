@@ -29,7 +29,7 @@ namespace BookLocationApplication
             ModuleCatalog moduleCatalog = (ModuleCatalog)this.ModuleCatalog;
             moduleCatalog.AddModule(typeof(BookInformation.BookInformationModule));
             moduleCatalog.AddModule(typeof(BookLocation.BookLocationModule));
-            moduleCatalog.AddModule(typeof(TestUnit.TestUnitModule));
+            moduleCatalog.AddModule(typeof(UI.UIModule));
         }
     }
 }
