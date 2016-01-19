@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UI.ViewModels;
 using UI.Views;
 
 namespace UI
@@ -21,6 +22,8 @@ namespace UI
         }
         public void Initialize()
         {
+            container.RegisterType<NavBarViewModel, NavBarViewModel>();
+
             container.RegisterType<NavBarView, NavBarView>();
             container.RegisterType<BookLocationShowView, BookLocationShowView>();
             container.RegisterType<SystemSettingView, SystemSettingView>();

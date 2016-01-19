@@ -6,5 +6,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
+        <TextBlock>This is Book Location View</TextBlock>
     </Grid>
 </UserControl>
