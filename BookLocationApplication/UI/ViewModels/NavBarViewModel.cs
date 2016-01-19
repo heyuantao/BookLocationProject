@@ -35,6 +35,11 @@ namespace UI.ViewModels
 
         private void switchBookLocationShowView()
         {
+            /***
+            BookLocationShowView view = container.Resolve<BookLocationShowView>();
+            IRegion mainRegion = regionManager.Regions["MainRegion"];
+            mainRegion.Add(view);
+             * **/
             //regionManager.Regions["MainRegion"].Deactivate;
             regionManager.RequestNavigate("MainRegion", new Uri("BookLocationShowView", UriKind.Relative));
             //regionManager.RegisterViewWithRegion("MainRegion", ()=>container.Resolve<BookLocationShowView>());

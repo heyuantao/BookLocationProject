@@ -31,6 +31,7 @@ namespace UI
 
             regionManager.RegisterViewWithRegion("NavRegion", typeof(NavBarView));
             regionManager.RegisterViewWithRegion("MainRegion", typeof(SystemSettingView));
+            regionManager.RegisterViewWithRegion("MainRegion", typeof(BookLocationShowView));
         }
     }
 }
