@@ -4,8 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <TextBlock>This is Book Location View</TextBlock>
+             d:DesignHeight="300" d:DesignWidth="1080">
+    <Grid Margin="30,30,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left">
+            <TextBlock Height="25"  FontSize="18" Margin="0,0,20,0" >图书位置信息：</TextBlock>
+            <TextBox  Height="25"  FontSize="18" Width="518"/>
+            <Button  Height="25"  FontSize="18" Width="90" Margin="250,0,0,0">清除信息</Button>
+        </StackPanel>
+        <Canvas Grid.Row="1" Background="#FFEED1D1" Width="1180" Height="550" Margin="0,20,0,0">
+            
+        </Canvas>
     </Grid>
 </UserControl>
