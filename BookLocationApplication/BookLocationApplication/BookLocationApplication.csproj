@@ -143,6 +143,10 @@
       <Project>{8bb1c6fd-6376-458d-a32b-b61a948c82a1}</Project>
       <Name>BookLocation</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RFID\RFID.csproj">
+      <Project>{8dc45067-7ac6-409b-9acf-8f50450e4280}</Project>
+      <Name>RFID</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UI\UI.csproj">
       <Project>{57344e3a-eb41-49e0-b403-d6048c958542}</Project>
       <Name>UI</Name>

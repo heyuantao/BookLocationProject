@@ -1,0 +1,210 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ReaderComSDK</name>
+    </assembly>
+    <members>
+        <member name="T:ReaderComSDK.comsdk">
+            <summary>
+            读写器串口开发SDK
+            </summary>
+        </member>
+        <member name="M:ReaderComSDK.comsdk.get_Port_Names">
+            <summary>
+            获取串口名称
+            </summary>
+            <returns>返回获取的串口名称</returns>
+        </member>
+        <member name="M:ReaderComSDK.comsdk.com_Connect(System.String,System.Int32)">
+            <summary>
+            打开串口
+            </summary>
+            <param name="ComName">串口名称 类似于COM1</param>
+            <param name="Bound">波特率 9600,19200,38400,57600,115200</param>
+            <returns>成功返回0，错误返回1</returns>
+        </member>
+        <member name="M:ReaderComSDK.comsdk.com_DisConnect(System.String)">
+            <summary>
+            关闭串口
+            </summary>
+            <param name="ComName">串口名称</param>
+            <returns>成功返回0，错误返回1</returns>
+        </member>
+        <member name="M:ReaderComSDK.comsdk.set_Com_Bound(System.Int32)">
+            <summary>
+            设置PC当前串口波特率
+            </summary>
+            <param name="Bound">波特率 9600,19200,38400,57600,115200</param>
+            <returns>成功返回0，错误返回1</returns>
+        </member>
+        <member name="M:ReaderComSDK.comsdk.keepConn">
+            <summary>
+             心跳包
+            </summary>
+        </member>
+        <member name="M:ReaderComSDK.comsdk.set_Parameter(System.Byte,System.Byte)">
+            <summary>
+            设置参数
+            </summary>
+            <param name="paramaddr">待设置参数地址</param>
+            <param name="param">待设置参数值</param>
+            <returns>成功返回0，错误返回1</returns>
+        </member>
+        <member name="M:ReaderComSDK.comsdk.get_Parameter(System.Byte,System.Byte[]@)">
+            <summary>
+            获取参数
+            </summary>
+            <param name="paramaddr">待获取参数地址</param>
+            <param name="recvalue">获取的返回值byte数组</param>
+            <returns>成功返回0，错误返回1</returns>
+        </member>
+        <member name="M:ReaderComSDK.comsdk.get_Firmware_Version(System.Byte,System.Int32@,System.Int32@)">
+            <summary>
+            获取设备版本
+            </summary>
+            <param name="Addr">地址一般为0xff</param>
+            <param name="major">获取的主版本</param>
+            <param name="minor">获取的此版本</param>
+            <returns>成功返回0，错误返回1</returns>
+        </member>
+        <member name="M:ReaderComSDK.comsdk.set_Baud_Rate(System.Byte,System.Byte)">
+            <summary>
+            设置RS232通信波特率
+            </summary>
+            <param name="Addr">地址一般为0xff</param>
+            <param name="baudrate">设置的波特率参数,0x00，9600bps；0x01，19200bps；0x02，38400bps；0x03，57600bps；0x04，115200bps</param>
+            <returns>成功返回0，　失败返回1</returns>
+        </member>
+        <member name="M:ReaderComSDK.comsdk.reset_Reader(System.Byte)">
+            <summary>
+            复位读写器
+            </summary>
+            <param name="Addr">地址一般为0xff</param>
+            <returns>成功返回０，　失败返回１</returns>
+        </member>
+        <member name="M:ReaderComSDK.comsdk.set_RF(System.Byte,System.Byte,System.Byte)">
+            <summary>
+            设置频率类型与功率值
+            </summary>
+            <param name="Addr">地址一般为0xff</param>
+            <param name="power">需要设置的功率值，取值为0~30,分别对应0~30dBm</param>
+            <param name="freq_type">频率类型，不同国家或地区的频段范围。0为国标（920MHz~925MHz）,1为北美标准（902MH~928）。其它标准范围需向我公司预定。</param>
+            <returns>成功返回0，失败返回1</returns>
+        </member>
+        <member name="M:ReaderComSDK.comsdk.set_Antenna(System.Byte,System.Byte)">
+            <summary>
+            设置天线分集
+            </summary>
+            <param name="Addr">地址一般为0xff</param>
+            <param name="Antenna">需要设置的天线分集，取值为1~4</param>
+            <returns>成功返回0，失败返回1</returns>
+        </member>
+        <member name="M:ReaderComSDK.comsdk.clear_ID_Buff(System.Byte)">
+            <summary>
+             清除设备缓存
+            </summary>
+            <param name="Addr">地址一般为0xff</param>
+            <returns>成功返回 0，失败返回1</returns>
+        </member>
+        <member name="M:ReaderComSDK.comsdk.gen2_Multi_Identify(System.Byte,ReaderComSDK.tagstruct[]@)">
+            <summary>
+             EPC GEN2 多标签识别,包含了重复数据过滤
+            </summary>
+            <param name="Addr">地址一般为0xff</param>
+            <param name="tags">获取的标签数据结构体数组（结构体参见tagstruct）</param>
+            <returns>成功返回 0，失败返回1</returns>
+        </member>
+        <member name="M:ReaderComSDK.comsdk.gen2_Read(System.Byte,System.Byte,System.Byte,System.Byte,System.Byte[]@)">
+            <summary>
+            读取EPC标签任意区域内容
+            </summary>
+            <param name="addr">地址一般为0xff</param>
+            <param name="membank">  要读取的区域，0为保留内存；1为EPC，2为TID，3为用户区</param>
+            <param name="startaddr">起始地址Server区0-3，EPC和TID区0-7,User区暂定为0-31(可扩展)</param>
+            <param name="wordcount"> 要读取的字数 Server区4,EPC和TID区8,User区暂定为32(可扩展)</param>
+            <param name="date"> 读取的数据数据数组</param>
+            <returns>正确返回0，错误返回1</returns>
+        </member>
+        <member name="M:ReaderComSDK.comsdk.gen2_Write(System.Byte,System.Byte,System.Byte,System.Byte[])">
+            <summary>
+            EPC标签单字写入
+            </summary>
+            <param name="Addr">地址一般为0xff</param>
+            <param name="membank">写入的区域，0为保留内存；1为EPC，2为TID，3为用户区</param>
+            <param name="wordptr">写入起始地址，保留内存区和TID区不可写，EPC区0、1地址不可写</param>
+            <param name="value">写入的两字节数据</param>
+            <returns>写入成功返回0 ， 失败返回1</returns>
+        </member>
+        <member name="M:ReaderComSDK.comsdk.gen2_Block_Write(System.Byte,System.Byte,System.Byte,System.Byte,System.Byte[])">
+            <summary>
+            EPC标签块写入
+            </summary>
+            <param name="Addr">地址一般为0xff</param>
+            <param name="membank">写入的区域，0为保留内存；1为EPC，2为TID，3为用户区,</param>
+            <param name="wordptr">写入起始地址，保留内存区和TID区不可写，EPC区0、1地址不可写</param>
+            <param name="wordcount">写入的字数</param>
+            <param name="values">写入的值</param>
+            <returns>写入成功返回0 ， 失败返回1</returns>
+        </member>
+        <member name="M:ReaderComSDK.comsdk.get_Rf(System.Byte,System.Byte@,System.Byte@)">
+            <summary>
+            获取设置的功率与频率
+            </summary>
+            <param name="addr">地址一般为0xff</param>
+            <param name="power">返回的功率值</param>
+            <param name="freq_type">返回的频率类型 0为国标，1为美标，2为欧标，4为其他</param>
+            <returns>成功返回0，失败返回1</returns>
+        </member>
+        <member name="M:ReaderComSDK.comsdk.select_EPC_Tag(System.Byte,System.Byte[])">
+            <summary>
+            选定标签
+            </summary>
+            <param name="para_len">EPC数值匹配长度（最高12）</param>
+            <param name="epcdata">指定的前para_len位EPC数值，12字节</param>
+            <returns>成功返回0，失败返回1</returns>
+        </member>
+        <member name="M:ReaderComSDK.comsdk.sendandgetDate(System.Byte[])">
+            发送并获取返回数组
+            dates 发送的数据帧数组
+            成功返回数组，失败返回null
+            
+        </member>
+        <member name="M:ReaderComSDK.comsdk.getDates(System.Byte[]@)">
+            获取串口返回的数据帧 (阻塞模式获取)
+            dates 串口读取的数据帧
+            返回读取数目
+            
+        </member>
+        <member name="M:ReaderComSDK.comsdk.getBuffDates(System.Byte[]@)">
+            获取串口返回的数据帧 (阻塞模式获取)
+            dates 串口读取的数据帧
+            返回读取字节数目
+            
+        </member>
+        <member name="M:ReaderComSDK.comsdk.GetTagData(System.Byte,System.Byte)">
+            功能 ：获取缓存区标签数据
+            @param Addr
+            @param count  最大为8
+            @return  执行正确返回数组，错误返回null
+        </member>
+        <member name="M:ReaderComSDK.comsdk.getCheckNum(System.Byte[])">
+            功能 ： 获取效验和
+            @param sendbuf 发送的命令数组
+            @return  返回效验值
+        </member>
+        <member name="T:ReaderComSDK.tagstruct">
+            <summary>
+            获得的标签数据结构
+            </summary>   
+        </member>
+        <member name="F:ReaderComSDK.tagstruct.TagType">
+            <value>读取的标签类型</value>
+        </member>
+        <member name="F:ReaderComSDK.tagstruct.AntNum">
+            <value>读取标签的天线号</value>
+        </member>
+        <member name="F:ReaderComSDK.tagstruct.TagData">
+            <value>读取到的标签数据</value>
+        </member>
+    </members>
+</doc>
