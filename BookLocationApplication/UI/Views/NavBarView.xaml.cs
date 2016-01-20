@@ -22,9 +22,11 @@ namespace UI.Views
     /// </summary>
     public partial class NavBarView : UserControl
     {
+        IUnityContainer container;
         public NavBarView(IUnityContainer container,NavBarViewModel viewModel)
         {
             InitializeComponent();
+            this.container = container;
             this.DataContext = viewModel;
         }
 

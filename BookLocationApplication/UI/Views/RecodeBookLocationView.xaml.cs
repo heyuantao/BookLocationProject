@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Practices.Unity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UI.ViewModels;
 
 namespace UI.Views
 {
@@ -20,9 +22,12 @@ namespace UI.Views
     /// </summary>
     public partial class RecodeBookLocationView : UserControl
     {
-        public RecodeBookLocationView()
+        IUnityContainer container;
+        public RecodeBookLocationView(IUnityContainer container,RecodeBookLocationViewModel viewModel)
         {
             InitializeComponent();
+            this.container = container;
+            this.DataContext = viewModel;
         }
     }
 }

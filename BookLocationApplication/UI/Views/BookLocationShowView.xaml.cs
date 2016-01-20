@@ -22,9 +22,12 @@ namespace UI.Views
     /// </summary>
     public partial class BookLocationShowView : UserControl
     {
-        public BookLocationShowView(IUnityContainer container, NavBarViewModel viewModel)
+        IUnityContainer container;
+        public BookLocationShowView(IUnityContainer container, BookLocationShowViewModel viewModel)
         {
             InitializeComponent();
+            this.container = container;
+            this.DataContext = viewModel;
         }
     }
 }

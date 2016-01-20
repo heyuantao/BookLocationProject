@@ -22,9 +22,12 @@ namespace UI.Views
     /// </summary>
     public partial class SystemSettingView : UserControl
     {
-        public SystemSettingView(IUnityContainer container)
+        IUnityContainer container;
+        public SystemSettingView(IUnityContainer container,SystemSettingViewModel viewModel)
         {
             InitializeComponent();
+            this.container = container;
+            this.DataContext = viewModel;
         }
     }
 }
