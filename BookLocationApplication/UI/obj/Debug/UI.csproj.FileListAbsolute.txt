@@ -76,3 +76,5 @@ C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\ob
 C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\UI.g.resources
 C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\UI.dll
 C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\UI.pdb
+C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\Views\RecodeBookLocationView.baml
+C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\Views\RecodeBookLocationView.g.cs

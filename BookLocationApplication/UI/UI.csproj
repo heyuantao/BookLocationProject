@@ -81,6 +81,9 @@
     <Compile Include="Views\NavBarView.xaml.cs">
       <DependentUpon>NavBarView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\RecodeBookLocationView.xaml.cs">
+      <DependentUpon>RecodeBookLocationView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SystemSettingView.xaml.cs">
       <DependentUpon>SystemSettingView.xaml</DependentUpon>
     </Compile>
@@ -95,6 +98,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NavBarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RecodeBookLocationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

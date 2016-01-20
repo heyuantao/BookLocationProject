@@ -23,11 +23,19 @@ namespace UI.ViewModels
         {
             get { return new DelegateCommand(switchBookLocationShowView); }
         }
+        public ICommand RecodeBookLocationViewICommand
+        {
+            get { return new DelegateCommand(switchRecodeBookLocationView); }
+        }
+
         public ICommand SystemSettingViewICommand
         {
             get { return new DelegateCommand(switchSystemSettingView); }
         }
-
+        private void switchRecodeBookLocationView()
+        {
+            regionManager.RequestNavigate("MainRegion", new Uri("RecodeBookLocationView", UriKind.Relative));
+        }
         private void switchSystemSettingView()
         {
             regionManager.RequestNavigate("MainRegion", new Uri("SystemSettingView", UriKind.Relative));

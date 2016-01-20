@@ -8,8 +8,8 @@
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#FF878686">
-            <TextBlock FontSize="20" VerticalAlignment="Center" Margin="30,0,0,0">系统设置</TextBlock>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#FFC9C7C7">
+            <TextBlock FontSize="20" VerticalAlignment="Center" Margin="30,0,0,0">图书位置信息管理</TextBlock>
         </StackPanel>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>

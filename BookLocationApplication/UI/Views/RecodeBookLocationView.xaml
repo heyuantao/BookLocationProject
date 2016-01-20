@@ -1,20 +1,19 @@
-﻿<UserControl x:Class="UI.Views.NavBarView"
+﻿<UserControl x:Class="UI.Views.RecodeBookLocationView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             Width="auto" Height="auto">
-    <Grid Margin="10,0,0,0" >
+             d:DesignHeight="300" d:DesignWidth="1080">
+    <Grid Margin="30,30,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Height="50" Width="120" Grid.Row="0" Margin="0,10,0,0" Command="{Binding BookLocationShowViewICommand}">查询</Button>
-        <Button Height="50" Width="120" Grid.Row="1" Margin="0,10,0,0" Command="{Binding RecodeBookLocationViewICommand}">录入</Button>
-        <Button Height="50" Width="120" Grid.Row="2" Margin="0,10,0,0" Command="{Binding SystemSettingViewICommand}">设置</Button>
-        
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <TextBlock Height="25"  FontSize="18" Margin="0,0,20,0" >层架信息：</TextBlock>
+            <TextBox  Height="25"  FontSize="18" Width="518"/>
+        </StackPanel>
     </Grid>
 </UserControl>
