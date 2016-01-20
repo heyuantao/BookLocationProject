@@ -23,11 +23,13 @@ namespace UI
         public void Initialize()
         {
             container.RegisterType<NavBarViewModel, NavBarViewModel>();
+            container.RegisterType<BookLocationShowViewModel, BookLocationShowViewModel>();
+            container.RegisterType<RecodeBookLocationViewModel, RecodeBookLocationViewModel>();
+            container.RegisterType<SystemSettingViewModel, SystemSettingViewModel>();
 
             container.RegisterType<NavBarView, NavBarView>();
             container.RegisterType<BookLocationShowView, BookLocationShowView>();
             container.RegisterType<RecodeBookLocationView, RecodeBookLocationView>();
-
             //container.RegisterInstance<BookLocationShowView>(new BookLocationShowView());
             container.RegisterType<SystemSettingView, SystemSettingView>();
 
