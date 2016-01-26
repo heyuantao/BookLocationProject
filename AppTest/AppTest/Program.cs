@@ -36,7 +36,9 @@ namespace AppTest
             IModuleManager manager = container.Resolve<IModuleManager>();
             manager.Run();
             /******/
-            RFIDUnitTest.testRFID(container);
+            //RFIDUnitTest.testRFID(container);
+            /******/
+            SerialUnitTest.testSerial(container);
         }
 
         
