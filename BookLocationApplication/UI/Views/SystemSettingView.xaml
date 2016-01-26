@@ -16,7 +16,7 @@
             <TextBlock Width="100" Height="25"  FontSize="18" Margin="24,84,276,227" RenderTransformOrigin="-0.01,0.56">服务器地址</TextBlock>
             <TextBlock Width="100" Height="25"  FontSize="18" Margin="24,141,276,171">用户名</TextBlock>
             <TextBlock Width="100" Height="25"  FontSize="18" Margin="24,205,276,115">密码</TextBlock>
-            <TextBox Width="150" Height="25" Margin="129,90,121,227" RenderTransformOrigin="-0.26,3.132" ></TextBox>
+            <TextBox Text="{Binding BookInformationServer.IP}" Width="150" Height="25" Margin="129,90,121,227" RenderTransformOrigin="-0.26,3.132" ></TextBox>
             <TextBox Width="150" Height="25" Margin="129,204,121,117" RenderTransformOrigin="0.027,4.684" ></TextBox>
             <TextBox Width="150" Height="25" Margin="129,146,121,171" RenderTransformOrigin="-0.217,0.684" ></TextBox>
             <Button Width="80" Height="25" Margin="129,281,191,58">保存</Button>
