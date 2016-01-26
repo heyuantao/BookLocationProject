@@ -20,6 +20,9 @@ namespace RFID
         {
             RFIDService rfidService = new RFIDService(container);
             container.RegisterInstance<IRFIDService>(rfidService);
+
+            SerialService serialService = new SerialService(container);
+            container.RegisterInstance<ISerialService>(serialService);
         }
     }
 }
