@@ -8,6 +8,6 @@ namespace Infrastructure
 {
     public interface ISerialService
     {
-        public List<String> SerialList();
+        List<String> SerialList();
     }
 }

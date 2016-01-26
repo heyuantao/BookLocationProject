@@ -74,6 +74,7 @@
     <Compile Include="IBookInformationService.cs" />
     <Compile Include="IBookLocationService.cs" />
     <Compile Include="IRFIDService.cs" />
+    <Compile Include="ISerialService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
