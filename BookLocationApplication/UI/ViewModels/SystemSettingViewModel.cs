@@ -55,7 +55,8 @@ namespace UI.ViewModels
             this.bookInformationServerSettings = databaseAndSerialSettingsServices.loadBookInformationServerSettings();
             this.bookLocationServerSettings = databaseAndSerialSettingsServices.loadBookLocationServerSettings();
             this.serialSettings = databaseAndSerialSettingsServices.loadSerialSettings();
-            //把配置信息放到容器中的相应对象中
+            //把配置信息放到容器中的相应对象中,因此这部分必须要比其他的viewModel和view首先被初始化
+            //此后容器里的两个数据库服务，和一个RFID服务就有了配置信息
             IBookInformationService bookInformationSrv = this.container.Resolve<IBookInformationService>();
             bookInformationSrv.ServerIp = BookInformationServer.IP;
             bookInformationSrv.ServerUsername = BookInformationServer.Username;
