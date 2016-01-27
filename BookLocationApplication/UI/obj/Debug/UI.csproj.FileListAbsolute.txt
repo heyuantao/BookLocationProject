@@ -80,3 +80,4 @@ C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\ob
 C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\Views\RecodeBookLocationView.g.cs
 C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\bin\Debug\Infrastructure.dll
 C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\bin\Debug\Infrastructure.pdb
+C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\bin\Debug\UI.dll.config

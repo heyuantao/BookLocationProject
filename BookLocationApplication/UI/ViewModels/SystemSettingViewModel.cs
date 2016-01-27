@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using UI.Services;
 
 namespace UI.ViewModels
 {
@@ -44,13 +45,17 @@ namespace UI.ViewModels
         BookInformationServerSettings bookInformationServerSettings;
         BookLocationServerSettings bookLocationServerSettings;
         SerialSettings serialSettings;
-
+        DatabaseAndSerialSettingsServices databaseAndSerialSettingsServices;
+        //管理配置文件的类
         public SystemSettingViewModel(IUnityContainer container, IRegionManager regionManager)
         {
             this.container = container; this.regionManager = regionManager;
-            this.bookInformationServerSettings = new BookInformationServerSettings(){IP="localhost",Username="",Password=""};
-            this.bookLocationServerSettings = new BookLocationServerSettings(){IP="127.0.0.1",Username="",Password=""};
-            this.serialSettings = new SerialSettings();
+            //初始化时从配置文件中载入基本配置，并在点击保存按钮时把配置保存下来
+            this.databaseAndSerialSettingsServices = new DatabaseAndSerialSettingsServices();
+            this.bookInformationServerSettings = databaseAndSerialSettingsServices.loadBookInformationServerSettings();
+            this.bookLocationServerSettings = databaseAndSerialSettingsServices.loadBookLocationServerSettings();
+            this.serialSettings = databaseAndSerialSettingsServices.loadSerialSettings();
+            
         }
         public BookInformationServerSettings BookInformationServer
         {//用于绑定的属性
@@ -74,6 +79,8 @@ namespace UI.ViewModels
             service.ServerIp = this.bookInformationServerSettings.IP;
             service.ServerUsername = this.bookInformationServerSettings.Username;
             service.ServerPassword = this.bookInformationServerSettings.Password;
+            //保存配置文件
+            databaseAndSerialSettingsServices.saveBookInformationServerSettings(this.bookInformationServerSettings);
         }
         public BookLocationServerSettings BookLocationServer
         {//用于绑定的属性
