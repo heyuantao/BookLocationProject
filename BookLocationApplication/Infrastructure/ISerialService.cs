@@ -9,5 +9,7 @@ namespace Infrastructure
     public interface ISerialService
     {
         List<String> SerialList();
+        String Serial { get; set; }
+        String Speed {get;set;}
     }
 }

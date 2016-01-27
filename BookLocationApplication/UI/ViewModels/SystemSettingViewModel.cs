@@ -76,11 +76,11 @@ namespace UI.ViewModels
             //保持该设置到系统的配置文件中
             //BookInformationServerSettings info = this.bookInformationServerSettings;
             IBookInformationService service = this.container.Resolve<IBookInformationService>();
-            service.ServerIp = this.bookInformationServerSettings.IP;
-            service.ServerUsername = this.bookInformationServerSettings.Username;
-            service.ServerPassword = this.bookInformationServerSettings.Password;
+            service.ServerIp = BookInformationServer.IP;
+            service.ServerUsername = BookInformationServer.Username;
+            service.ServerPassword = BookInformationServer.Password;
             //保存配置文件
-            databaseAndSerialSettingsServices.saveBookInformationServerSettings(this.bookInformationServerSettings);
+            databaseAndSerialSettingsServices.saveBookInformationServerSettings(BookInformationServer);
         }
         public BookLocationServerSettings BookLocationServer
         {//用于绑定的属性
@@ -98,7 +98,12 @@ namespace UI.ViewModels
 
         private void onBookLocationServerSaveCommandExecute()
         {
-            throw new NotImplementedException();
+            IBookLocationService service = container.Resolve<IBookLocationService>();
+            service.ServerIp = BookLocationServer.IP;
+            service.ServerUsername = BookLocationServer.Username;
+            service.ServerPassword = BookLocationServer.Password;
+            //保存配置
+            databaseAndSerialSettingsServices.saveBookLocationServerSettings(BookLocationServer);
         }
         public SerialSettings Serial
         {//用于绑定的属性
@@ -116,8 +121,14 @@ namespace UI.ViewModels
 
         private void onSerialSaveCommandExecute()
         {
-            throw new NotImplementedException();
+            ISerialService service = container.Resolve<ISerialService>();
+            service.Serial = Serial.Serial;
+            service.Speed = Serial.Speed;
+            //保存配置
+            databaseAndSerialSettingsServices.saveSerialSettings(Serial);
         }
+        //########################################
+        //########################################
         // system method,not change it
         private void OnPropertyChanged(String propertyName)
         {

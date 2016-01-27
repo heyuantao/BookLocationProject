@@ -14,11 +14,24 @@ namespace RFID
     {
         IUnityContainer container;
         IEventAggregator eventAggregator;
+        String serial; //serial interface name such as "COM1" "COM2"
+        String speed;  //speed of serial , such as 115200,9600
         public SerialService(IUnityContainer container)
         {
             this.container = container;
             this.eventAggregator = container.Resolve<IEventAggregator>();
-
+            this.serial = "";
+            this.speed = "";
+        }
+        public String Serial
+        {
+            get { return this.serial; }
+            set { this.serial = value; }
+        }
+        public String Speed
+        {
+            get { return this.speed; }
+            set { this.speed = value; }
         }
         public List<String> SerialList()
         {
