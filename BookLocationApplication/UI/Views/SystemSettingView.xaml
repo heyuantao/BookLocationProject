@@ -17,18 +17,18 @@
             <TextBlock Width="100" Height="25"  FontSize="18" Margin="24,141,276,171">用户名</TextBlock>
             <TextBlock Width="100" Height="25"  FontSize="18" Margin="24,205,276,115">密码</TextBlock>
             <TextBox Text="{Binding BookInformationServer.IP}" Width="150" Height="25" Margin="129,90,121,227" RenderTransformOrigin="-0.26,3.132" ></TextBox>
-            <TextBox Width="150" Height="25" Margin="129,204,121,117" RenderTransformOrigin="0.027,4.684" ></TextBox>
-            <TextBox Width="150" Height="25" Margin="129,146,121,171" RenderTransformOrigin="-0.217,0.684" ></TextBox>
-            <Button Width="80" Height="25" Margin="129,281,191,58">保存</Button>
+            <TextBox Text="{Binding BookInformationServer.Username}" Width="150" Height="25" Margin="129,204,121,117" RenderTransformOrigin="0.027,4.684" ></TextBox>
+            <TextBox Text="{Binding BookInformationServer.Password}" Width="150" Height="25" Margin="129,146,121,171" RenderTransformOrigin="-0.217,0.684" ></TextBox>
+            <Button Command="{Binding BookInformationServerSaveCommand}"  Width="80" Height="25" Margin="129,281,191,58">保存</Button>
         </Grid>
         <Grid Grid.Column="1" Margin="0,0,-284,0">
             <TextBlock Height="25"  FontSize="18" Margin="28,25,79,293" >图书位置服务器</TextBlock>
             <TextBlock Width="100" Height="25"  FontSize="18" Margin="28,100,504,239" >服务器地址</TextBlock>
             <TextBlock Width="100" Height="25"  FontSize="18" Margin="28,156,504,183" >用户名</TextBlock>
             <TextBlock Width="100" Height="25"  FontSize="18" Margin="28,214,504,125" >密码</TextBlock>
-            <TextBox Width="150" Height="25" Margin="151,100,331,240" RenderTransformOrigin="-0.26,3.132" ></TextBox>
-            <TextBox Width="150" Height="25" Margin="151,156,331,183" RenderTransformOrigin="0.027,4.684" ></TextBox>
-            <TextBox Width="150" Height="25" Margin="151,214,331,125" RenderTransformOrigin="-0.217,0.684" ></TextBox>
+            <TextBox Text="{Binding BookLocationServer.IP}" Width="150" Height="25" Margin="151,100,331,240" RenderTransformOrigin="-0.26,3.132" ></TextBox>
+            <TextBox Text="{Binding BookLocationServer.Username}" Width="150" Height="25" Margin="151,156,331,183" RenderTransformOrigin="0.027,4.684" ></TextBox>
+            <TextBox Text="{Binding BookLocationServer.Password}" Width="150" Height="25" Margin="151,214,331,125" RenderTransformOrigin="-0.217,0.684" ></TextBox>
             <Button Width="80" Height="25" Margin="151,277,401,62">保存</Button>
         </Grid>
         <Grid Grid.Column="2"  Margin="0,0,-284,0">
@@ -36,7 +36,7 @@
             <TextBlock Height="25"  FontSize="18" Margin="28,100,508,239" >串口</TextBlock>
             <TextBlock Height="25"  FontSize="18" Margin="28,148,508,191" >连接速度</TextBlock>
             <ComboBox Width="100" Height="25"  FontSize="18" Margin="146,100,387,239" ></ComboBox>
-            <ComboBox Width="100" Height="25"  FontSize="18" Margin="146,148,387,191" ></ComboBox>
+            <ComboBox ItemsSource="{Binding Serial.SpeedList}" SelectedValue="{Binding Serial.Speed}" Width="100" Height="25"  FontSize="18" Margin="146,148,387,191" ></ComboBox>
             <Button Width="80" Height="25" Margin="146,206,407,133">保存</Button>
         </Grid>
     </Grid>
