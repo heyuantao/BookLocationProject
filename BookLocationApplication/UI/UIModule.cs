@@ -22,16 +22,19 @@ namespace UI
         }
         public void Initialize()
         {
+            container.RegisterType<SystemSettingViewModel, SystemSettingViewModel>();
+            //SystemSettingViewModel必须先初始化，这样系统配置信息才能载入容器中的对象
             container.RegisterType<NavBarViewModel, NavBarViewModel>();
             container.RegisterType<BookLocationShowViewModel, BookLocationShowViewModel>();
             container.RegisterType<RecodeBookLocationViewModel, RecodeBookLocationViewModel>();
-            container.RegisterType<SystemSettingViewModel, SystemSettingViewModel>();
 
+            container.RegisterType<SystemSettingView, SystemSettingView>();
+            //SystemSettingViewModel必须先初始化，这样系统配置信息才能载入容器中的对象
             container.RegisterType<NavBarView, NavBarView>();
             container.RegisterType<BookLocationShowView, BookLocationShowView>();
             container.RegisterType<RecodeBookLocationView, RecodeBookLocationView>();
             //container.RegisterInstance<BookLocationShowView>(new BookLocationShowView());
-            container.RegisterType<SystemSettingView, SystemSettingView>();
+            
 
             regionManager.RegisterViewWithRegion("NavRegion", typeof(NavBarView));
             regionManager.RegisterViewWithRegion("MainRegion", typeof(SystemSettingView));

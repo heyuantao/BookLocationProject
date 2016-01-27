@@ -55,7 +55,19 @@ namespace UI.ViewModels
             this.bookInformationServerSettings = databaseAndSerialSettingsServices.loadBookInformationServerSettings();
             this.bookLocationServerSettings = databaseAndSerialSettingsServices.loadBookLocationServerSettings();
             this.serialSettings = databaseAndSerialSettingsServices.loadSerialSettings();
-            
+            //把配置信息放到容器中的相应对象中
+            IBookInformationService bookInformationSrv = this.container.Resolve<IBookInformationService>();
+            bookInformationSrv.ServerIp = BookInformationServer.IP;
+            bookInformationSrv.ServerUsername = BookInformationServer.Username;
+            bookInformationSrv.ServerPassword = BookInformationServer.Password;
+            IBookLocationService bookLocationSrv = container.Resolve<IBookLocationService>();
+            bookLocationSrv.ServerIp = BookLocationServer.IP;
+            bookLocationSrv.ServerUsername = BookLocationServer.Username;
+            bookLocationSrv.ServerPassword = BookLocationServer.Password;
+            ISerialService serialSrv = container.Resolve<ISerialService>();
+            serialSrv.Serial = Serial.Serial;
+            serialSrv.Speed = Serial.Speed;
+
         }
         public BookInformationServerSettings BookInformationServer
         {//用于绑定的属性
