@@ -57,9 +57,16 @@ class BookInformationDatabase(object):
         for item in itemlist:
             insertcommand=u"insert into tmxxb (索取号,条形码) values (\'"+item.bookAccessCode+"\',\'"+item.bookRfidCode+"\')"
             insertcommand=insertcommand.encode("utf8")
-            print insertcommand
             cursor.execute(insertcommand)
+
+            insertcommand=u"insert into wxxxb (正题名,索取号) values (\'"+item.bookName+"\',\'"+item.bookAccessCode+"\')"
+            insertcommand=insertcommand.encode("utf8")
+            cursor.execute(insertcommand)
+            #print insertcommand
+            print ".",
+            
         self.connection.commit()
+        print ""
             
 
 if __name__=="__main__":
