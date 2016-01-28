@@ -8,24 +8,25 @@ END
 CREATE DATABASE Location;
 GO
 
-USE Dblibrary;
-
-CREATE TABLE dbo.Shelf
-   (ID int IDENTITY(1,1) PRIMARY KEY NOT NULL,
-    索取号 varchar(50) NOT NULL,
-    条形码 varchar(50) NOT NULL)
-
-CREATE TABLE dbo.BookOnShelf
-   (ID int IDENTITY(1,1) PRIMARY KEY NOT NULL,
-    正题名 varchar(25) NOT NULL,
-    索取号 varchar(25) NOT NULL)
+USE Location;
 
 CREATE TABLE dbo.Map
-   (ID int IDENTITY(1,1) PRIMARY KEY NOT NULL,
-    floor varchar(25) NOT NULL,
+   (id int IDENTITY(1,1) PRIMARY KEY NOT NULL,
+    location varchar(50) NOT NULL,
+	position varchar(100) NOT NULL,
+    type varchar(30) NOT NULL)
+
+CREATE TABLE dbo.BookOnShelf
+   (id int IDENTITY(1,1) PRIMARY KEY NOT NULL,
+    bookRfidCode varchar(50) NOT NULL,
+    shelfRfidCode varchar(50) NOT NULL)
+
+CREATE TABLE dbo.Shelf
+   (id int IDENTITY(1,1) PRIMARY KEY NOT NULL,
+    floor int NOT NULL,
 	selection varchar(25) NOT NULL,
-	row varchar(25) NOT NULL,
-	col varchar(25) NOT NULL,
-	col varchar(25) NOT NULL,
-	col varchar(25) NOT NULL,
-    索取号 varchar(25) NOT NULL)
+	row int NOT NULL,
+	col int NOT NULL,
+	side varchar(25) NOT NULL,
+	shelfFloor int NOT NULL,
+    rfidCode varchar(50) NOT NULL)
