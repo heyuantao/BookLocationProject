@@ -1,4 +1,20 @@
 import pymssql
+import xlrd
+
+class FakeBookInformationItem(object):
+    bookName=""
+    bookAccessCode=""
+    bookRfidCode=""
+    def __init__(self):
+        pass
+
+class XLSReaderOfBookInformation(object):
+    def __init__(self,filename):
+        self.filename=filename
+    #def readFileToList():
+    #    xl_workbook = xlrd.open_workbook(self.filename)
+    #    xl_sheet = xl_workbook.sheet_by_index(0)
+
 
 def testDatabaseInsert(databaseConnection):
     cursor=databaseConnection.cursor()
@@ -31,9 +47,10 @@ def testDatabaseOperation():
     print "Close Database !"
 
 def createFakeDataForTest():
+    #FakeBookInformationList=
     #insert the fake data,real data is to large
     pass
 if __name__=="__main__":
     #this code is use for test database function,common it
-    #testDatabaseOperation()
+    testDatabaseOperation()
     pass

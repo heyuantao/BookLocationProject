@@ -12,10 +12,10 @@ USE Dblibrary;
 
 CREATE TABLE dbo.tmxxb
    (ID int IDENTITY(1,1) PRIMARY KEY NOT NULL,
-    Ë÷È¡ºÅ varchar(50) NOT NULL,
-    ÌõĞÎÂë varchar(50) NOT NULL)
+    ç´¢å–å· varchar(50) NOT NULL,
+    æ¡å½¢ç  varchar(50) NOT NULL)
 
 CREATE TABLE dbo.wxxxb
    (ID int IDENTITY(1,1) PRIMARY KEY NOT NULL,
-    ÕıÌâÃû varchar(25) NOT NULL,
-    Ë÷È¡ºÅ varchar(25) NOT NULL)
+    æ­£é¢˜å varchar(25) NOT NULL,
+    ç´¢å–å· varchar(25) NOT NULL)

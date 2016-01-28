@@ -13,7 +13,7 @@ USE Location;
 CREATE TABLE dbo.Map
    (id int IDENTITY(1,1) PRIMARY KEY NOT NULL,
     location varchar(50) NOT NULL,
-	position varchar(100) NOT NULL,
+    position varchar(100) NOT NULL,
     type varchar(30) NOT NULL)
 
 CREATE TABLE dbo.BookOnShelf
@@ -24,9 +24,9 @@ CREATE TABLE dbo.BookOnShelf
 CREATE TABLE dbo.Shelf
    (id int IDENTITY(1,1) PRIMARY KEY NOT NULL,
     floor int NOT NULL,
-	selection varchar(25) NOT NULL,
-	row int NOT NULL,
-	col int NOT NULL,
-	side varchar(25) NOT NULL,
-	shelfFloor int NOT NULL,
+    selection varchar(25) NOT NULL,
+    row int NOT NULL,
+    col int NOT NULL,
+    side varchar(25) NOT NULL,
+    shelfFloor int NOT NULL,
     rfidCode varchar(50) NOT NULL)
