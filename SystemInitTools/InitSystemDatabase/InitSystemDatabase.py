@@ -30,7 +30,9 @@ def testDatabaseOperation():
     connection.close()
     print "Close Database !"
 
-
+def createFakeDataForTest():
+    #insert the fake data,real data is to large
+    pass
 if __name__=="__main__":
     #this code is use for test database function,common it
     #testDatabaseOperation()
