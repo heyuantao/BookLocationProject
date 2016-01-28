@@ -11,9 +11,18 @@ class FakeBookInformationItem(object):
 class XLSReaderOfBookInformation(object):
     def __init__(self,filename):
         self.filename=filename
-    #def readFileToList():
-    #    xl_workbook = xlrd.open_workbook(self.filename)
-    #    xl_sheet = xl_workbook.sheet_by_index(0)
+    def readFileToList(self):
+        xl_workbook = xlrd.open_workbook(self.filename)
+        xl_sheet = xl_workbook.sheet_by_index(0)
+        self.nrows=xl_sheet.nrows
+        self.ncols=xl_sheet.ncols
+        self.beginrow=1        
+        ##begin to read file
+        for i in range(1,3):
+            bookname=xl_sheet.cell(i,0).value
+            accesscode=xl_sheet.cell(i,1).value
+            rfidcode=xl_sheet.cell(i,2).value
+            print bookname,accesscode,rfidcode        
 
 
 def testDatabaseInsert(databaseConnection):
@@ -52,5 +61,7 @@ def createFakeDataForTest():
     pass
 if __name__=="__main__":
     #this code is use for test database function,common it
-    testDatabaseOperation()
+    #testDatabaseOperation()
+    xlsfile=XLSReaderOfBookInformation("XLSDIR/bookInformation.xlsx")
+    xlsfile.readFileToList()
     pass
