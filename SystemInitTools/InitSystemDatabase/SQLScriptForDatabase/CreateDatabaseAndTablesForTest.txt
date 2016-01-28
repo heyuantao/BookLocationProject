@@ -1,0 +1,18 @@
+
+IF EXISTS(SELECT * from sys.databases WHERE name='TestDatabase')
+BEGIN
+    DROP DATABASE TestDatabase;
+END
+
+
+
+CREATE DATABASE TestDatabase;
+
+
+USE TestDatabase;
+
+
+CREATE TABLE dbo.TestTable
+   (ID int IDENTITY(1,1) PRIMARY KEY NOT NULL,
+    testKey varchar(25) NOT NULL,
+    testValue varchar(25) NOT NULL)

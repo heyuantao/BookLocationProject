@@ -1,0 +1,21 @@
+USE master
+
+IF EXISTS(SELECT * from sys.databases WHERE name='Dblibrary')
+BEGIN
+    DROP DATABASE Dblibrary;
+END
+
+CREATE DATABASE Dblibrary;
+GO
+
+USE Dblibrary;
+
+CREATE TABLE dbo.tmxxb
+   (ID int IDENTITY(1,1) PRIMARY KEY NOT NULL,
+    索取号 varchar(50) NOT NULL,
+    条形码 varchar(50) NOT NULL)
+
+CREATE TABLE dbo.wxxxb
+   (ID int IDENTITY(1,1) PRIMARY KEY NOT NULL,
+    正题名 varchar(25) NOT NULL,
+    索取号 varchar(25) NOT NULL)
