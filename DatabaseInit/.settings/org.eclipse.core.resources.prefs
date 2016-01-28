@@ -1,2 +1,3 @@
 eclipse.preferences.version=1
-encoding/InitFakeDatabase.py=utf-8
+encoding/InitBookLocationDatabase.py=utf-8
+encoding/InitFakeBookInformationDatabase.py=utf-8
