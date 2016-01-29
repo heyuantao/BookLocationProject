@@ -35,10 +35,11 @@ namespace AppTest
             container.RegisterType<IModuleManager, ModuleManager>();
             IModuleManager manager = container.Resolve<IModuleManager>();
             manager.Run();
+            //测试RFID服务模块的功能
+            RFIDUnitTest.testRFID(container);
             /******/
-            //RFIDUnitTest.testRFID(container);
-            /******/
-            SerialUnitTest.testSerial(container);
+            //测试串口服务的功能
+            //SerialUnitTest.testSerial(container);
         }
 
         

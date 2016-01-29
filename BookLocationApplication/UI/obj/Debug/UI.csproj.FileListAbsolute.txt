@@ -68,7 +68,6 @@ C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\bi
 C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\bin\Debug\ru\System.Windows.Interactivity.resources.dll
 C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\bin\Debug\zh-Hans\System.Windows.Interactivity.resources.dll
 C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll
-C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\UI.csprojResolveAssemblyReference.cache
 C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\Views\BookLocationShowView.baml
 C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\Views\NavBarView.baml
 C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\Views\RecodeBookLocationView.baml
@@ -81,3 +80,4 @@ C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\ob
 C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\UI.g.resources
 C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\UI.dll
 C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\UI.pdb
+C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\UI.csprojResolveAssemblyReference.cache

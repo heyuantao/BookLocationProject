@@ -25,7 +25,7 @@ class XLSReaderOfBookInformation(object):
         for i in range(1,self.nrows):
             bookname=xl_sheet.cell(i,0).value
             accesscode=xl_sheet.cell(i,1).value
-            rfidcode=xl_sheet.cell(i,2).value
+            rfidcode=int(xl_sheet.cell(i,2).value)
             #print bookname,accesscode,rfidcode 
             bookInformationItem=FakeBookInformationItem()   
             bookInformationItem.bookName=bookname
@@ -56,11 +56,13 @@ class BookInformationDatabase(object):
         cursor=self.connection.cursor()
         #cursor.execute("insert into tmxxb (索取号,条形码) values ('TP123','0x213213')")
         for item in itemlist:
-            insertcommand=u"insert into tmxxb (索取号,条形码) values (\'"+item.bookAccessCode+"\',\'"+item.bookRfidCode+"\')"
+            
+            insertcommand=u"insert into tmxxb (索取号,条形码) values ('%s','%s')" %(item.bookAccessCode,item.bookRfidCode)
             insertcommand=insertcommand.encode("utf8")
             cursor.execute(insertcommand)
-
-            insertcommand=u"insert into wxxxb (正题名,索取号) values (\'"+item.bookName+"\',\'"+item.bookAccessCode+"\')"
+            #print insertcommand
+            
+            insertcommand=u"insert into wxxxb (正题名,索取号) values ('%s','%s')" %(item.bookName,item.bookAccessCode)
             insertcommand=insertcommand.encode("utf8")
             cursor.execute(insertcommand)
             #print insertcommand

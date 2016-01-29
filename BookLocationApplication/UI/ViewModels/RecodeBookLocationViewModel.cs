@@ -32,10 +32,7 @@ namespace UI.ViewModels
             //### ui中用到的变量
             this.bookItemList = new ObservableCollection<BookItem>();
             this.bookItemList.Add(new BookItem() { ID = "1", BookName="123",BookAccessCode="TP123",BookRFIDCode="0x123"});
-            this.bookItemList.Add(new BookItem() { ID = "2", BookName = "123", BookAccessCode = "TP123", BookRFIDCode = "0x123" });
-            this.bookItemList.Add(new BookItem() { ID = "3", BookName = "123", BookAccessCode = "TP123", BookRFIDCode = "0x123" });
-            this.bookItemList.Add(new BookItem() { ID = "4", BookName = "123", BookAccessCode = "TP123", BookRFIDCode = "0x123" });
-
+ 
         }
         public ObservableCollection<BookItem> BookItemList
         {
@@ -65,12 +62,14 @@ namespace UI.ViewModels
             IBookInformationService bookInformationService = container.Resolve<IBookInformationService>();
             IBookLocationService bookLocationService = container.Resolve<IBookLocationService>();
             IRFIDService rfidService = container.Resolve<IRFIDService>();
+            
             //开始读取RFID的信息，并查询数据库
             eventAggregator.GetEvent<RFIDNewItemEvent>().Subscribe(handleNewItemFromRFID);
             //开始订阅RFID服务发出的事件，这个事件是扫描到的条码的信息，在该view非激活时务必取消此事件的订阅
             eventAggregator.GetEvent<RFIDHardwareEvent>().Subscribe(handleErrorFromRFID);
-
+            
             rfidService.start();//开启rfid的后台扫描线程
+            
         }
 
         private void handleErrorFromRFID(string errorMessage)
@@ -86,6 +85,10 @@ namespace UI.ViewModels
             //throw new NotImplementedException();
             //开始处理读取到的数据，并显示在图形界面中
             //begin at this next time
+            //this.bookItemList.Add(new BookItem() { ID = "2", BookName = "123", BookAccessCode = "TP123", BookRFIDCode = "0x123" });
+            //this.bookItemList.Add(new BookItem() { ID = "3", BookName = "123", BookAccessCode = "TP123", BookRFIDCode = "0x123" });
+            //this.bookItemList.Add(new BookItem() { ID = "4", BookName = "123", BookAccessCode = "TP123", BookRFIDCode = "0x123" });
+
         }
     }
 }

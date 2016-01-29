@@ -69,6 +69,11 @@ namespace UI.ViewModels
             serialSrv.Serial = Serial.Serial;
             serialSrv.Speed = Serial.Speed;
 
+            //把系统配置信息放置在RFID服务中
+            IRFIDService rfidService = container.Resolve<IRFIDService>();
+            rfidService.HardwareInterface = serialSrv.Serial;
+            rfidService.HardwareInterfaceConnectionSpeed = serialSrv.Speed;
+
         }
         public BookInformationServerSettings BookInformationServer
         {//用于绑定的属性
@@ -117,6 +122,13 @@ namespace UI.ViewModels
             service.ServerPassword = BookLocationServer.Password;
             //保存配置
             databaseAndSerialSettingsServices.saveBookLocationServerSettings(BookLocationServer);
+        }
+
+        public List<String> SerialInterfaceList{
+            get {
+                ISerialService serialSrv = container.Resolve<ISerialService>();
+                return serialSrv.SerialList();
+            }
         }
         public SerialSettings Serial
         {//用于绑定的属性
