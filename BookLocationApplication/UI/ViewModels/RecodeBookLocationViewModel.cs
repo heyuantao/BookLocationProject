@@ -57,6 +57,9 @@ namespace UI.ViewModels
         private void handleErrorFromRFID(string errorMessage)
         {
             MessageBox.Show(errorMessage);
+            //当串口设置出错时提示信息并转移到串口设置界面
+            this.regionManager.RequestNavigate("MainRegion", new Uri("SystemSettingView", UriKind.Relative));
+
         }
 
         private void handleNewItemFromRFID(RFIDContent obj)
