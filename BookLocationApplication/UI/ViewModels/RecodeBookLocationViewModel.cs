@@ -4,6 +4,7 @@ using Prism.Events;
 using Prism.Regions;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,17 +12,35 @@ using System.Windows;
 
 namespace UI.ViewModels
 {
+    public class BookItem //这个数据结构用于组成一个ObservableCollection<BookItem>()
+    {//用于在ui界面中显示一个列表型的图书信息
+        public String ID { get; set; }  //按递增顺序排列
+        public String BookName { get; set; }
+        public String BookAccessCode { get; set; }
+        public String BookRFIDCode { get; set; }
+    }
     public class RecodeBookLocationViewModel : INavigationAware
     {
         IUnityContainer container;
         IRegionManager regionManager;
         IEventAggregator eventAggregator;
+        ObservableCollection<BookItem> bookItemList;
         public RecodeBookLocationViewModel(IUnityContainer container, IRegionManager regionManager)
         {
             this.container = container; this.regionManager = regionManager;
             this.eventAggregator = container.Resolve<IEventAggregator>();
-        }
+            //### ui中用到的变量
+            this.bookItemList = new ObservableCollection<BookItem>();
+            this.bookItemList.Add(new BookItem() { ID = "1", BookName="123",BookAccessCode="TP123",BookRFIDCode="0x123"});
+            this.bookItemList.Add(new BookItem() { ID = "2", BookName = "123", BookAccessCode = "TP123", BookRFIDCode = "0x123" });
+            this.bookItemList.Add(new BookItem() { ID = "3", BookName = "123", BookAccessCode = "TP123", BookRFIDCode = "0x123" });
+            this.bookItemList.Add(new BookItem() { ID = "4", BookName = "123", BookAccessCode = "TP123", BookRFIDCode = "0x123" });
 
+        }
+        public ObservableCollection<BookItem> BookItemList
+        {
+            get { return this.bookItemList; }
+        }
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
             //throw new NotImplementedException();
