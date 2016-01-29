@@ -1,4 +1,5 @@
-﻿using Prism.Modularity;
+﻿using Infrastructure;
+using Prism.Modularity;
 using Prism.Unity;
 using System;
 using System.Collections.Generic;
@@ -19,9 +20,10 @@ namespace BookLocationApplication
         protected override void InitializeShell()
         {
             base.InitializeShell();
-
+            
             Application.Current.MainWindow = (Window)this.Shell;
             Application.Current.MainWindow.Show();
+
         }
         protected override void ConfigureModuleCatalog()
         {

@@ -143,6 +143,10 @@
       <Project>{8bb1c6fd-6376-458d-a32b-b61a948c82a1}</Project>
       <Name>BookLocation</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
+      <Project>{f05c22de-0ce9-436d-915b-a94afcc67362}</Project>
+      <Name>Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RFID\RFID.csproj">
       <Project>{8dc45067-7ac6-409b-9acf-8f50450e4280}</Project>
       <Name>RFID</Name>
@@ -151,6 +155,9 @@
       <Project>{57344e3a-eb41-49e0-b403-d6048c958542}</Project>
       <Name>UI</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

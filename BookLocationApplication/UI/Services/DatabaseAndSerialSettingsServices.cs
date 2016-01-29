@@ -7,6 +7,7 @@ using UI.ViewModels;
 
 namespace UI.Services
 {
+    //这个服务不需要注入容器
     public class DatabaseAndSerialSettingsServices
     {
         BookInformationServerSettings bookInformationServerSettings;

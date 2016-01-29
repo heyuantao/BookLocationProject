@@ -79,6 +79,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DatabaseAndSerialSettingsServices.cs" />
+    <Compile Include="Services\UIDispatcherService.cs" />
     <Compile Include="UIModule.cs" />
     <Compile Include="ViewModels\BookLocationShowViewModel.cs" />
     <Compile Include="ViewModels\NavBarViewModel.cs" />

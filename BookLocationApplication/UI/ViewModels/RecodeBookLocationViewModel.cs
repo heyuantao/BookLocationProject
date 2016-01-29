@@ -24,11 +24,13 @@ namespace UI.ViewModels
         IUnityContainer container;
         IRegionManager regionManager;
         IEventAggregator eventAggregator;
+        IDispatcherService dispatcherService;
         ObservableCollection<BookItem> bookItemList;
         public RecodeBookLocationViewModel(IUnityContainer container, IRegionManager regionManager)
         {
             this.container = container; this.regionManager = regionManager;
             this.eventAggregator = container.Resolve<IEventAggregator>();
+            this.dispatcherService = container.Resolve<IDispatcherService>();
             //### ui中用到的变量
             this.bookItemList = new ObservableCollection<BookItem>();
             this.bookItemList.Add(new BookItem() { ID = "1", BookName="123",BookAccessCode="TP123",BookRFIDCode="0x123"});
@@ -85,6 +87,9 @@ namespace UI.ViewModels
             //throw new NotImplementedException();
             //开始处理读取到的数据，并显示在图形界面中
             //begin at this next time
+            this.dispatcherService.Dispatch(() => {
+                this.bookItemList.Add(new BookItem() { ID = "2", BookName = "123", BookAccessCode = "TP123", BookRFIDCode = "0x123" });
+            });
             //this.bookItemList.Add(new BookItem() { ID = "2", BookName = "123", BookAccessCode = "TP123", BookRFIDCode = "0x123" });
             //this.bookItemList.Add(new BookItem() { ID = "3", BookName = "123", BookAccessCode = "TP123", BookRFIDCode = "0x123" });
             //this.bookItemList.Add(new BookItem() { ID = "4", BookName = "123", BookAccessCode = "TP123", BookRFIDCode = "0x123" });

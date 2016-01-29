@@ -73,6 +73,7 @@
     <Compile Include="Events\RFIDHardwareEvent.cs" />
     <Compile Include="IBookInformationService.cs" />
     <Compile Include="IBookLocationService.cs" />
+    <Compile Include="IDispatcherService.cs" />
     <Compile Include="IRFIDService.cs" />
     <Compile Include="ISerialService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
