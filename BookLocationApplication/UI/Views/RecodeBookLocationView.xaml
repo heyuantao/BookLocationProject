@@ -13,7 +13,7 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal">
             <TextBlock Height="25"  FontSize="18" Margin="5,0,20,0" >层架信息：</TextBlock>
-            <TextBox  Height="25"  FontSize="18" Width="518"/>
+            <TextBox Text="{Binding ShelfName}" Height="25"  FontSize="18" Width="518"/>
             <Button  Height="25"  FontSize="18" Width="90" Margin="150,0,0,0">清除信息</Button>
             <Button  Height="25"  FontSize="18" Width="90" Margin="20,0,0,0">录入信息</Button>
         </StackPanel>

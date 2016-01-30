@@ -5,6 +5,7 @@ using Prism.Regions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,13 +20,15 @@ namespace UI.ViewModels
         public String BookAccessCode { get; set; }
         public String BookRFIDCode { get; set; }
     }
-    public class RecodeBookLocationViewModel : INavigationAware
+    public class RecodeBookLocationViewModel : INavigationAware,INotifyPropertyChanged  
     {
         IUnityContainer container;
         IRegionManager regionManager;
         IEventAggregator eventAggregator;
         IDispatcherService dispatcherService;
-        ObservableCollection<BookItem> bookItemList;
+        ObservableCollection<BookItem> bookItemList; //图形界面中显示的图书列表
+        int bookItemCount; //图形界面中图书列表中的ID值，每次增加1，初始值为1
+        String shelfName;//图形界面中的书架信息
         public RecodeBookLocationViewModel(IUnityContainer container, IRegionManager regionManager)
         {
             this.container = container; this.regionManager = regionManager;
@@ -33,12 +36,19 @@ namespace UI.ViewModels
             this.dispatcherService = container.Resolve<IDispatcherService>();
             //### ui中用到的变量
             this.bookItemList = new ObservableCollection<BookItem>();
+            this.bookItemCount = 1;
+            this.shelfName = "";
             //this.bookItemList.Add(new BookItem() { ID = "1", BookName="123",BookAccessCode="TP123",BookRFIDCode="0x123"});
  
         }
         public ObservableCollection<BookItem> BookItemList
         {
             get { return this.bookItemList; }
+        }
+        public String ShelfName
+        {
+            get { return this.shelfName; }
+            set { this.shelfName = value; this.OnPropertyChanged("ShelfName"); }
         }
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
@@ -90,6 +100,16 @@ namespace UI.ViewModels
                 //从newItem中获取图书数据并开始查询
                 IBookInformationService bookInformationService = this.container.Resolve<IBookInformationService>();
                 List<String> bookRfidList = newItem.bookRfidList;
+                //查看图形界面中的图书列表，即bookItemList与bookRfidList是否有重复，消除掉重复的部分
+                foreach (BookItem item in this.bookItemList)
+                {
+                    if(bookRfidList.Contains(item.BookRFIDCode))
+                    {
+                        bookRfidList.Remove(item.BookRFIDCode);//删除后链表可能为空
+                    }
+                }
+                if (bookRfidList.Count() == 0) { return; }
+
                 List<String> bookNameList = bookInformationService.getBookNameListByRfidList(bookRfidList);
                 List<String> bookAccessCodeList = bookInformationService.getBookAccessCodeListByRfidList(bookRfidList);
                 //这里有个bug，就是三个列表长度不同，研究下为什么，暂时先用比较长度的方式来解决
@@ -100,14 +120,20 @@ namespace UI.ViewModels
                 {
                     for (int i = 0; i < bookRfidList.Count(); i++)
                     {
-                        this.bookItemList.Add(new BookItem() { ID = "1", BookName = bookNameList[i], BookAccessCode = bookAccessCodeList[i], BookRFIDCode = bookRfidList[i] });
+                        this.bookItemList.Add(new BookItem() { 
+                            ID = Convert.ToString(this.bookItemCount), 
+                            BookName = bookNameList[i], 
+                            BookAccessCode = bookAccessCodeList[i], 
+                            BookRFIDCode = bookRfidList[i] });
+                        this.bookItemCount = this.bookItemCount + 1;
                     }
                 });
             }
             if (newItem.shelfRfidList.Count() != 0)
             {
                 IBookLocationService bookLocationService = this.container.Resolve<IBookLocationService>();
-                String shelfName = bookLocationService.getShelfNameByShelfRfid(newItem.shelfRfidList[0]);
+                this.ShelfName = bookLocationService.getShelfNameByShelfRfid(newItem.shelfRfidList[0]);
+            
             }           
 
             //throw new NotImplementedException();
@@ -119,5 +145,17 @@ namespace UI.ViewModels
             //this.bookItemList.Add(new BookItem() { ID = "4", BookName = "123", BookAccessCode = "TP123", BookRFIDCode = "0x123" });
 
         }
+
+        //########################################
+        //########################################
+        // system method,not change it
+        private void OnPropertyChanged(String propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
