@@ -31,6 +31,7 @@ namespace UI.ViewModels
         ObservableCollection<BookItem> bookItemList; //图形界面中显示的图书列表
         int bookItemCount; //图形界面中图书列表中的ID值，每次增加1，初始值为1
         String shelfName;//图形界面中的书架信息
+        String shelfRfid;
         public RecodeBookLocationViewModel(IUnityContainer container, IRegionManager regionManager)
         {
             this.container = container; this.regionManager = regionManager;
@@ -40,6 +41,7 @@ namespace UI.ViewModels
             this.bookItemList = new ObservableCollection<BookItem>();
             this.bookItemCount = 1;
             this.shelfName = "";
+            this.shelfRfid = "";
             //this.bookItemList.Add(new BookItem() { ID = "1", BookName="123",BookAccessCode="TP123",BookRFIDCode="0x123"});
  
         }
@@ -146,7 +148,7 @@ namespace UI.ViewModels
             {
                 IBookLocationService bookLocationService = this.container.Resolve<IBookLocationService>();
                 this.ShelfName = bookLocationService.getShelfNameByShelfRfid(newItem.shelfRfidList[0]);
-            
+                this.shelfRfid = newItem.shelfRfidList[0];
             }           
 
             //throw new NotImplementedException();
@@ -162,14 +164,30 @@ namespace UI.ViewModels
         private void onRecodeBookLocationCleanBookListCommandExecute()
         {
             //throw new NotImplementedException();
-            this.BookItemList = new ObservableCollection<BookItem>();
-            this.bookItemCount = 1;
-
-            this.ShelfName = "";
+            this.clearBookListAndShelfInformation();
         }
         private void onRecodeBookLocationAddBookListCommandExecute()
         {
+            IBookLocationService bookLocationService = this.container.Resolve<IBookLocationService>();
+            String currentShelfRfid = this.shelfRfid;
+            List<String> bookRfidList=new List<String>();
+
+            //把新的信息加入数据库
+            foreach (BookItem oneBook in this.BookItemList)
+            {
+                bookRfidList.Add(oneBook.BookRFIDCode);
+            }
+            bookLocationService.setBookRfidListOnShelfRfid(currentShelfRfid, bookRfidList);
+            this.clearBookListAndShelfInformation();
             //throw new NotImplementedException();
+        }
+        private void clearBookListAndShelfInformation()
+        {
+            this.BookItemList = new ObservableCollection<BookItem>();
+            this.bookItemCount = 1;
+            
+            this.ShelfName = "";
+            this.shelfRfid = "";
         }
         //########################################
         //########################################
