@@ -94,6 +94,7 @@ namespace BookInformation
             string password = this.ServerPassword;
             //Data Source=192.168.28.129;Initial Catalog=Dblibrary;Persist Security Info=True;User ID=sa;Password=19831122
             String conString = "Data Source=" + ip + ";Initial Catalog=Dblibrary;Persist Security Info=True;User ID=" + username + ";Password=" + password;
+            this.database = new MiaoSiBookDatabase(conString);
             return conString;
         }
     }

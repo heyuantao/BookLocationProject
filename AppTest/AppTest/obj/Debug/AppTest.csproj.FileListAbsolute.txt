@@ -74,3 +74,5 @@ C:\Users\hyt\Documents\Visual Studio 2013\Projects\AppTest\AppTest\bin\Debug\ru\
 C:\Users\hyt\Documents\Visual Studio 2013\Projects\AppTest\AppTest\bin\Debug\zh-Hans\System.Windows.Interactivity.resources.dll
 C:\Users\hyt\Documents\Visual Studio 2013\Projects\AppTest\AppTest\bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll
 C:\Users\hyt\Documents\Visual Studio 2013\Projects\AppTest\AppTest\obj\Debug\AppTest.csprojResolveAssemblyReference.cache
+C:\Users\hyt\Documents\Visual Studio 2013\Projects\AppTest\AppTest\bin\Debug\BookInformation.dll
+C:\Users\hyt\Documents\Visual Studio 2013\Projects\AppTest\AppTest\bin\Debug\BookInformation.pdb

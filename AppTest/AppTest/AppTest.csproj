@@ -70,6 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseUnitTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RFIDUnitTest.cs" />
@@ -80,6 +81,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\BookLocationApplication\BookInformation\BookInformation.csproj">
+      <Project>{f15fc549-c387-4a6a-8faa-ce8c7d7c8054}</Project>
+      <Name>BookInformation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\BookLocationApplication\Infrastructure\Infrastructure.csproj">
       <Project>{f05c22de-0ce9-436d-915b-a94afcc67362}</Project>
       <Name>Infrastructure</Name>
