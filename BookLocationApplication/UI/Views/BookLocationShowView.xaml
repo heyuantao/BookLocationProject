@@ -17,7 +17,7 @@
             <TextBox Text="{Binding BookAccessCode}" Height="25"  FontSize="18" Width="200" IsReadOnly="True"/>
             <TextBlock Height="25"  FontSize="18" Margin="30,0,10,0" >存放位置</TextBlock>
             <TextBox Text="{Binding BookLocation}" Height="25"  FontSize="18" Width="330" IsReadOnly="True"/>
-            <Button  Height="25"  FontSize="18" Width="90" Margin="30,0,0,0">清除</Button>
+            <Button Command="{Binding BookLocationShowClearCommand}" Height="25"  FontSize="18" Width="90" Margin="30,0,0,0">清除</Button>
         </StackPanel>
         <Canvas Grid.Row="1" Background="#FFEED1D1" Width="1180" Height="550" Margin="0,20,0,0">
 

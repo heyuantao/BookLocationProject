@@ -1,5 +1,6 @@
 ﻿using Infrastructure;
 using Microsoft.Practices.Unity;
+using Prism.Commands;
 using Prism.Events;
 using Prism.Regions;
 using System;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace UI.ViewModels
 {
@@ -45,8 +47,8 @@ namespace UI.ViewModels
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             //ISerialService serialService = container.Resolve<ISerialService>();
-            IBookInformationService bookInformationService = container.Resolve<IBookInformationService>();
-            IBookLocationService bookLocationService = container.Resolve<IBookLocationService>();
+            //IBookInformationService bookInformationService = container.Resolve<IBookInformationService>();
+            //IBookLocationService bookLocationService = container.Resolve<IBookLocationService>();
             IRFIDService rfidService = container.Resolve<IRFIDService>();
 
             //开始读取RFID的信息，并查询数据库
@@ -71,7 +73,16 @@ namespace UI.ViewModels
             get { return this.bookLocation; }
             set { this.bookLocation = value; this.OnPropertyChanged("BookLocation"); }
         }
+        public ICommand BookLocationShowClearCommand
+        {
+            get { return new DelegateCommand(onBookLocationShowClearCommandExecute); }
+        }
+
         //###########################
+        private void onBookLocationShowClearCommandExecute()
+        {
+            this.clearBookInformation();
+        }
         private void handleErrorFromRFID(string errorMessage)
         {
             MessageBox.Show(errorMessage);
@@ -101,6 +112,10 @@ namespace UI.ViewModels
                     this.BookLocation = bookLocationService.getShelfNameByShelfRfid(shelfRfid);
                 });   
             }
+        }
+        private void clearBookInformation()
+        {
+            this.BookName = ""; this.BookAccessCode = ""; this.BookLocation = "";
         }
         //########################################
         //########################################
