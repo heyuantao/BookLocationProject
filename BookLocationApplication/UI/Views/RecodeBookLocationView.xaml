@@ -13,11 +13,11 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal">
             <TextBlock Height="25"  FontSize="18" Margin="5,0,20,0" >层架信息：</TextBlock>
-            <TextBox Text="{Binding ShelfName}" Height="25"  FontSize="18" Width="518"/>
-            <Button  Height="25"  FontSize="18" Width="90" Margin="150,0,0,0">清除信息</Button>
-            <Button  Height="25"  FontSize="18" Width="90" Margin="20,0,0,0">录入信息</Button>
+            <TextBox Text="{Binding ShelfName}" Height="25"  FontSize="18" Width="518" IsReadOnly="True"/>
+            <Button Command="{Binding RecodeBookLocationCleanBookListCommand}"  Height="25"  FontSize="18" Width="90" Margin="150,0,0,0">清除信息</Button>
+            <Button Command="{Binding RecodeBookLocationAddBookListCommand}" Height="25"  FontSize="18" Width="90" Margin="20,0,0,0">录入信息</Button>
         </StackPanel>
-        <DataGrid HorizontalAlignment="Left"  Grid.Row="2" VerticalAlignment="Top" Height="500" Width="1080" Margin="0,25,0,0" ItemsSource="{Binding BookItemList}" AutoGenerateColumns="False" FontSize="16" FontWeight="Bold">
+        <DataGrid HorizontalAlignment="Left"  Grid.Row="2" VerticalAlignment="Top" Height="500" Width="1080" Margin="0,25,0,0" ItemsSource="{Binding BookItemList}" AutoGenerateColumns="False" FontSize="16" FontWeight="Bold" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding ID}" ClipboardContentBinding="{x:Null}" Header="序列号" Width="*" FontSize="16"/>
                 <DataGridTextColumn Binding="{Binding BookName}" ClipboardContentBinding="{x:Null}" Header="图书名称" Width="3*" FontSize="16"/>

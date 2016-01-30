@@ -1,5 +1,6 @@
 ﻿using Infrastructure;
 using Microsoft.Practices.Unity;
+using Prism.Commands;
 using Prism.Events;
 using Prism.Regions;
 using System;
@@ -10,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace UI.ViewModels
 {
@@ -44,12 +46,23 @@ namespace UI.ViewModels
         public ObservableCollection<BookItem> BookItemList
         {
             get { return this.bookItemList; }
+            set { this.bookItemList = value; this.OnPropertyChanged("BookItemList"); }
         }
         public String ShelfName
         {
             get { return this.shelfName; }
             set { this.shelfName = value; this.OnPropertyChanged("ShelfName"); }
         }
+        public ICommand RecodeBookLocationCleanBookListCommand
+        {
+            get { return new DelegateCommand(onRecodeBookLocationCleanBookListCommandExecute); }
+        }
+        public ICommand RecodeBookLocationAddBookListCommand
+        {
+            get { return new DelegateCommand(onRecodeBookLocationAddBookListCommandExecute); }
+        }
+
+
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
             //throw new NotImplementedException();
@@ -146,6 +159,18 @@ namespace UI.ViewModels
 
         }
 
+        private void onRecodeBookLocationCleanBookListCommandExecute()
+        {
+            //throw new NotImplementedException();
+            this.BookItemList = new ObservableCollection<BookItem>();
+            this.bookItemCount = 1;
+
+            this.ShelfName = "";
+        }
+        private void onRecodeBookLocationAddBookListCommandExecute()
+        {
+            //throw new NotImplementedException();
+        }
         //########################################
         //########################################
         // system method,not change it
