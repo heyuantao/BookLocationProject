@@ -180,6 +180,7 @@ namespace UI.ViewModels
             bookLocationService.setBookRfidListOnShelfRfid(currentShelfRfid, bookRfidList);
             this.clearBookListAndShelfInformation();
             //throw new NotImplementedException();
+            MessageBox.Show("添加图书信息成功！");
         }
         private void clearBookListAndShelfInformation()
         {

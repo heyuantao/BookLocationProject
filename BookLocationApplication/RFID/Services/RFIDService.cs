@@ -86,7 +86,15 @@ namespace RFID{
                 if (this.backgroundTaskStatus == true)
                 {
                     RFIDContent content = new RFIDContent();
-                    TagList = rfidDevice.readTags();  //该函数会被阻塞，直到读到标签，如果被阻塞在函数内部则等待一段时间并再次读取
+                    try
+                    {
+                        TagList = rfidDevice.readTags();  //该函数会被阻塞，直到读到标签，如果被阻塞在函数内部则等待一段时间并再次读取
+                    }
+                    catch (Exception e)
+                    {
+                        eventAggregator.GetEvent<RFIDHardwareEvent>().Publish(e.ToString());
+                        //RFIDHardwareEvent 读卡时可能发生错误
+                    }
                     foreach (KeyValuePair<String, String> item in TagList)
                     {//从读卡器读到的一批数据，可能有图书的，也可能有书架的，把这些数据进行整理，并准备用event发送出去
                         if(item.Value=="book")
