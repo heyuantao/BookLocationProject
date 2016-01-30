@@ -28,7 +28,7 @@ namespace UI.ViewModels
             this.eventAggregator = container.Resolve<IEventAggregator>();
             this.dispatcherService = container.Resolve<IDispatcherService>();
             //初始化UI的变量
-            this.BookName = "123"; this.BookAccessCode = ""; this.BookLocation = "";
+            this.bookName = ""; this.bookAccessCode = ""; this.bookLocation = "";
         }
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
@@ -56,17 +56,17 @@ namespace UI.ViewModels
 
             rfidService.start();//开启rfid的后台扫描线程
         }
-        String BookName
+        public String BookName
         {
             get { return this.bookName; }
             set { this.bookName = value; this.OnPropertyChanged("BookName"); }
         }
-        String BookAccessCode
+        public String BookAccessCode
         {
             get { return this.bookAccessCode; }
             set { this.bookAccessCode = value; this.OnPropertyChanged("BookAccessCode"); }
         }
-        String BookLocation
+        public String BookLocation
         {
             get { return this.bookLocation; }
             set { this.bookLocation = value; this.OnPropertyChanged("BookLocation"); }
