@@ -42,6 +42,10 @@ namespace AppTest
             List<String> bookAccessCodeList = bookInformationService.getBookAccessCodeListByRfidList(bookRfidList);
             Console.WriteLine("Book Access Code List:");
             displayList(bookAccessCodeList);
+
+            List<String> bookNameList = bookInformationService.getBookNameListByRfidList(bookRfidList);
+            Console.WriteLine("Book Name List:");
+            displayList(bookNameList);
         }
     }
 }
