@@ -85,7 +85,7 @@ namespace UI.ViewModels
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             //throw new NotImplementedException();
-            ISerialService serialService = container.Resolve<ISerialService>();
+            //ISerialService serialService = container.Resolve<ISerialService>();
             IBookInformationService bookInformationService = container.Resolve<IBookInformationService>();
             IBookLocationService bookLocationService = container.Resolve<IBookLocationService>();
             IRFIDService rfidService = container.Resolve<IRFIDService>();
