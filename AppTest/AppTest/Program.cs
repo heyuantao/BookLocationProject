@@ -31,6 +31,7 @@ namespace AppTest
             ModuleCatalog catalog = new ModuleCatalog();
             //catalog.AddModule(typeof(RFID.RFIDModule));
             catalog.AddModule(typeof(BookInformation.BookInformationModule));
+            catalog.AddModule(typeof(BookLocation.BookLocationModule));
             container.RegisterInstance<IModuleCatalog>(catalog);
 
             container.RegisterType<IModuleManager, ModuleManager>();

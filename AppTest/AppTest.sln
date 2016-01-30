@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RFID", "..\BookLocationAppl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookInformation", "..\BookLocationApplication\BookInformation\BookInformation.csproj", "{F15FC549-C387-4A6A-8FAA-CE8C7D7C8054}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookLocation", "..\BookLocationApplication\BookLocation\BookLocation.csproj", "{8BB1C6FD-6376-458D-A32B-B61A948C82A1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{F15FC549-C387-4A6A-8FAA-CE8C7D7C8054}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F15FC549-C387-4A6A-8FAA-CE8C7D7C8054}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F15FC549-C387-4A6A-8FAA-CE8C7D7C8054}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BB1C6FD-6376-458D-A32B-B61A948C82A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BB1C6FD-6376-458D-A32B-B61A948C82A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BB1C6FD-6376-458D-A32B-B61A948C82A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BB1C6FD-6376-458D-A32B-B61A948C82A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

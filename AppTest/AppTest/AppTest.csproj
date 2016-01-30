@@ -32,6 +32,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
@@ -61,6 +69,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
@@ -84,6 +93,10 @@
     <ProjectReference Include="..\..\BookLocationApplication\BookInformation\BookInformation.csproj">
       <Project>{f15fc549-c387-4a6a-8faa-ce8c7d7c8054}</Project>
       <Name>BookInformation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BookLocationApplication\BookLocation\BookLocation.csproj">
+      <Project>{8bb1c6fd-6376-458d-a32b-b61a948c82a1}</Project>
+      <Name>BookLocation</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\BookLocationApplication\Infrastructure\Infrastructure.csproj">
       <Project>{f05c22de-0ce9-436d-915b-a94afcc67362}</Project>

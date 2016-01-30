@@ -76,3 +76,9 @@ C:\Users\hyt\Documents\Visual Studio 2013\Projects\AppTest\AppTest\bin\Debug\zh-
 C:\Users\hyt\Documents\Visual Studio 2013\Projects\AppTest\AppTest\obj\Debug\AppTest.csprojResolveAssemblyReference.cache
 C:\Users\hyt\Documents\Visual Studio 2013\Projects\AppTest\AppTest\bin\Debug\BookInformation.dll
 C:\Users\hyt\Documents\Visual Studio 2013\Projects\AppTest\AppTest\bin\Debug\BookInformation.pdb
+C:\Users\hyt\Documents\Visual Studio 2013\Projects\AppTest\AppTest\bin\Debug\BookLocation.dll
+C:\Users\hyt\Documents\Visual Studio 2013\Projects\AppTest\AppTest\bin\Debug\EntityFramework.dll
+C:\Users\hyt\Documents\Visual Studio 2013\Projects\AppTest\AppTest\bin\Debug\BookLocation.pdb
+C:\Users\hyt\Documents\Visual Studio 2013\Projects\AppTest\AppTest\bin\Debug\EntityFramework.xml
+C:\Users\hyt\Documents\Visual Studio 2013\Projects\AppTest\AppTest\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\hyt\Documents\Visual Studio 2013\Projects\AppTest\AppTest\bin\Debug\EntityFramework.SqlServer.xml

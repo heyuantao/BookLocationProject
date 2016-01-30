@@ -12,8 +12,8 @@ namespace AppTest
     {
         public static void testAllDatabase(IUnityContainer container)
         {
-            testBookInformationDatabase(container);
-
+            //testBookInformationDatabase(container);
+            testShelfPositonDatabase(container);
             Console.ReadKey();
         }
         public static void displayList(List<String> stringList)
@@ -23,6 +23,30 @@ namespace AppTest
                 Console.Write(item+" ");
             }
             Console.WriteLine("");
+        }
+        public static void testShelfPositonDatabase(IUnityContainer container)
+        {
+            IBookLocationService locationService = container.Resolve<IBookLocationService>();
+            locationService.ServerIp = "DESKTOP-PSQP38H";
+            locationService.ServerUsername = "sa";
+            locationService.ServerPassword = "19831122";
+
+            List<String> shelfRfidList = new List<string>();
+            shelfRfidList.Add("6W22A0304");
+            shelfRfidList.Add("6W22A0305");
+            shelfRfidList.Add("3W01A0103");
+            shelfRfidList.Add("3W01A0503");
+            Console.WriteLine("Shelf Rfid List:");
+            displayList(shelfRfidList);
+
+            List<String> shelfNameList = new List<String>();
+            foreach(String item in shelfRfidList){
+                String name=locationService.getShelfNameByShelfRfid(item);
+                shelfNameList.Add(name);
+            }
+            Console.WriteLine("Shelf Name List:");
+            displayList(shelfNameList);
+
         }
         public static void testBookInformationDatabase(IUnityContainer container)
         {

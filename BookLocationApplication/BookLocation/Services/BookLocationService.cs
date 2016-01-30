@@ -74,11 +74,11 @@ namespace BookLocation
             {
                 String name = "";
                 name = name + "图书馆" + oneShelf.selection.Trim() + "区";
-                name = name + " 楼宇第" + oneShelf.floor + "层";
-                name = name + " 第" + oneShelf.row + "行";
-                name = name + " 第" + oneShelf.col + "列";
-                name = name + " " + oneShelf.side.Trim() + "面";
-                name = name + " 书架第" + oneShelf.shelfFloor + "层";
+                name = name + "" + oneShelf.floor + "层";
+                name = name + "" + oneShelf.row + "行";
+                name = name + "" + oneShelf.col + "列";
+                name = name + "" + oneShelf.side.Trim() + "面";
+                name = name + "书架第" + oneShelf.shelfFloor + "层";
                 return name;
             }            
         }
