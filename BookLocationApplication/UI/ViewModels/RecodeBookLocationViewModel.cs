@@ -33,7 +33,7 @@ namespace UI.ViewModels
             this.dispatcherService = container.Resolve<IDispatcherService>();
             //### ui中用到的变量
             this.bookItemList = new ObservableCollection<BookItem>();
-            this.bookItemList.Add(new BookItem() { ID = "1", BookName="123",BookAccessCode="TP123",BookRFIDCode="0x123"});
+            //this.bookItemList.Add(new BookItem() { ID = "1", BookName="123",BookAccessCode="TP123",BookRFIDCode="0x123"});
  
         }
         public ObservableCollection<BookItem> BookItemList
@@ -82,14 +82,38 @@ namespace UI.ViewModels
 
         }
 
-        private void handleNewItemFromRFID(RFIDContent obj)
+        private void handleNewItemFromRFID(RFIDContent newItem)
         {
+            //判断是不是没有数据
+            if (newItem.bookRfidList.Count() != 0)
+            {
+                //从newItem中获取图书数据并开始查询
+                IBookInformationService bookInformationService = this.container.Resolve<IBookInformationService>();
+                List<String> bookRfidList = newItem.bookRfidList;
+                List<String> bookNameList = bookInformationService.getBookNameListByRfidList(bookRfidList);
+                List<String> bookAccessCodeList = bookInformationService.getBookAccessCodeListByRfidList(bookRfidList);
+                //这里有个bug，就是三个列表长度不同，研究下为什么，暂时先用比较长度的方式来解决
+                if (bookRfidList.Count() != bookNameList.Count()){return;}
+                if (bookRfidList.Count() != bookAccessCodeList.Count()) { return; }
+                if (bookNameList.Count() != bookAccessCodeList.Count()) { return; }
+                this.dispatcherService.Dispatch(() =>
+                {
+                    for (int i = 0; i < bookRfidList.Count(); i++)
+                    {
+                        this.bookItemList.Add(new BookItem() { ID = "1", BookName = bookNameList[i], BookAccessCode = bookAccessCodeList[i], BookRFIDCode = bookRfidList[i] });
+                    }
+                });
+            }
+            if (newItem.shelfRfidList.Count() != 0)
+            {
+                IBookLocationService bookLocationService = this.container.Resolve<IBookLocationService>();
+                String shelfName = bookLocationService.getShelfNameByShelfRfid(newItem.shelfRfidList[0]);
+            }           
+
             //throw new NotImplementedException();
             //开始处理读取到的数据，并显示在图形界面中
             //begin at this next time
-            this.dispatcherService.Dispatch(() => {
-                this.bookItemList.Add(new BookItem() { ID = "2", BookName = "123", BookAccessCode = "TP123", BookRFIDCode = "0x123" });
-            });
+            
             //this.bookItemList.Add(new BookItem() { ID = "2", BookName = "123", BookAccessCode = "TP123", BookRFIDCode = "0x123" });
             //this.bookItemList.Add(new BookItem() { ID = "3", BookName = "123", BookAccessCode = "TP123", BookRFIDCode = "0x123" });
             //this.bookItemList.Add(new BookItem() { ID = "4", BookName = "123", BookAccessCode = "TP123", BookRFIDCode = "0x123" });

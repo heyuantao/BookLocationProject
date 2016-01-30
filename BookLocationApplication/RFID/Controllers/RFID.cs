@@ -67,7 +67,7 @@ namespace RFID
             }***/
             //上面注释掉的部分是原来的程序，原有的程序只有当读到数据时才返回结果，现在改为不管有没有读到数据都返回
             int readCount=1;
-            while ((status == 1)&&(readCount<5)) //一定不能一直读，否则串口会无反应，流量太大了
+            while ((status == 1)&&(readCount<3)) //一定不能一直读，否则串口会无反应，流量太大了
             {
                 //Thread.Sleep(5);//不能睡眠，以免导致冲突
                 readCount = readCount + 1; 
@@ -77,7 +77,7 @@ namespace RFID
             {
                 return tagList;
             }
-            //现在的程序改为一直读5次，如果什么都没有读到就返回空的Directory
+            //现在的程序改为一直读3次，如果什么都没有读到就返回空的Directory
 
             for (int i = 0; i < tagArray.Length; i++)
             {

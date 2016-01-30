@@ -98,7 +98,9 @@ namespace RFID{
                             content.shelfRfidList.Add(item.Key);
                         }
                     }
-                    eventAggregator.GetEvent<RFIDNewItemEvent>().Publish(content);
+                    if( (content.bookRfidList.Count()!=0)||(content.shelfRfidList.Count()!=0) ){
+                        eventAggregator.GetEvent<RFIDNewItemEvent>().Publish(content);
+                    } 
                     //把读到的内容通过事件发送出去，不管读到的是图书信息还是书架的信息
                     Thread.Sleep(500);
                     //睡眠一定要在所有操作完成后进行，因为醒来后可能状态位已经发生了改变，否则会发生异常
