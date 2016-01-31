@@ -1,0 +1,16 @@
+﻿Build started 2015/10/5 20:18:47.
+     1>Project "D:\files\文档\Visual Studio 2013\Projects\BLMandLibrary\EncodeAndDecode\EncodeAndDecode\EncodeAndDecode.vcxproj" on node 2 (Rebuild target(s)).
+     1>ClCompile:
+         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D ENCODEANDDECODE_EXPORTS /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt changeCode.cpp
+         changeCode.cpp
+       Link:
+         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\files\文档\Visual Studio 2013\Projects\BLMandLibrary\EncodeAndDecode\Release\EncodeAndDecode.dll" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\files\文档\Visual Studio 2013\Projects\BLMandLibrary\EncodeAndDecode\Release\EncodeAndDecode.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\files\文档\Visual Studio 2013\Projects\BLMandLibrary\EncodeAndDecode\Release\EncodeAndDecode.lib" /MACHINE:X86 /SAFESEH /DLL Release\changeCode.obj
+            Creating library D:\files\文档\Visual Studio 2013\Projects\BLMandLibrary\EncodeAndDecode\Release\EncodeAndDecode.lib and object D:\files\文档\Visual Studio 2013\Projects\BLMandLibrary\EncodeAndDecode\Release\EncodeAndDecode.exp
+         Generating code
+         Finished generating code
+         EncodeAndDecode.vcxproj -> D:\files\文档\Visual Studio 2013\Projects\BLMandLibrary\EncodeAndDecode\Release\EncodeAndDecode.dll
+     1>Done Building Project "D:\files\文档\Visual Studio 2013\Projects\BLMandLibrary\EncodeAndDecode\EncodeAndDecode\EncodeAndDecode.vcxproj" (Rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.09

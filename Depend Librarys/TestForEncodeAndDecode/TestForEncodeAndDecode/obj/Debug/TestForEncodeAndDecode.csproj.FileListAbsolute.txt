@@ -1,0 +1,6 @@
+c:\users\he_yu\documents\visual studio 2013\Projects\TestForEncodeAndDecode\TestForEncodeAndDecode\bin\Debug\TestForEncodeAndDecode.exe.config
+c:\users\he_yu\documents\visual studio 2013\Projects\TestForEncodeAndDecode\TestForEncodeAndDecode\obj\Debug\TestForEncodeAndDecode.csprojResolveAssemblyReference.cache
+c:\users\he_yu\documents\visual studio 2013\Projects\TestForEncodeAndDecode\TestForEncodeAndDecode\bin\Debug\TestForEncodeAndDecode.exe
+c:\users\he_yu\documents\visual studio 2013\Projects\TestForEncodeAndDecode\TestForEncodeAndDecode\bin\Debug\TestForEncodeAndDecode.pdb
+c:\users\he_yu\documents\visual studio 2013\Projects\TestForEncodeAndDecode\TestForEncodeAndDecode\obj\Debug\TestForEncodeAndDecode.exe
+c:\users\he_yu\documents\visual studio 2013\Projects\TestForEncodeAndDecode\TestForEncodeAndDecode\obj\Debug\TestForEncodeAndDecode.pdb
