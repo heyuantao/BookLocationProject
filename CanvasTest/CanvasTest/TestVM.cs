@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -43,6 +44,9 @@ namespace CanvasTest
             Canvas.SetLeft(rect, rnd.Next(1,1000));
             Canvas.SetTop(rect, rnd.Next(1, 1000));
             canvas.Children.Add(rect);
+
+            String showString = "Width:" + canvas.ActualWidth + " " + "Heigh:" + canvas.ActualHeight;
+            MessageBox.Show(showString);
         }
         public Canvas MyCanvas
         {
