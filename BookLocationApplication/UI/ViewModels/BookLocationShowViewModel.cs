@@ -24,6 +24,8 @@ namespace UI.ViewModels
         String bookName;
         String bookAccessCode;
         String bookLocation;
+        //按钮的处理事件DelegateCommand
+        ICommand bookLocationShowClearCommand;
         public BookLocationShowViewModel(IUnityContainer container, IRegionManager regionManager)
         {
             this.container = container; this.regionManager = regionManager;
@@ -61,21 +63,60 @@ namespace UI.ViewModels
         public String BookName
         {
             get { return this.bookName; }
-            set { this.bookName = value; this.OnPropertyChanged("BookName"); }
+            set { 
+                this.bookName = value; 
+                this.OnPropertyChanged("BookName");
+                this.dispatcherService.Dispatch(() =>
+                {
+                    ((DelegateCommand)this.BookLocationShowClearCommand).RaiseCanExecuteChanged();
+                });
+            }
         }
         public String BookAccessCode
         {
             get { return this.bookAccessCode; }
-            set { this.bookAccessCode = value; this.OnPropertyChanged("BookAccessCode"); }
+            set { 
+                this.bookAccessCode = value; 
+                this.OnPropertyChanged("BookAccessCode");
+                ((DelegateCommand)this.BookLocationShowClearCommand).RaiseCanExecuteChanged();
+
+            }
         }
         public String BookLocation
         {
             get { return this.bookLocation; }
-            set { this.bookLocation = value; this.OnPropertyChanged("BookLocation"); }
+            set { 
+                this.bookLocation = value; 
+                this.OnPropertyChanged("BookLocation");
+                ((DelegateCommand)this.BookLocationShowClearCommand).RaiseCanExecuteChanged();
+            }
         }
         public ICommand BookLocationShowClearCommand
         {
-            get { return new DelegateCommand(onBookLocationShowClearCommandExecute); }
+            get {
+                if (this.bookLocationShowClearCommand == null)
+                {
+                    this.bookLocationShowClearCommand = new DelegateCommand(onBookLocationShowClearCommandExecute, onBookLocationShowClearCommandCanExecute);
+                }
+                return this.bookLocationShowClearCommand;
+            }
+        }
+
+        private Boolean onBookLocationShowClearCommandCanExecute()
+        {
+            if (!String.IsNullOrEmpty(this.BookName))
+            {
+                return true;
+            }
+            if (!String.IsNullOrEmpty(this.BookAccessCode))
+            {
+                return true;
+            }
+            if (!String.IsNullOrEmpty(this.BookLocation))
+            {
+                return true;
+            }
+            return false;
         }
 
         //###########################
