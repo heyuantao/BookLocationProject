@@ -15,10 +15,12 @@ namespace CanvasTest
     public class TestVM
     {
         Canvas canvas;
+        DrawMap drawMap;
         ICommand click;
         public TestVM()
         {
-            
+            this.drawMap = new DrawMap(800,600,1600,800);
+            this.canvas = this.drawMap.getCanvas();
         }
         public ICommand Click
         {
@@ -34,17 +36,9 @@ namespace CanvasTest
 
         private void onClickExecute()
         {
-            Random rnd = new Random();
-            Canvas canvas = this.canvas;
-            Rectangle rect = new Rectangle();
-            rect.Stroke = new SolidColorBrush(Colors.Black);
-            rect.Fill = new SolidColorBrush(Colors.Black);
-            rect.Width = 30;
-            rect.Height = 30;
-            Canvas.SetLeft(rect, rnd.Next(1,1000));
-            Canvas.SetTop(rect, rnd.Next(1, 1000));
-            canvas.Children.Add(rect);
-
+            Point a1 = new Point(30, 40);
+            Point a2 = new Point(100, 200);
+            this.drawMap.drawOneRectangle(a1, a2);
             String showString = "Width:" + canvas.ActualWidth + " " + "Heigh:" + canvas.ActualHeight;
             MessageBox.Show(showString);
         }

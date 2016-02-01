@@ -33,43 +33,54 @@ namespace CanvasTest
         {
             //画出取书的路线
         }
-        Canvas getCanvas()
+        public Canvas getCanvas()
         {
             return this.canvas;
         }
-        public void drawRectangle(float left,float top,float width,float height,) //在画布上画出一个矩形
+        //public void drawRectangle(float left,float top,float width,float height,) //在画布上画出一个矩形
+        public void drawOneRectangle(Point leftTop,Point rightBottom)
         {
+            //在画布上画出一个矩形
+            double left = leftTop.X;
+            double top = leftTop.Y;
+            double width = Math.Abs(leftTop.X - rightBottom.X);
+            double height = Math.Abs(leftTop.Y - rightBottom.Y);
+
             Rectangle rect = new Rectangle();
-            float leftWithRatio = left * this.widthRatio;
-            float topWithRatio = top * this.heightRatio;
-            float widthWithRatio = width * this.widthRatio;
-            float heightWithRatio = height * this.heightRatio;
-            rect.Width=widthRatio;
+            double leftWithRatio = left * this.widthRatio;
+            double topWithRatio = top * this.heightRatio;
+            double widthWithRatio = width * this.widthRatio;
+            double heightWithRatio = height * this.heightRatio;
+
+            rect.Width=widthWithRatio;
             rect.Height=heightWithRatio;
+            //设置样式
             rect.Stroke = new SolidColorBrush(Colors.Black);
+            //System.Windows.Media.Brushes.Black;
             rect.Fill = new SolidColorBrush(Colors.Black);
+            //System.Windows.Media.Brushes.LightSeaGreen;
             Canvas.SetLeft(rect, leftWithRatio);
             Canvas.SetTop(rect, topWithRatio);
             this.canvas.Children.Add(rect);
         }
-        public void drawPolygon()
+        public void drawOnePolygon(List<Point> pointList)
         {
             //绘制图书馆围墙，也就是边界
             Polygon polygon = new Polygon();
-            polygon.Stroke = System.Windows.Media.Brushes.Black;
-            polygon.Fill = System.Windows.Media.Brushes.LightSeaGreen;
-            polygon.StrokeThickness = 2;
+            polygon.Stroke = new SolidColorBrush(Colors.Black);
+            polygon.Fill = new SolidColorBrush(Colors.Black);
+            //polygon.StrokeThickness = 2;设置样式
             polygon.HorizontalAlignment = HorizontalAlignment.Left;
             polygon.VerticalAlignment = VerticalAlignment.Center;
-            Point Point1 = new Point(1, 50);
-            Point Point2 = new Point(10,80);
-            Point Point3 = new System.Windows.Point(50,50);
-            PointCollection myPointCollection = new PointCollection();
-            myPointCollection.Add(Point1);
-            myPointCollection.Add(Point2);
-            myPointCollection.Add(Point3);
-            myPolygon.Points = myPointCollection;
-            myGrid.Children.Add(myPolygon);
+
+            PointCollection pointCollectionWithRatio = new PointCollection();
+            foreach (Point pointItem in pointList)
+            {
+                Point pointWithRatio = new Point(pointItem.X*this.widthRatio,pointItem.Y*this.heightRatio);
+                pointCollectionWithRatio.Add(pointWithRatio);
+            }
+            polygon.Points = pointCollectionWithRatio;
+            this.canvas.Children.Add(polygon);
         }
 
     }
