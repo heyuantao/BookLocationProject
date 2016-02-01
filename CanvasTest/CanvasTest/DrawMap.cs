@@ -24,6 +24,8 @@ namespace CanvasTest
             this.mapHeight = mapHeight; this.mapWidth = mapWidth;
             this.heightRatio = this.canvasHeight / this.mapHeight;
             this.widthRatio = this.canvasWidth / this.mapWidth;
+
+            this.canvas.Background = new SolidColorBrush(Colors.Red);
         }
         public void drawBackGround()
         {

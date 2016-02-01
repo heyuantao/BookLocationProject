@@ -19,7 +19,7 @@ namespace CanvasTest
         ICommand click;
         public TestVM()
         {
-            this.drawMap = new DrawMap(800,600,1600,800);
+            this.drawMap = new DrawMap(800,600,1600,1200);
             this.canvas = this.drawMap.getCanvas();
         }
         public ICommand Click
@@ -36,11 +36,13 @@ namespace CanvasTest
 
         private void onClickExecute()
         {
-            Point a1 = new Point(30, 40);
-            Point a2 = new Point(100, 200);
+            Point a1 = new Point(30, 30);
+            Point a2 = new Point(200, 200);
             this.drawMap.drawOneRectangle(a1, a2);
-            String showString = "Width:" + canvas.ActualWidth + " " + "Heigh:" + canvas.ActualHeight;
-            MessageBox.Show(showString);
+            //String showString = "Width:" + canvas.ActualWidth + " " + "Heigh:" + canvas.ActualHeight;
+            //MessageBox.Show(showString);
+
+
         }
         public Canvas MyCanvas
         {
