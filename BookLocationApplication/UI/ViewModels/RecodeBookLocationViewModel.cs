@@ -51,6 +51,12 @@ namespace UI.ViewModels
             get { return this.bookItemList; }
             set { this.bookItemList = value; 
                 this.OnPropertyChanged("BookItemList");
+                this.dispatcherService.Dispatch(() =>
+                {
+                    ((DelegateCommand)this.RecodeBookLocationAddBookListCommand).RaiseCanExecuteChanged();
+                    ((DelegateCommand)this.RecodeBookLocationCleanBookListCommand).RaiseCanExecuteChanged();
+
+                });
             }
         }
         public String ShelfName
@@ -58,7 +64,12 @@ namespace UI.ViewModels
             get { return this.shelfName; }
             set { this.shelfName = value; 
                 this.OnPropertyChanged("ShelfName");
-             
+                this.dispatcherService.Dispatch(() =>
+                {
+                    ((DelegateCommand)this.RecodeBookLocationAddBookListCommand).RaiseCanExecuteChanged();
+                    ((DelegateCommand)this.RecodeBookLocationCleanBookListCommand).RaiseCanExecuteChanged();
+
+                });
             }
         }
         public ICommand RecodeBookLocationCleanBookListCommand
@@ -168,7 +179,9 @@ namespace UI.ViewModels
                 this.ShelfName = bookLocationService.getShelfNameByShelfRfid(newItem.shelfRfidList[0]);
                 this.shelfRfid = newItem.shelfRfidList[0];
             }
-            //当有新的信息显示是激活add按钮的canExecute程序，改变按钮的激活状态
+            //通过赋值激活set，并更新UI
+            this.BookItemList = this.BookItemList;
+            /***
             if ((newItem.bookRfidList.Count() != 0) || (newItem.shelfRfidList.Count() != 0))
             {
                 this.dispatcherService.Dispatch(() =>
@@ -177,7 +190,7 @@ namespace UI.ViewModels
                     ((DelegateCommand)this.RecodeBookLocationCleanBookListCommand).RaiseCanExecuteChanged();
 
                 });   
-            }
+            }***/
             //throw new NotImplementedException();
             //开始处理读取到的数据，并显示在图形界面中
             //begin at this next time
@@ -192,13 +205,15 @@ namespace UI.ViewModels
         {
             //throw new NotImplementedException();
             this.clearBookListAndShelfInformation();
-            //当有信息改变时激活add按钮的canExecute程序，改变按钮的激活状态
+            //当列表变化时，通过赋值使得set被调用，从而刷新UI
+            this.BookItemList = this.BookItemList;
+            /***
             this.dispatcherService.Dispatch(() =>
             {
                 ((DelegateCommand)this.RecodeBookLocationAddBookListCommand).RaiseCanExecuteChanged();
                 ((DelegateCommand)this.RecodeBookLocationCleanBookListCommand).RaiseCanExecuteChanged();
 
-            });
+            });***/
         }
         private void onRecodeBookLocationAddBookListCommandExecute()
         {
@@ -220,13 +235,15 @@ namespace UI.ViewModels
             this.clearBookListAndShelfInformation();
             //throw new NotImplementedException();
             MessageBox.Show("添加图书信息成功！");
-            //改变UI中按钮当前状态
+            //添加图书后通过重置，使得set被调用，从而激活UI刷新
+            this.BookItemList = this.BookItemList;
+            /***
             this.dispatcherService.Dispatch(() =>
             {
                 ((DelegateCommand)this.RecodeBookLocationAddBookListCommand).RaiseCanExecuteChanged();
                 ((DelegateCommand)this.RecodeBookLocationCleanBookListCommand).RaiseCanExecuteChanged();
 
-            });
+            });***/
         }
         private Boolean onRecodeBookLocationAddBookListCommandCanExecute()
         {//判断当前是否满足可以插入数据库的条件
