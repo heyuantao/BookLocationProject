@@ -43,11 +43,11 @@ namespace CanvasTest
             //MessageBox.Show(showString);
 
             Point a5 = new Point(30, 30);
-            Point a6 = new Point(1200, 30);
-            Point a7 = new Point(30, 1200);
+            Point a6 = new Point(900, 30);
+            Point a7 = new Point(30, 900);
             List<Point> pointList = new List<Point>();
             pointList.Add(a5); pointList.Add(a6); pointList.Add(a7);
-            this.drawMap.drawContour(pointList);
+            this.drawMap.drawRoute(pointList);
 
 
         }

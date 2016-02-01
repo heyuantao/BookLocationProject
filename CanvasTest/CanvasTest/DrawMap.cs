@@ -33,9 +33,23 @@ namespace CanvasTest
         {
             //画出背景的，例如书架，入口，以及轮廓
         }
-        public void drawRoute()
+        public void drawRoute(List<Point> pointList)
         {
-            //画出取书的路线
+            //画出取书的路线,现在还没有画上开始和结束的标记
+            if (pointList.Count() < 2) { return; }
+            Point firstPoint=pointList[0];
+            for(int i=1;i<pointList.Count();i++){
+                Line oneLine = drawOneLine(firstPoint, pointList[i]);
+                this.currentCanvas.Children.Add(oneLine);
+
+                firstPoint = pointList[i];
+            }
+        }
+        public void drawDoor(Point leftTop, Point rightBottom)
+        {
+            Rectangle rect = this.drawOneRectangle(leftTop, rightBottom);
+            rect.Fill = System.Windows.Media.Brushes.Red;
+            this.currentCanvas.Children.Add(rect);
         }
         public void drawShelf(Point leftTop, Point rightBottom) //画书架，俯视图或者正视图
         {
@@ -55,6 +69,7 @@ namespace CanvasTest
             get { return this.currentCanvas; }
         }
         //public void drawRectangle(float left,float top,float width,float height,) //在画布上画出一个矩形
+        //基本形状的绘制函数
         private Rectangle drawOneRectangle(Point leftTop, Point rightBottom)
         {
             //在画布上画出一个矩形
@@ -73,7 +88,7 @@ namespace CanvasTest
             rect.Height=heightWithRatio;
             //设置样式
             //rect.Stroke = new SolidColorBrush(Colors.Black);
-            rect.Fill = System.Windows.Media.Brushes.Black;  //默认颜色黑色
+            rect.Stroke = System.Windows.Media.Brushes.Black;  //默认颜色黑色
             //rect.Fill = new SolidColorBrush(Colors.Black);
             //System.Windows.Media.Brushes.LightSeaGreen;
             Canvas.SetLeft(rect, leftWithRatio);
@@ -102,6 +117,13 @@ namespace CanvasTest
             return polygon; //将画出的多边形返回
             //this.canvas.Children.Add(polygon);
         }
-
+        private Line drawOneLine(Point first, Point second)
+        {
+            Line line = new Line();
+            line.X1 = first.X; line.Y1 = first.Y;
+            line.X2 = second.X; line.Y2 = second.Y;
+            line.Stroke = System.Windows.Media.Brushes.Black; //默认颜色黑色
+            return line;
+        }
     }
 }
