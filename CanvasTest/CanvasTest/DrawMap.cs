@@ -42,7 +42,7 @@ namespace CanvasTest
             return this.canvas;
         }
         //public void drawRectangle(float left,float top,float width,float height,) //在画布上画出一个矩形
-        public void drawOneRectangle(Point leftTop,Point rightBottom)
+        public Rectangle drawOneRectangle(Point leftTop, Point rightBottom)
         {
             //在画布上画出一个矩形
             double left = leftTop.X;
@@ -60,21 +60,22 @@ namespace CanvasTest
             rect.Height=heightWithRatio;
             //设置样式
             //rect.Stroke = new SolidColorBrush(Colors.Black);
-            rect.Fill = System.Windows.Media.Brushes.Black;
+            rect.Fill = System.Windows.Media.Brushes.Black;  //默认颜色黑色
             //rect.Fill = new SolidColorBrush(Colors.Black);
             //System.Windows.Media.Brushes.LightSeaGreen;
             Canvas.SetLeft(rect, leftWithRatio);
             Canvas.SetTop(rect, topWithRatio);
-            this.canvas.Children.Add(rect);
+            //this.canvas.Children.Add(rect);
+            return rect;  //将画出的多边形返回
         }
-        public void drawOnePolygon(List<Point> pointList)
+        public Polygon drawOnePolygon(List<Point> pointList)
         {
             //绘制图书馆围墙，也就是边界
             Polygon polygon = new Polygon();
             //polygon.Stroke = new SolidColorBrush(Colors.Black);
-            polygon.Stroke = System.Windows.Media.Brushes.Black;
+            polygon.Stroke = System.Windows.Media.Brushes.Black; //默认颜色黑色
             //polygon.Fill = new SolidColorBrush(Colors.Black);
-            polygon.StrokeThickness = 2;//设置样式
+            //polygon.StrokeThickness = 2;//设置样式
             //polygon.HorizontalAlignment = HorizontalAlignment.Left;
             //polygon.VerticalAlignment = VerticalAlignment.Center;
 
@@ -85,7 +86,8 @@ namespace CanvasTest
                 pointCollectionWithRatio.Add(pointWithRatio);
             }
             polygon.Points = pointCollectionWithRatio;
-            this.canvas.Children.Add(polygon);
+            return polygon; //将画出的多边形返回
+            //this.canvas.Children.Add(polygon);
         }
 
     }
