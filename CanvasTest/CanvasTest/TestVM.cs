@@ -36,11 +36,18 @@ namespace CanvasTest
 
         private void onClickExecute()
         {
-            Point a1 = new Point(30, 30);
-            Point a2 = new Point(200, 200);
-            this.drawMap.drawOneRectangle(a1, a2);
+            //Point a1 = new Point(30, 30);
+            //Point a2 = new Point(200, 200);
+            //this.drawMap.drawOneRectangle(a1, a2);
             //String showString = "Width:" + canvas.ActualWidth + " " + "Heigh:" + canvas.ActualHeight;
             //MessageBox.Show(showString);
+
+            Point a5 = new Point(30, 30);
+            Point a6 = new Point(1200, 30);
+            Point a7 = new Point(30, 1200);
+            List<Point> pointList = new List<Point>();
+            pointList.Add(a5); pointList.Add(a6); pointList.Add(a7);
+            this.drawMap.drawOnePolygon(pointList);
 
 
         }

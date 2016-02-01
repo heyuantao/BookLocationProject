@@ -17,8 +17,10 @@ namespace CanvasTest
         float mapWidth, mapHeight;
         float widthRatio, heightRatio;
         public DrawMap(float canvasWidth, float canvasHeight,float mapWidth,float mapHeight)
-        {
+        {   //头两个参数是画布的大小，以像素为单位。后两个参数是图的尺寸，实际单位可以是米，也可以是厘米
+            //虽然四个参数的单位不同，但不影响计算
             //初始化地图的大小和画布的大小，并且计算出缩放的比例，在画图中使用
+            //如果用户调整窗口改变了高度和宽度就要重新绘制
             this.canvas = new Canvas();
             this.canvasHeight = canvasHeight; this.canvasWidth = canvasWidth;
             this.mapHeight = mapHeight; this.mapWidth = mapWidth;
@@ -57,9 +59,9 @@ namespace CanvasTest
             rect.Width=widthWithRatio;
             rect.Height=heightWithRatio;
             //设置样式
-            rect.Stroke = new SolidColorBrush(Colors.Black);
-            //System.Windows.Media.Brushes.Black;
-            rect.Fill = new SolidColorBrush(Colors.Black);
+            //rect.Stroke = new SolidColorBrush(Colors.Black);
+            rect.Fill = System.Windows.Media.Brushes.Black;
+            //rect.Fill = new SolidColorBrush(Colors.Black);
             //System.Windows.Media.Brushes.LightSeaGreen;
             Canvas.SetLeft(rect, leftWithRatio);
             Canvas.SetTop(rect, topWithRatio);
@@ -69,11 +71,12 @@ namespace CanvasTest
         {
             //绘制图书馆围墙，也就是边界
             Polygon polygon = new Polygon();
-            polygon.Stroke = new SolidColorBrush(Colors.Black);
-            polygon.Fill = new SolidColorBrush(Colors.Black);
-            //polygon.StrokeThickness = 2;设置样式
-            polygon.HorizontalAlignment = HorizontalAlignment.Left;
-            polygon.VerticalAlignment = VerticalAlignment.Center;
+            //polygon.Stroke = new SolidColorBrush(Colors.Black);
+            polygon.Stroke = System.Windows.Media.Brushes.Black;
+            //polygon.Fill = new SolidColorBrush(Colors.Black);
+            polygon.StrokeThickness = 2;//设置样式
+            //polygon.HorizontalAlignment = HorizontalAlignment.Left;
+            //polygon.VerticalAlignment = VerticalAlignment.Center;
 
             PointCollection pointCollectionWithRatio = new PointCollection();
             foreach (Point pointItem in pointList)
