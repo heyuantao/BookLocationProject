@@ -77,11 +77,12 @@ namespace UI.ViewModels
             get {
                 if (this.recodeBookLocationCleanBookListCommand == null)
                 {
-                    this.recodeBookLocationCleanBookListCommand = new DelegateCommand(onRecodeBookLocationCleanBookListCommandExecute, () => { return this.onRecodeBookLocationAddBookListCommandCanExecute(); }); 
+                    this.recodeBookLocationCleanBookListCommand = new DelegateCommand(onRecodeBookLocationCleanBookListCommandExecute, onRecodeBookLocationClearBookListCommandCanExecute); 
                 }
                 return this.recodeBookLocationCleanBookListCommand;
             }
         }
+
         public ICommand RecodeBookLocationAddBookListCommand
         {
             get {
@@ -248,6 +249,18 @@ namespace UI.ViewModels
         private Boolean onRecodeBookLocationAddBookListCommandCanExecute()
         {//判断当前是否满足可以插入数据库的条件
             if ((this.BookItemList.Count() == 0) || (String.IsNullOrEmpty(this.shelfName)))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private Boolean onRecodeBookLocationClearBookListCommandCanExecute()
+        {//判断是否可以清空
+            if ((this.BookItemList.Count() == 0) && (String.IsNullOrEmpty(this.shelfName)))
             {
                 return false;
             }
