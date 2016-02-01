@@ -12,7 +12,7 @@ namespace CanvasTest
 {
     public class DrawMap
     {
-        Canvas canvas;
+        Canvas currentCanvas;
         float canvasWidth, canvasHeight;
         float mapWidth, mapHeight;
         float widthRatio, heightRatio;
@@ -21,13 +21,13 @@ namespace CanvasTest
             //虽然四个参数的单位不同，但不影响计算
             //初始化地图的大小和画布的大小，并且计算出缩放的比例，在画图中使用
             //如果用户调整窗口改变了高度和宽度就要重新绘制
-            this.canvas = new Canvas();
+            this.currentCanvas = new Canvas();
             this.canvasHeight = canvasHeight; this.canvasWidth = canvasWidth;
             this.mapHeight = mapHeight; this.mapWidth = mapWidth;
             this.heightRatio = this.canvasHeight / this.mapHeight;
             this.widthRatio = this.canvasWidth / this.mapWidth;
 
-            this.canvas.Background = new SolidColorBrush(Colors.Red);
+            this.currentCanvas.Background = new SolidColorBrush(Colors.Red);
         }
         public void drawBackGround()
         {
@@ -37,12 +37,25 @@ namespace CanvasTest
         {
             //画出取书的路线
         }
-        public Canvas getCanvas()
+        public void drawShelf(Point leftTop, Point rightBottom) //画书架，俯视图或者正视图
         {
-            return this.canvas;
+            Rectangle rect = this.drawOneRectangle(leftTop, rightBottom);
+            rect.Fill = System.Windows.Media.Brushes.LightSeaGreen;
+            this.currentCanvas.Children.Add(rect);
+        }
+        public void drawContour(List<Point> pointList) //画轮廓（图书馆，书架）
+        {
+            Polygon poly = this.drawOnePolygon(pointList);
+            //poly.Fill = System.Windows.Media.Brushes.Black;
+            poly.StrokeThickness = 2;
+            this.currentCanvas.Children.Add(poly);
+        }
+        public Canvas CurrentCanvas  //用户返回当前的的画布
+        {
+            get { return this.currentCanvas; }
         }
         //public void drawRectangle(float left,float top,float width,float height,) //在画布上画出一个矩形
-        public Rectangle drawOneRectangle(Point leftTop, Point rightBottom)
+        private Rectangle drawOneRectangle(Point leftTop, Point rightBottom)
         {
             //在画布上画出一个矩形
             double left = leftTop.X;
@@ -68,7 +81,7 @@ namespace CanvasTest
             //this.canvas.Children.Add(rect);
             return rect;  //将画出的多边形返回
         }
-        public Polygon drawOnePolygon(List<Point> pointList)
+        private Polygon drawOnePolygon(List<Point> pointList)
         {
             //绘制图书馆围墙，也就是边界
             Polygon polygon = new Polygon();

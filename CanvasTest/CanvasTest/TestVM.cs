@@ -20,7 +20,7 @@ namespace CanvasTest
         public TestVM()
         {
             this.drawMap = new DrawMap(800,600,1600,1200);
-            this.canvas = this.drawMap.getCanvas();
+            this.canvas = this.drawMap.CurrentCanvas;
         }
         public ICommand Click
         {
@@ -47,7 +47,7 @@ namespace CanvasTest
             Point a7 = new Point(30, 1200);
             List<Point> pointList = new List<Point>();
             pointList.Add(a5); pointList.Add(a6); pointList.Add(a7);
-            this.drawMap.drawOnePolygon(pointList);
+            this.drawMap.drawContour(pointList);
 
 
         }
