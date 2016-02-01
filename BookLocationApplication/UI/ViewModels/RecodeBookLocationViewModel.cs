@@ -32,6 +32,7 @@ namespace UI.ViewModels
         int bookItemCount; //图形界面中图书列表中的ID值，每次增加1，初始值为1
         String shelfName;//图形界面中的书架信息
         String shelfRfid;
+        ICommand recodeBookLocationCleanBookListCommand, recodeBookLocationAddBookListCommand;
         public RecodeBookLocationViewModel(IUnityContainer container, IRegionManager regionManager)
         {
             this.container = container; this.regionManager = regionManager;
@@ -48,20 +49,37 @@ namespace UI.ViewModels
         public ObservableCollection<BookItem> BookItemList
         {
             get { return this.bookItemList; }
-            set { this.bookItemList = value; this.OnPropertyChanged("BookItemList"); }
+            set { this.bookItemList = value; 
+                this.OnPropertyChanged("BookItemList");
+            }
         }
         public String ShelfName
         {
             get { return this.shelfName; }
-            set { this.shelfName = value; this.OnPropertyChanged("ShelfName"); }
+            set { this.shelfName = value; 
+                this.OnPropertyChanged("ShelfName");
+             
+            }
         }
         public ICommand RecodeBookLocationCleanBookListCommand
         {
-            get { return new DelegateCommand(onRecodeBookLocationCleanBookListCommandExecute); }
+            get {
+                if (this.recodeBookLocationCleanBookListCommand == null)
+                {
+                    this.recodeBookLocationCleanBookListCommand = new DelegateCommand(onRecodeBookLocationCleanBookListCommandExecute, () => { return this.onRecodeBookLocationAddBookListCommandCanExecute(); }); 
+                }
+                return this.recodeBookLocationCleanBookListCommand;
+            }
         }
         public ICommand RecodeBookLocationAddBookListCommand
         {
-            get { return new DelegateCommand(onRecodeBookLocationAddBookListCommandExecute); }
+            get {
+                if (this.recodeBookLocationAddBookListCommand == null)
+                {
+                    this.recodeBookLocationAddBookListCommand=new DelegateCommand(onRecodeBookLocationAddBookListCommandExecute,onRecodeBookLocationAddBookListCommandCanExecute); 
+                }
+                return this.recodeBookLocationAddBookListCommand;
+            }
         }
 
 
@@ -149,8 +167,17 @@ namespace UI.ViewModels
                 IBookLocationService bookLocationService = this.container.Resolve<IBookLocationService>();
                 this.ShelfName = bookLocationService.getShelfNameByShelfRfid(newItem.shelfRfidList[0]);
                 this.shelfRfid = newItem.shelfRfidList[0];
-            }           
+            }
+            //当有新的信息显示是激活add按钮的canExecute程序，改变按钮的激活状态
+            if ((newItem.bookRfidList.Count() != 0) || (newItem.shelfRfidList.Count() != 0))
+            {
+                this.dispatcherService.Dispatch(() =>
+                {
+                    ((DelegateCommand)this.RecodeBookLocationAddBookListCommand).RaiseCanExecuteChanged();
+                    ((DelegateCommand)this.RecodeBookLocationCleanBookListCommand).RaiseCanExecuteChanged();
 
+                });   
+            }
             //throw new NotImplementedException();
             //开始处理读取到的数据，并显示在图形界面中
             //begin at this next time
@@ -165,12 +192,24 @@ namespace UI.ViewModels
         {
             //throw new NotImplementedException();
             this.clearBookListAndShelfInformation();
+            //当有信息改变时激活add按钮的canExecute程序，改变按钮的激活状态
+            this.dispatcherService.Dispatch(() =>
+            {
+                ((DelegateCommand)this.RecodeBookLocationAddBookListCommand).RaiseCanExecuteChanged();
+                ((DelegateCommand)this.RecodeBookLocationCleanBookListCommand).RaiseCanExecuteChanged();
+
+            });
         }
         private void onRecodeBookLocationAddBookListCommandExecute()
         {
             IBookLocationService bookLocationService = this.container.Resolve<IBookLocationService>();
             String currentShelfRfid = this.shelfRfid;
             List<String> bookRfidList=new List<String>();
+            //如果图书列表和书架信息为空，则不执行插入操作
+            if (this.onRecodeBookLocationAddBookListCommandCanExecute() == false)
+            {
+                return;
+            }
 
             //把新的信息加入数据库
             foreach (BookItem oneBook in this.BookItemList)
@@ -181,6 +220,24 @@ namespace UI.ViewModels
             this.clearBookListAndShelfInformation();
             //throw new NotImplementedException();
             MessageBox.Show("添加图书信息成功！");
+            //改变UI中按钮当前状态
+            this.dispatcherService.Dispatch(() =>
+            {
+                ((DelegateCommand)this.RecodeBookLocationAddBookListCommand).RaiseCanExecuteChanged();
+                ((DelegateCommand)this.RecodeBookLocationCleanBookListCommand).RaiseCanExecuteChanged();
+
+            });
+        }
+        private Boolean onRecodeBookLocationAddBookListCommandCanExecute()
+        {//判断当前是否满足可以插入数据库的条件
+            if ((this.BookItemList.Count() == 0) || (String.IsNullOrEmpty(this.shelfName)))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
         private void clearBookListAndShelfInformation()
         {
