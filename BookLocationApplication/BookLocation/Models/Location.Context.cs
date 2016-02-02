@@ -15,14 +15,15 @@ namespace BookLocation.Models
     
     public partial class LocationEntities : DbContext
     {
-        public LocationEntities()
-            : base("name=LocationEntities")
-        {
-        }
         public LocationEntities(String connectionString)
             : base(connectionString)
         {
         }
+        public LocationEntities()
+            : base("name=LocationEntities")
+        {
+        }
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

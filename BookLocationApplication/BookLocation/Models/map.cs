@@ -16,7 +16,8 @@ namespace BookLocation.Models
     {
         public int id { get; set; }
         public string location { get; set; }
-        public string position { get; set; }
         public string type { get; set; }
+        public string position { get; set; }
+        public string rfidOfShelf { get; set; }
     }
 }

@@ -149,3 +149,6 @@ C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\BookL
 C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\BookLocationApplication\obj\Debug\BookLocationApplication.csproj.GenerateResource.Cache
 C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\BookLocationApplication\obj\Debug\BookLocationApplication.exe
 C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\BookLocationApplication\obj\Debug\BookLocationApplication.pdb
+C:\Users\he_yu\Documents\Visual Studio 2013\Projects\BookLocationApplication\BookLocationApplication\bin\Debug\BookLocationApplication.exe.config
+C:\Users\he_yu\Documents\Visual Studio 2013\Projects\BookLocationApplication\BookLocationApplication\obj\Debug\BookLocationApplication.exe
+C:\Users\he_yu\Documents\Visual Studio 2013\Projects\BookLocationApplication\BookLocationApplication\obj\Debug\BookLocationApplication.pdb
