@@ -3,10 +3,10 @@ import pymssql
 import xlrd
 #from enum import Enum
 
-def MapItem(object):
-    def __init__(self,location="",type="",position="",rfidOfShelf=""):
+class MapItem(object):
+    def __init__(self,location="",objType="",position="",rfidOfShelf=""):
         self.location=location
-        self.type=type
+        self.type=objType
         self.position=position
         self.rfidOfShelf=rfidOfShelf
     #def loadFromString(self,recorderString):        
@@ -21,7 +21,7 @@ def MapItem(object):
     #    return tempString
 
 class MapXLSReader(object):
-    def __init__(self,xlsFilename,convertObj):
+    def __init__(self,xlsFilename):
         self.xlsFilename=xlsFilename
         
         self.xl_workbook = xlrd.open_workbook(self.xlsFilename)
@@ -38,12 +38,14 @@ class MapXLSReader(object):
         self.currentRow=self.currentRow+1
         oneItem=MapItem()
         oneItem.location=rowData[0].strip()
-        oneItem.type=rowData[0].strip()
-        oneItem.position=rowData[0].strip()
-        oneItem.rfidOfShelf=rowData[0].strip()
+        oneItem.type=rowData[1].strip()
+        oneItem.position=rowData[2].strip()
+        oneItem.rfidOfShelf=rowData[3].strip()
+        #print oneItem
         return oneItem
     def close(self):
-        self.xl_workbook.close()
+        pass
+        #self.xl_workbook.close()
      
 class MapDatabase(object):
     def __init__(self,servername="DESKTOP-MI02F8C",username="sa",password="19831122",databasename="Location"):
@@ -68,32 +70,27 @@ class MapDatabase(object):
         insertCommand=u"insert into Map (location,type,position,rfidOfShelf) values ('%s','%s','%s','%s')" %(oneItem.location,oneItem.type,oneItem.position,oneItem.rfidOfShelf)
         self.cursor.execute(insertCommand)
         self.connection.commit()
-    '''
-    def insertListDataIntoTable(self,xlsFilename):
-        xl_workbook = xlrd.open_workbook(xlsFilename)
-        xl_sheet = xl_workbook.sheet_by_index(0) #默认所有的数据都存储在第一个表格中
-        nrows=xl_sheet.nrows
-        beginRow=1  #第一行是表格名称
-        ###开始读取表格数据
-        for currentRow in range(beginRow,nrows):
-            rowData=xl_sheet.row_values(currentRow)
-            mapItem=Map().loadFromString(self.parseAndFormat, rowData)
-            self.insertOneItemIntoTable(mapItem)
-    '''
+        
 class ReadOfMapExcelIntoDatabase(object):
-    def __init__(self,databaseName,excelFileName,convertClass):
+    def __init__(self,databaseName,excelFileName):
         self.databbase=MapDatabase(databasename=databaseName)
-        self.excelFile=MapXLSReader()
+        self.excelFile=MapXLSReader(excelFileName)
+        self.databbase.clearAllTable()
     def read(self):
+        print "Begin to read File !"
         while True:
             oneItem=self.excelFile.readOneObject()
             if oneItem is None:  # read finished
+                print ""
+                print "Read Excel File Finished !"
                 break
             self.databbase.insertOneItemIntoTable(oneItem)
+            print ".",
     def close(self):
         self.excelFile.close()
         self.databbase.close()
         
 if __name__=="__main__":
-    readOfMapExcelIntoDatabase=ReadOfMapExcelIntoDatabase()  
+    readOfMapExcelIntoDatabase=ReadOfMapExcelIntoDatabase("Location","XLSDIR/mapFile.xls")  
     readOfMapExcelIntoDatabase.read()  
+    readOfMapExcelIntoDatabase.close()
