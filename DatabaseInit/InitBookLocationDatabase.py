@@ -3,7 +3,7 @@
 import pymssql
 import xlrd
 class LocationToDatabase(object):
-    def __init__(self,servername="DESKTOP-PSQP38H",username="sa",password="19831122",databasename="Location"):
+    def __init__(self,servername="DESKTOP-MI02F8C",username="sa",password="19831122",databasename="Location"):
         self.servername=servername
         self.username=username
         self.password=password

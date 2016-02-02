@@ -13,8 +13,10 @@ USE Location;
 CREATE TABLE dbo.Map
    (id int IDENTITY(1,1) PRIMARY KEY NOT NULL,
     location varchar(50) NOT NULL,
+    type varchar(30) NOT NULL,    
     position varchar(100) NOT NULL,
-    type varchar(30) NOT NULL)
+    rfidOfShelf varchar(30)
+    )
 
 CREATE TABLE dbo.BookOnShelf
    (id int IDENTITY(1,1) PRIMARY KEY NOT NULL,

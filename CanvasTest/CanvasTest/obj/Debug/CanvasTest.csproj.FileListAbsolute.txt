@@ -75,3 +75,4 @@ C:\Users\he_yu\Documents\Visual Studio 2013\Projects\CanvasTest\CanvasTest\obj\D
 C:\Users\he_yu\Documents\Visual Studio 2013\Projects\CanvasTest\CanvasTest\obj\Debug\CanvasTest.g.resources
 C:\Users\he_yu\Documents\Visual Studio 2013\Projects\CanvasTest\CanvasTest\obj\Debug\CanvasTest.Properties.Resources.resources
 C:\Users\he_yu\Documents\Visual Studio 2013\Projects\CanvasTest\CanvasTest\obj\Debug\CanvasTest.csproj.GenerateResource.Cache
+C:\Users\he_yu\Documents\Visual Studio 2013\Projects\CanvasTest\CanvasTest\obj\Debug\CanvasTest.csprojResolveAssemblyReference.cache

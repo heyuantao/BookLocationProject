@@ -1,40 +1,38 @@
 # -*- coding: utf-8 -*-
 import pymssql
 import xlrd
-from enum import Enum
+#from enum import Enum
      
 class Map(object):
     def __init__(self):
         self.location=""
-        self.position=""
         self.type=""
+        self.position=""
+        self.rfidOfShelf=""
         
-    def loadFromString(self,parseAndFormat,recorderString):
-        self=parseAndFormat.parseFun(recorderString)
+    def loadFromString(self,recorderString):
+        self.location=recorderString[0].strip()
+        self.type=recorderString[1].strip()
+        self.position=recorderString[2].strip()
+        self.rfidOfShelf=recorderString[3].strip()
+        #self=parseAndFormat.parseFun(recorderString)
         
     #def saveToString(self,parseAndFormat):
     #    tempString=parseAndFormat.formatFun(self,self)
     #    return tempString
-    
-class ParseAndFormat(object): 
-    def parseFun(self,recorderString):
-        mapItem=Map()
-        mapItem.location=recorderString[0].strip()
-        mapItem.position=recorderString[1].strip()
-        mapItem.type=recorderString[2].strip()
-        return mapItem
+
     #def formatFun(self,object):
     #    pass ##待处理
      
 class BookMapDatabase(object):
-    def __init__(self,servername="DESKTOP-PSQP38H",username="sa",password="19831122",databasename="Location"):
+    def __init__(self,servername="DESKTOP-MI02F8C",username="sa",password="19831122",databasename="Location"):
         self.servername=servername
         self.username=username
         self.password=password
         self.databasename=databasename
         self.connection = pymssql.connect(server=servername, user=username, password=password, database=databasename,charset="utf8")
         self.cursor=self.connection.cursor()
-        self.parseAndFormat=ParseAndFormat()
+        #self.parseAndFormat=ParseAndFormat()
         
     def close(self):
         self.connection.close()
@@ -64,5 +62,5 @@ class BookMapDatabase(object):
 if __name__=="__main__":
     bookMapDatabase=BookMapDatabase()
     bookMapDatabase.clearAllTable()
-    bookMapDatabase.insertListDataIntoTable("filename")
+    bookMapDatabase.insertListDataIntoTable("XLSDIR/mapFile.xls")
     bookMapDatabase.close()        

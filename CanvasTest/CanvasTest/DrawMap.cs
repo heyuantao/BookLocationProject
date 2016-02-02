@@ -32,6 +32,7 @@ namespace CanvasTest
         public void drawBackGround()
         {
             //画出背景的，例如书架，入口，以及轮廓
+
         }
         public void drawRoute(List<Point> pointList)
         {
