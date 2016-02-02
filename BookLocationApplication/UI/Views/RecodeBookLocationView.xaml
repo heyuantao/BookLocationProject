@@ -4,29 +4,33 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="550" d:DesignWidth="1080">
+             d:DesignHeight="800" d:DesignWidth="900">
     <Grid Margin="30,30,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <TextBlock Height="25"  FontSize="18" Margin="5,0,20,0" >层架信息：</TextBlock>
-            <TextBox Text="{Binding ShelfName}" Height="25"  FontSize="18" Width="518" IsReadOnly="True"/>
-            <Button Command="{Binding RecodeBookLocationCleanBookListCommand}"  Height="25"  FontSize="18" Width="90" Margin="150,0,0,0">清除信息</Button>
-            <Button Command="{Binding RecodeBookLocationAddBookListCommand}" Height="25"  FontSize="18" Width="90" Margin="20,0,0,0">录入信息</Button>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Height="25"  FontSize="18"  >层架信息：</TextBlock>
+                <TextBox Text="{Binding ShelfName}" Height="25"  FontSize="18" Width="518" IsReadOnly="True"/>
+            </StackPanel>
+            <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Command="{Binding RecodeBookLocationCleanBookListCommand}"  Height="25"  FontSize="18" Width="90" >清除信息</Button>
+                <Button Command="{Binding RecodeBookLocationAddBookListCommand}" Height="25"  FontSize="18" Width="90">录入信息</Button>
+            </StackPanel>
         </StackPanel>
-        <DataGrid HorizontalAlignment="Left"  Grid.Row="2" VerticalAlignment="Top" Height="500" Width="1080" Margin="0,25,0,0" ItemsSource="{Binding BookItemList}" AutoGenerateColumns="False" FontSize="16" FontWeight="Bold" IsReadOnly="True">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding ID}" ClipboardContentBinding="{x:Null}" Header="序列号" Width="*" FontSize="16"/>
-                <DataGridTextColumn Binding="{Binding BookName}" ClipboardContentBinding="{x:Null}" Header="图书名称" Width="3*" FontSize="16"/>
-                <DataGridTextColumn Binding="{Binding BookAccessCode}" ClipboardContentBinding="{x:Null}" Header="图书索取码" Width="2*" FontSize="16"/>
-                <DataGridTextColumn Binding="{Binding BookRFIDCode}" ClipboardContentBinding="{x:Null}" Header="图书条形码" Width="2*" FontSize="16"/>
+        <Grid  Grid.Row="1">
+            <DataGrid HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Margin="0,25,0,0" ItemsSource="{Binding BookItemList}" AutoGenerateColumns="False" FontSize="16" FontWeight="Bold" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding ID}" ClipboardContentBinding="{x:Null}" Header="序列号" Width="*" FontSize="16"/>
+                    <DataGridTextColumn Binding="{Binding BookName}" ClipboardContentBinding="{x:Null}" Header="图书名称" Width="3*" FontSize="16"/>
+                    <DataGridTextColumn Binding="{Binding BookAccessCode}" ClipboardContentBinding="{x:Null}" Header="图书索取码" Width="2*" FontSize="16"/>
+                    <DataGridTextColumn Binding="{Binding BookRFIDCode}" ClipboardContentBinding="{x:Null}" Header="图书条形码" Width="2*" FontSize="16"/>
 
-            </DataGrid.Columns>
+                </DataGrid.Columns>
 
-        </DataGrid>
-
+            </DataGrid>
+        </Grid>
     </Grid>
 </UserControl>
