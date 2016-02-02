@@ -8,7 +8,7 @@
     <Grid Margin="30,30,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left">
             <TextBlock Height="25"  FontSize="18" Margin="0,0,10,0" >图书名称</TextBlock>
@@ -25,7 +25,7 @@
                 <ColumnDefinition Width="5*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <ContentPresenter Grid.Column="0" Content="{Binding OneShelfCanvas}" Focusable="true" Margin="10" />
-            <ContentPresenter Grid.Column="1" Width="300" Height="300" Content="{Binding OneLibraryCanvas}" Focusable="true" Margin="10" />
+            <ContentPresenter Grid.Column="1"  Content="{Binding OneLibraryCanvas}" Focusable="true" Margin="10" />
 
         </Grid>        
     </Grid>
