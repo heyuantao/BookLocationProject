@@ -24,16 +24,12 @@
                       VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"
                       prism:RegionManager.RegionName="NavRegion"></ItemsControl>
 
-            <ScrollViewer  Grid.Column="1" 
-                          VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                          VerticalContentAlignment="Top" HorizontalContentAlignment="Left"
-                          VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible">
-                <ContentControl Name="MainRegion" 
+
+            <ContentControl Name="MainRegion" Grid.Column="1" 
                       VerticalAlignment="Top" HorizontalAlignment="Stretch"
                       VerticalContentAlignment="Top" HorizontalContentAlignment="Left"
                       prism:RegionManager.RegionName="MainRegion">                
-                </ContentControl>
-            </ScrollViewer>
+            </ContentControl>
         </Grid>
     </Grid>
     
