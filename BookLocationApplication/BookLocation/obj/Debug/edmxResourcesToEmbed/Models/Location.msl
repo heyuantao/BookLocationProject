@@ -15,8 +15,9 @@
         <MappingFragment StoreEntitySet="Map">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="location" ColumnName="location" />
-          <ScalarProperty Name="position" ColumnName="position" />
           <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="position" ColumnName="position" />
+          <ScalarProperty Name="rfidOfShelf" ColumnName="rfidOfShelf" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
