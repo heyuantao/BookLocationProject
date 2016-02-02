@@ -8,7 +8,7 @@ using System.Windows.Threading;
 
 namespace UI.Services
 {
-    //这个服务不需要注入容器
+    
     public class UIDispatcherService : IDispatcherService
     {
         Dispatcher dispatcher;

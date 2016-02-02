@@ -10,7 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
+using UI.Services;
 
 namespace UI.ViewModels
 {
@@ -26,6 +28,8 @@ namespace UI.ViewModels
         String bookLocation;
         //按钮的处理事件DelegateCommand
         ICommand bookLocationShowClearCommand;
+        //两个Canvas，用于显示地图信息
+        DrawMapService libraryMapService;
         public BookLocationShowViewModel(IUnityContainer container, IRegionManager regionManager)
         {
             this.container = container; this.regionManager = regionManager;
@@ -33,6 +37,9 @@ namespace UI.ViewModels
             this.dispatcherService = container.Resolve<IDispatcherService>();
             //初始化UI的变量
             this.bookName = ""; this.bookAccessCode = ""; this.bookLocation = "";
+            //初始化两个地图画板
+            this.libraryMapService = new DrawMapService();
+            this.libraryMapService.initCarvas(500, 300, 1200, 1200);
         }
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
@@ -99,6 +106,13 @@ namespace UI.ViewModels
                     this.bookLocationShowClearCommand = new DelegateCommand(onBookLocationShowClearCommandExecute, onBookLocationShowClearCommandCanExecute);
                 }
                 return this.bookLocationShowClearCommand;
+            }
+        }
+        public Canvas OneLibraryCanvas
+        {
+            get
+            {
+                return this.libraryMapService.CurrentCanvas;
             }
         }
 
