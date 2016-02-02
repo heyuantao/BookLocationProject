@@ -3,41 +3,69 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             Width="auto" Height="auto" d:DesignWidth="1080" d:DesignHeight="394">
+             mc:Ignorable="d" Width="auto" Height="auto"
+             d:DesignWidth="1500" d:DesignHeight="800">
     <Grid Margin="30,30,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0" Width="400">
-            <TextBlock Height="25"  FontSize="18" Margin="24,22,228,287" RenderTransformOrigin="-0.883,0.368">图书信息服务器</TextBlock>
-            <TextBlock Width="100" Height="25"  FontSize="18" Margin="24,84,276,227" RenderTransformOrigin="-0.01,0.56">服务器地址</TextBlock>
-            <TextBlock Width="100" Height="25"  FontSize="18" Margin="24,141,276,171">用户名</TextBlock>
-            <TextBlock Width="100" Height="25"  FontSize="18" Margin="24,205,276,115">密码</TextBlock>
-            <TextBox Text="{Binding BookInformationServer.IP}" Width="150" Height="25" Margin="129,90,121,227" RenderTransformOrigin="-0.26,3.132" ></TextBox>
-            <TextBox Text="{Binding BookInformationServer.Username}" Width="150" Height="25" Margin="129,154,121,184" RenderTransformOrigin="0.027,4.684" ></TextBox>
-            <TextBox Text="{Binding BookInformationServer.Password}" Width="150" Height="25" Margin="129,214,121,124" RenderTransformOrigin="-0.217,0.684" ></TextBox>
-            <Button Command="{Binding BookInformationServerSaveCommand}"  Width="80" Height="25" Margin="129,281,191,58">保存</Button>
+        <Grid Grid.Column="0" >
+            <StackPanel Orientation="Vertical">
+                <TextBlock Height="25"  FontSize="18" HorizontalAlignment="Center" Margin="0,0,0,20" >图书信息服务器</TextBlock>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Vertical" Width="auto" Margin="0,0,10,0" >
+                        <TextBlock Width="100" Height="25"  FontSize="18" Margin="0,0,0,20" HorizontalAlignment="Right" >服务器地址</TextBlock>
+                        <TextBlock Width="100" Height="25"  FontSize="18" Margin="0,0,0,20" >用户名</TextBlock>
+                        <TextBlock Width="100" Height="25"  FontSize="18" Margin="0,0,0,20" >密码</TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Width="auto">
+                        <TextBox Text="{Binding BookInformationServer.IP}" Width="150" Height="25" Margin="0,0,0,20"  ></TextBox>
+                        <TextBox Text="{Binding BookInformationServer.Username}" Width="150" Height="25" Margin="0,0,0,20"  ></TextBox>
+                        <TextBox Text="{Binding BookInformationServer.Password}" Width="150" Height="25" Margin="0,0,0,20" ></TextBox>
+                        <Button Command="{Binding BookInformationServerSaveCommand}"  Width="80" Height="25" HorizontalAlignment="Left" >保存</Button>
+
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+
         </Grid>
-        <Grid Grid.Column="1" Margin="0,0,-284,0">
-            <TextBlock Height="25"  FontSize="18" Margin="28,25,79,293" >图书位置服务器</TextBlock>
-            <TextBlock Width="100" Height="25"  FontSize="18" Margin="28,100,504,239" >服务器地址</TextBlock>
-            <TextBlock Width="100" Height="25"  FontSize="18" Margin="28,156,504,183" >用户名</TextBlock>
-            <TextBlock Width="100" Height="25"  FontSize="18" Margin="28,214,504,125" >密码</TextBlock>
-            <TextBox Text="{Binding BookLocationServer.IP}" Width="150" Height="25" Margin="151,100,331,240" RenderTransformOrigin="-0.26,3.132" ></TextBox>
-            <TextBox Text="{Binding BookLocationServer.Username}" Width="150" Height="25" Margin="151,156,331,183" RenderTransformOrigin="0.027,4.684" ></TextBox>
-            <TextBox Text="{Binding BookLocationServer.Password}" Width="150" Height="25" Margin="151,214,331,125" RenderTransformOrigin="-0.217,0.684" ></TextBox>
-            <Button Command="{Binding BookLocationServerSaveCommand}" Width="80" Height="25" Margin="151,277,401,62">保存</Button>
+        <Grid Grid.Column="1" Margin="0,0,0,0">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Height="25"  FontSize="18" HorizontalAlignment="Center" Margin="0,0,0,20"  >图书位置服务器</TextBlock>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Margin="0,0,10,0">
+                        <TextBlock Width="100" Height="25"  FontSize="18" Margin="0,0,0,20" HorizontalAlignment="Right"  >服务器地址</TextBlock>
+                        <TextBlock Width="100" Height="25"  FontSize="18" Margin="0,0,0,20" HorizontalAlignment="Right">用户名</TextBlock>
+                        <TextBlock Width="100" Height="25"  FontSize="18" Margin="0,0,0,20" HorizontalAlignment="Right"  >密码</TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <TextBox Text="{Binding BookLocationServer.IP}" Width="150" Height="25" Margin="0,0,0,20" ></TextBox>
+                        <TextBox Text="{Binding BookLocationServer.Username}" Width="150" Height="25" Margin="0,0,0,20"  ></TextBox>
+                        <TextBox Text="{Binding BookLocationServer.Password}" Width="150" Height="25" Margin="0,0,0,20"  ></TextBox>
+                        <Button Command="{Binding BookLocationServerSaveCommand}" Width="80" Height="25" HorizontalAlignment="Left">保存</Button>
+
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
         </Grid>
-        <Grid Grid.Column="2"  Margin="0,0,-284,0">
-            <TextBlock Height="25"  FontSize="18" Margin="28,36,422,304" >串口设置</TextBlock>
-            <TextBlock Height="25"  FontSize="18" Margin="28,100,508,239" >串口</TextBlock>
-            <TextBlock Height="25"  FontSize="18" Margin="28,148,508,191" >连接速度</TextBlock>
-            <ComboBox ItemsSource="{Binding SerialInterfaceList}"  SelectedValue="{Binding Serial.Serial}" Width="100" Height="25"  FontSize="18" Margin="146,100,387,239" ></ComboBox>
-            <ComboBox ItemsSource="{Binding Serial.SpeedList}" SelectedValue="{Binding Serial.Speed}" Width="100" Height="25"  FontSize="18" Margin="146,148,387,191" ></ComboBox>
-            <Button Command="{Binding SerialSaveCommand}" Width="80" Height="25" Margin="146,206,407,133">保存</Button>
+        <Grid Grid.Column="2"  Margin="0,0,0,0">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Height="25"  FontSize="18" HorizontalAlignment="Center" Margin="0,0,0,20" >串口设置</TextBlock>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Vertical" Margin="0,0,10,0">
+                        <TextBlock Height="25"  FontSize="18" HorizontalAlignment="Left" Margin="0,0,0,20"  >串口</TextBlock>
+                        <TextBlock Height="25"  FontSize="18" Margin="0,0,0,20" HorizontalAlignment="Right" >连接速度</TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <ComboBox ItemsSource="{Binding SerialInterfaceList}"  SelectedValue="{Binding Serial.Serial}" Width="100" Height="25"  FontSize="18" Margin="0,0,0,20" ></ComboBox>
+                        <ComboBox ItemsSource="{Binding Serial.SpeedList}" SelectedValue="{Binding Serial.Speed}" Width="100" Height="25"  FontSize="18" Margin="0,0,0,20" ></ComboBox>
+                        <Button Command="{Binding SerialSaveCommand}" Width="80" Height="25" HorizontalAlignment="Left" >保存</Button>
+
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
         </Grid>
     </Grid>
 </UserControl>
