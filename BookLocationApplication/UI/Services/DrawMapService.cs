@@ -10,14 +10,37 @@ using System.Windows.Shapes;
 
 namespace UI.Services
 {
-    //此服务不注入容器
+    public class ShelfShape
+    {
+        Point topLeft, bottomRight;
+        public ShelfShape(Point topLeft, Point bottomRight)
+        {
+            this.topLeft = topLeft; this.bottomRight = bottomRight;
+        }
+    }
+    public class DoorShape
+    {
+        Point topLeft, bottomRight;
+        public DoorShape(Point topLeft, Point bottomRight)
+        {
+            this.topLeft = topLeft; this.bottomRight = bottomRight;
+        }
+    }
     public class DrawMapService
+    {
+        public DrawMapService()
+        {
+
+        }
+    }
+    //此服务不注入容器
+    public class CanvasDrawer
     {
         Canvas currentCanvas;
         float canvasWidth, canvasHeight;
         float mapWidth, mapHeight;
         float widthRatio, heightRatio;
-        public DrawMapService()
+        public CanvasDrawer()
         {
             this.currentCanvas = new Canvas();
         }
@@ -134,5 +157,6 @@ namespace UI.Services
             return line;
         }
     }
+    
 
 }
