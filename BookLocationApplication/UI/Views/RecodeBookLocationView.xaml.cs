@@ -1,6 +1,7 @@
 ﻿using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,22 @@ using UI.ViewModels;
 
 namespace UI.Views
 {
+    public class MyConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType,
+               object parameter, CultureInfo culture)
+        {
+            return (double)value - 80;
+        }
+
+        public object ConvertBack(object value, Type targetType,
+               object parameter, CultureInfo culture)
+        {
+            return (double)value + 80;
+        }
+
+    }
     /// <summary>
     /// Interaction logic for RecodeBookLocationView.xaml
     /// </summary>

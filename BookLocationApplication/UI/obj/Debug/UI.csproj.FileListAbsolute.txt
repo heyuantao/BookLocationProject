@@ -125,3 +125,5 @@ C:\Users\he_yu\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\
 C:\Users\he_yu\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\Views\BookLocationShowView.baml
 C:\Users\he_yu\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\Views\BookLocationShowView.g.cs
 C:\Users\he_yu\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\UI.g.resources
+C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\UI_MarkupCompile.lref

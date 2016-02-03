@@ -4,7 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
+             xmlns:local="clr-namespace:UI.Views"
              d:DesignHeight="600" d:DesignWidth="900">
+    <UserControl.Resources>
+        <local:MyConverter x:Key="MyConverter"/>
+    </UserControl.Resources>
     <Grid Margin="30,30,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -20,9 +24,9 @@
                 <Button Command="{Binding RecodeBookLocationAddBookListCommand}" Height="25"  FontSize="18" Width="90" HorizontalAlignment="Right" Margin="0,0,10,0">录入信息</Button>
             </StackPanel>
         </DockPanel>
-        <Grid Grid.Row="1" Margin="0,0,0,20" >
-            <DataGrid 
-                Height="{Binding RelativeSource={RelativeSource Self},Path=Parent.ActualHeight}"
+        <DockPanel Grid.Row="1" Margin="0,0,0,20" >
+            <DataGrid DockPanel.Dock="Top" VerticalScrollBarVisibility="Auto"
+                Height="{Binding RelativeSource={RelativeSource Self},Path=Parent.ActualHeight}"                
                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Margin="0,25,10,20" ItemsSource="{Binding BookItemList}" AutoGenerateColumns="False" FontSize="16" FontWeight="Bold" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding ID}" ClipboardContentBinding="{x:Null}" Header="序列号" Width="*" FontSize="16"/>
@@ -31,8 +35,7 @@
                     <DataGridTextColumn Binding="{Binding BookRFIDCode}" ClipboardContentBinding="{x:Null}" Header="图书条形码" Width="2*" FontSize="16"/>
 
                 </DataGrid.Columns>
-
             </DataGrid>
-        </Grid>
+        </DockPanel>
     </Grid>
 </UserControl>
