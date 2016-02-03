@@ -12,9 +12,14 @@ namespace Infrastructure
         String ServerPort { get; set; }
         String ServerUsername { get; set; }
         String ServerPassword { get; set; }
+        // for Shelf And BookOnShelf table
         String getShelfNameByShelfRfid(string rfidCode);  //get the display name by shelf rfid code
         String getShelfRfidbyBookRfid(String rfidCode);   //get the shelf rfid code of a book
         Boolean setBookRfidListOnShelfRfid( String shelfRfid,List<String> bookRfidList); //associate the book rfid with a shelf
     
+        ///for Map table
+        ///getItemPositionListByLocationAndType 返回的是没有重复值的
+        List<String> getItemPositionStringListByLocationAndType(string location, string type);
+        String getItemPositionStringByShelfRfid(string shelfRfid);
     }
 }
