@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="UI.Views.RecodeBookLocationView"
+﻿<UserControl x:Name="userControl" x:Class="UI.Views.RecodeBookLocationView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,7 +7,6 @@
              xmlns:local="clr-namespace:UI.Views"
              d:DesignHeight="600" d:DesignWidth="900">
     <UserControl.Resources>
-        <local:MyConverter x:Key="MyConverter"/>
     </UserControl.Resources>
     <Grid Margin="30,30,0,0">
         <Grid.RowDefinitions>
@@ -24,10 +23,9 @@
                 <Button Command="{Binding RecodeBookLocationAddBookListCommand}" Height="25"  FontSize="18" Width="90" HorizontalAlignment="Right" Margin="0,0,10,0">录入信息</Button>
             </StackPanel>
         </DockPanel>
-        <DockPanel Grid.Row="1" Margin="0,0,0,20" >
-            <DataGrid DockPanel.Dock="Top" VerticalScrollBarVisibility="Auto"
-                Height="{Binding RelativeSource={RelativeSource Self},Path=Parent.ActualHeight}"                
-                HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Margin="0,25,10,20" ItemsSource="{Binding BookItemList}" AutoGenerateColumns="False" FontSize="16" FontWeight="Bold" IsReadOnly="True">
+        <DockPanel x:Name="tableDataGridDock" Grid.Row="1" Margin="0,0,0,20" >
+            <DataGrid x:Name="tableDataGrid" DockPanel.Dock="Top" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Margin="0,25,10,20" 
+                      ItemsSource="{Binding BookItemList}" AutoGenerateColumns="False" FontSize="16" FontWeight="Bold" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding ID}" ClipboardContentBinding="{x:Null}" Header="序列号" Width="*" FontSize="16"/>
                     <DataGridTextColumn Binding="{Binding BookName}" ClipboardContentBinding="{x:Null}" Header="图书名称" Width="3*" FontSize="16"/>

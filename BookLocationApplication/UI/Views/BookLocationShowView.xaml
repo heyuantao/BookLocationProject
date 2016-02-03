@@ -6,7 +6,7 @@
              
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="1300">
-    
+
     <Grid Margin="30,30,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1091*"/>
@@ -14,23 +14,26 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <DockPanel Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,0,10">
             <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" HorizontalAlignment="Left">
-                <TextBlock Height="25"  FontSize="18" Margin="0,0,15,0" >图书名称</TextBlock>
-                <TextBox Text="{Binding BookName}" Height="25"  FontSize="18" Width="150" IsReadOnly="True" Margin="0,0,15,0"/>
-                <TextBlock Height="25"  FontSize="18" Margin="0,0,15,0"  >图书索取号</TextBlock>
-                <TextBox Text="{Binding BookAccessCode}" Height="25"  FontSize="18" Width="150" IsReadOnly="True" Margin="0,0,15,0"/>
-                <TextBlock Height="25"  FontSize="18" Margin="0,0,15,0"  >存放位置</TextBlock>
-                <TextBox Text="{Binding BookLocation}" Height="25"  FontSize="18" Width="200" IsReadOnly="True" Margin="0,0,15,0"/>
+                <TextBlock Width="{Binding ElementName=bookLocationTextBlock, Path=ActualWidth }"  FontSize="18"  Height="25"  Margin="0,0,15,0" >图书名称</TextBlock>
+                <TextBox Text="{Binding BookName}" Height="25"  FontSize="18" Width="180" IsReadOnly="True" Margin="0,0,15,0"/>
+                <TextBlock Width="{Binding ElementName=bookLocationTextBlock, Path=ActualWidth }" Height="25"  FontSize="18" Margin="0,0,15,0"  >图书索取号</TextBlock>
+                <TextBox Text="{Binding BookAccessCode}" Height="25"  FontSize="18" Width="180" IsReadOnly="True" Margin="0,0,15,0"/>
             </StackPanel>
             <StackPanel DockPanel.Dock="Right"  Orientation="Vertical" HorizontalAlignment="Right">
                 <Button Command="{Binding BookLocationShowClearCommand}" Height="25"  FontSize="18" Width="90" HorizontalAlignment="Right" Margin="0,0,10,0">清除</Button>
-
             </StackPanel>
         </DockPanel>
-        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBlock x:Name="bookLocationTextBlock" Height="25"  FontSize="18" Margin="0,0,15,0"  >图书存放位置</TextBlock>
+            <TextBox Text="{Binding BookLocation}" Height="25"  FontSize="18" Width="500" IsReadOnly="True" Margin="0,0,15,0"/>
+
+        </StackPanel>
+        <Grid Grid.Row="2" Grid.ColumnSpan="2" Margin="0,0,0,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"></ColumnDefinition>
                 <ColumnDefinition Width="8*"></ColumnDefinition>
