@@ -40,7 +40,11 @@ namespace UI.Services
         }
         public Canvas OneShelfMap
         {
-            get { return this.oneShelfDrawer.CurrentCanvas; }
+            get {
+                Canvas ca = this.oneShelfDrawer.CurrentCanvas;
+                return this.oneShelfDrawer.CurrentCanvas; 
+                
+            }
         }
         public Canvas LibraryShelfMap
         {
@@ -50,7 +54,7 @@ namespace UI.Services
         public void initOneShapMap(float canvasWidth, float canvasHeight, float mapWidth, float mapHeight)
         {
             this.oneShelfDrawer.initCanvas(canvasWidth,canvasHeight,mapWidth,mapHeight);
-                
+            this.oneShelfDrawer.CurrentCanvas.Background = System.Windows.Media.Brushes.LightSeaGreen;    
         }
 
         //给上层提供的访问函数

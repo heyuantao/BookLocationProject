@@ -43,7 +43,7 @@
 
             </Viewbox>
             <Viewbox Grid.Column="1" Stretch="Uniform" StretchDirection="Both" Margin="0,0,12,0">
-                <Canvas Width=" 600" Height="800" Background="#FFF59999"></Canvas>
+                <ContentPresenter Grid.Column="1" Content="{Binding OneLibraryCanvas}" Focusable="true" Margin="10" />
             </Viewbox>
 
         </Grid>
