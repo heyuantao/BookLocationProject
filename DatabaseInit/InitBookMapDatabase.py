@@ -25,16 +25,28 @@ class MapXLSReader(object):
         self.xlsFilename=xlsFilename
         
         self.xl_workbook = xlrd.open_workbook(self.xlsFilename)
-        self.xl_sheet = self.xl_workbook.sheet_by_index(0) #默认所有的数据都存储在第一个表格中
+        self.xl_sheet = self.xl_workbook.sheet_by_index(0) #从第一个表格开始
+        self.tableNumber=len(self.xl_workbook.sheet_names()) #计算出有多少个表
         self.nrows=self.xl_sheet.nrows
+        self.tableIndex=0;  #第一个表的索引为0
         self.beginRow=1  
         self.currentRow=1
         
     def readOneObject(self): 
         #if there are data ,and return a object .otherwise return None
-        if self.currentRow==self.nrows:
+        if self.tableIndex==self.tableNumber:
             return None       
+        if self.currentRow==self.nrows:
+            #每当一个表格的内容读取完成后，设置开始读取下一个表格
+            self.tableIndex=self.tableIndex+1
+            if self.tableIndex==self.tableNumber:
+                return None
+            self.xl_sheet = self.xl_workbook.sheet_by_index(self.tableIndex) 
+            #print self.tableIndex           
+            self.currentRow=1
+            self.nrows=self.xl_sheet.nrows
         rowData=self.xl_sheet.row_values(self.currentRow)
+        #print self.tableIndex,
         self.currentRow=self.currentRow+1
         oneItem=MapItem()
         oneItem.location=rowData[0].strip()
@@ -91,6 +103,6 @@ class ReadOfMapExcelIntoDatabase(object):
         self.databbase.close()
         
 if __name__=="__main__":
-    readOfMapExcelIntoDatabase=ReadOfMapExcelIntoDatabase("Location","XLSDIR/mapFile.xls")  
+    readOfMapExcelIntoDatabase=ReadOfMapExcelIntoDatabase("Location","XLSDIR/mapFileSample.xls")  
     readOfMapExcelIntoDatabase.read()  
     readOfMapExcelIntoDatabase.close()

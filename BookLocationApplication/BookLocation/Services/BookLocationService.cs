@@ -59,6 +59,7 @@ namespace BookLocation
             this.entitiesConnectionString=eb.ToString();
             this.dbEntities = new LocationEntities(this.entitiesConnectionString);
         }
+        // for Shelf And BookOnShelf table
         public String getShelfNameByShelfRfid(string rfidCode)
         {
             if (String.IsNullOrEmpty(rfidCode))
@@ -123,6 +124,16 @@ namespace BookLocation
             }
             dbEntities.SaveChanges();
             return true;
+        }
+        ///for Map table
+        ///getItemPositionListByLocationAndType 返回的是没有重复值的
+        List<String> getItemPositionStringListByLocationAndType(string location, string type)
+        {
+            return new List<String>();
+        }
+        String getItemPositionStringByShelfRfid(string shelfRfid)
+        {
+            return "";
         }
     }
 }
