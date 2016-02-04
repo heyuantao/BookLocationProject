@@ -121,7 +121,17 @@ namespace UI.ViewModels
                 this.OnPropertyChanged("OneShelfCanvas");
             }
         }
-
+        public Canvas LibraryShelfCanvas
+        {
+            get
+            {
+                return this.libraryMapService.OneShelfMap;
+            }
+            set
+            {    //仅仅通知UI界面发生变化
+                this.OnPropertyChanged("OneShelfCanvas");
+            }
+        }
         private Boolean onBookLocationShowClearCommandCanExecute()
         {
             if (!String.IsNullOrEmpty(this.BookName))
