@@ -125,11 +125,14 @@ namespace UI.ViewModels
         {
             get
             {
-                return this.libraryMapService.OneShelfMap;
+                Canvas can = new Canvas();
+                can.Height = 400; can.Width = 600;
+                can.Background = System.Windows.Media.Brushes.Yellow;
+                return can;
             }
             set
             {    //仅仅通知UI界面发生变化
-                this.OnPropertyChanged("OneShelfCanvas");
+                //this.OnPropertyChanged("OneShelfCanvas");
             }
         }
         private Boolean onBookLocationShowClearCommandCanExecute()

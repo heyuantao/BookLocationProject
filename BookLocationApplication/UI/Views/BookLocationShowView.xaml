@@ -38,10 +38,11 @@
                 <ColumnDefinition Width="2*"></ColumnDefinition>
                 <ColumnDefinition Width="8*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Viewbox Grid.Column="0"  Stretch="Uniform" StretchDirection="Both">
+            <Viewbox Grid.Column="0"  Stretch="Uniform" StretchDirection="Both" VerticalAlignment="Top">
                 <ContentPresenter  Content="{Binding OneShelfCanvas}" Focusable="true" Margin="10" />
             </Viewbox>
             <Viewbox Grid.Column="1" Stretch="Uniform" StretchDirection="Both" Margin="0,0,12,0">
+                <ContentPresenter  Content="{Binding LibraryShelfCanvas}" Focusable="true" Margin="10" />
 
             </Viewbox>
 
