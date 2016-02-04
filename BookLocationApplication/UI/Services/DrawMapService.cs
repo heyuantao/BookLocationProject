@@ -34,6 +34,9 @@ namespace UI.Services
             //初始化其他变量
             this.oneShelfDrawer = new CanvasDrawer();
             this.libraryShelfDrawer = new CanvasDrawer();
+            //初始化各种图形参数
+            this.oneShelfBoxList = new List<ShelfShape>();
+            this.shelfMapShelfList = new List<ShelfShape>();
         }
         public Canvas OneShelfMap
         {
@@ -66,16 +69,32 @@ namespace UI.Services
             this.oneShelfBoxList.Add(layer3);
             this.oneShelfBoxList.Add(layer2);
             this.oneShelfBoxList.Add(layer1);
+
+            List<Point> contourPointList = new List<Point>();
+            Point a1 = new Point(leftMargin + 0, topMargin + 0);
+            Point a2 = new Point(leftMargin + 100, topMargin + 0);
+            Point a3 = new Point(leftMargin + 100, topMargin + 80);
+            Point a4 = new Point(leftMargin + 0, topMargin + 80);
+            contourPointList.Add(a1);
+            contourPointList.Add(a2);
+            contourPointList.Add(a3);
+            contourPointList.Add(a4);
+
+            this.oneShelfBoxContour = new ContourShape(contourPointList);
+
             //开始在画布上画图
             foreach(ShelfShape shapeItem in this.oneShelfBoxList){
                 this.oneShelfDrawer.drawShelf(shapeItem.topLeft, shapeItem.bottomRight);
             }
-
+            //开始画轮廓
+            this.oneShelfDrawer.drawContour(this.oneShelfBoxContour.pointList);
         }
+
         //该函数能够在一个已有的书架正视图上画出被选中的书架层，这个层小于书架的总层数
         public void drawSelectedLayerOneShapeMap(int layer)
         {
-
+            ShelfShape oneshape = this.oneShelfBoxList[layer];
+            this.oneShelfDrawer.drawShelf(oneshape.topLeft, oneshape.bottomRight);
         }
         //该函数能够画出一个书库的背景图片，包含书架，轮廓和门，参数为该图书馆名称，参数即为Map表中的location字段
         public void LibraryShelfMapBackgroundByLibraryName(String libraryname)

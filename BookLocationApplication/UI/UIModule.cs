@@ -30,6 +30,9 @@ namespace UI
             //该服务用于后台线程更新UI的内容
             UIDispatcherService uIDispatcherService = new UIDispatcherService(Application.Current.MainWindow.Dispatcher);
             container.RegisterInstance<IDispatcherService>(uIDispatcherService);
+
+            //初始化绘图模块,
+            container.RegisterInstance<DrawMapService>(new DrawMapService(this.container));
             
             //container.RegisterType<SystemSettingViewModel, SystemSettingViewModel>();
             //SystemSettingViewModel必须先初始化，这样系统配置信息才能载入容器中的对象

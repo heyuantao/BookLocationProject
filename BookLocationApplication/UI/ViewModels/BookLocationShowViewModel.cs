@@ -38,8 +38,14 @@ namespace UI.ViewModels
             //初始化UI的变量
             this.bookName = ""; this.bookAccessCode = ""; this.bookLocation = "";
             //初始化两个地图画板
-            this.libraryMapService = new DrawMapService();
-            this.libraryMapService.initCarvas(500, 300, 1200, 1200);
+            this.libraryMapService = this.container.Resolve<DrawMapService>();
+            //this.libraryMapService.initOneShapMap(500, 300, 1200, 1200);
+            this.libraryMapService.initOneShapMap(120, 180, 120, 180);
+            //test code here ,delete it 
+            this.libraryMapService.drawOneShapeMapBackground(5);
+            this.OneLibraryCanvas = this.OneLibraryCanvas;
+
+
         }
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
@@ -110,9 +116,11 @@ namespace UI.ViewModels
         }
         public Canvas OneLibraryCanvas
         {
-            get
-            {
-                return this.libraryMapService.CurrentCanvas;
+            get { return this.libraryMapService.OneShelfMap; }
+            set
+            {    //仅仅通知UI界面发生变化
+                //this.libraryMapService.OneShelfMap = value;
+                this.OnPropertyChanged("OneLibraryCanvas");
             }
         }
 
