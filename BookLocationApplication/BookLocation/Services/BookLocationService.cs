@@ -129,6 +129,11 @@ namespace BookLocation
         ///getItemPositionListByLocationAndType 返回的是没有重复值的
         List<String> getItemPositionStringListByLocationAndType(string location, string type)
         {
+            var findItemList=dbEntities.Map.Where((item) => item.location == location);
+            foreach (Map item in findItemList)
+            {
+                //tobe continue
+            }
             return new List<String>();
         }
         String getItemPositionStringByShelfRfid(string shelfRfid)
