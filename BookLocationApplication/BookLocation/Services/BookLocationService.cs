@@ -127,7 +127,7 @@ namespace BookLocation
         }
         ///for Map table
         ///getItemPositionListByLocationAndType 返回的是没有重复值的
-        List<String> getItemPositionStringListByLocationAndType(string location, string type)
+        public List<String> getItemPositionStringListByLocationAndType(string location, string type)
         {
             //这个查询功能与数据库的内容存放有着密切的关系，在程序处理中一定要仔细查看数据库内容是怎么存储的
             List<String> positionStringList = new List<String>();
@@ -143,7 +143,7 @@ namespace BookLocation
             }
             return positionStringList;
         }
-        String getItemPositionStringByShelfRfid(string shelfRfid)
+        public String getItemPositionStringByShelfRfid(string shelfRfid)
         {
             //这个查询功能与数据库的内容存放有着密切的关系，在程序处理中一定要仔细查看数据库内容是怎么存储的
             Map oneItem = dbEntities.Map.Where((item) => item.rfidOfShelf == shelfRfid).FirstOrDefault<Map>();

@@ -41,10 +41,7 @@ namespace UI.ViewModels
             this.libraryMapService = this.container.Resolve<DrawMapService>();
             //this.libraryMapService.initOneShapMap(500, 300, 1200, 1200);
             this.libraryMapService.initOneShapMap(120, 180, 120, 180);
-            //test code here ,delete it 
-            this.libraryMapService.drawOneShapeMapBackground(5);
-            this.OneLibraryCanvas = this.OneLibraryCanvas;
-
+            
 
         }
         public bool IsNavigationTarget(NavigationContext navigationContext)
@@ -173,6 +170,9 @@ namespace UI.ViewModels
                 this.dispatcherService.Dispatch(() =>
                 {
                     this.BookLocation = bookLocationService.getShelfNameByShelfRfid(shelfRfid);
+                    //test code here ,delete it 
+                    //this.libraryMapService.drawOneShapeMapBackground(5);
+                    //this.OneLibraryCanvas = this.OneLibraryCanvas;
                 });   
             }
         }
