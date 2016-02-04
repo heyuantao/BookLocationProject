@@ -129,16 +129,25 @@ namespace BookLocation
         ///getItemPositionListByLocationAndType 返回的是没有重复值的
         List<String> getItemPositionStringListByLocationAndType(string location, string type)
         {
+            //这个查询功能与数据库的内容存放有着密切的关系，在程序处理中一定要仔细查看数据库内容是怎么存储的
+            List<String> positionStringList = new List<String>();
             var findItemList=dbEntities.Map.Where((item) => item.location == location);
             foreach (Map item in findItemList)
-            {
-                //tobe continue
+            {   //获取到的在某一个书库的位置列表可能会有重复的部分，因此在程序中把重复的部分清除掉
+                //这是因为在一个相同的位置上，通常放置了五个或者六个书柜，这些书柜垂直放置成多层
+                if (positionStringList.Contains(item.position))
+                {
+                    continue;
+                }
+                positionStringList.Add(item.position);
             }
-            return new List<String>();
+            return positionStringList;
         }
         String getItemPositionStringByShelfRfid(string shelfRfid)
         {
-            return "";
+            //这个查询功能与数据库的内容存放有着密切的关系，在程序处理中一定要仔细查看数据库内容是怎么存储的
+            Map oneItem = dbEntities.Map.Where((item) => item.rfidOfShelf == shelfRfid).FirstOrDefault<Map>();
+            return oneItem.position;
         }
     }
 }
