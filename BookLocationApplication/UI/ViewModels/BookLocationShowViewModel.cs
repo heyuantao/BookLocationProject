@@ -167,9 +167,11 @@ namespace UI.ViewModels
                 });               
 
                 String shelfRfid = bookLocationService.getShelfRfidbyBookRfid(newItem.bookRfidList[0]);
+                String bookLocationString = bookLocationService.getShelfNameByShelfRfid(shelfRfid);
+
                 this.dispatcherService.Dispatch(() =>
                 {
-                    this.BookLocation = bookLocationService.getShelfNameByShelfRfid(shelfRfid);
+                    this.BookLocation = bookLocationString;
                     //test code here ,delete it 
                     //this.libraryMapService.drawOneShapeMapBackground(5);
                     //this.OneLibraryCanvas = this.OneLibraryCanvas;
