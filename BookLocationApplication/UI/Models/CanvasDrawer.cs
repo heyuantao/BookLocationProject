@@ -12,7 +12,7 @@ namespace UI.Models
 {
     public class ShelfShape
     {
-        Point topLeft, bottomRight;
+        public Point topLeft, bottomRight;
         public ShelfShape(Point topLeft, Point bottomRight)
         {
             this.topLeft = topLeft; this.bottomRight = bottomRight;
@@ -21,21 +21,21 @@ namespace UI.Models
     //同时该形状还用于描述在正视图中的书架和书架中一格的这种结构。因为这些形状都是矩形
     public class DoorShape
     {
-        Point topLeft, bottomRight;
+        public Point topLeft, bottomRight;
         public DoorShape(Point topLeft, Point bottomRight)
         {
             this.topLeft = topLeft; this.bottomRight = bottomRight;
         }
     }  //该形状用于描述图书馆中的一个门，也就是俯视图中的门
     public class ContourShape{
-        List<Point> pointList;
+        public List<Point> pointList;
         public ContourShape(List<Point> pointList){
             this.pointList = pointList;
         }
     } //该形状用于描述图书馆外围轮廓的多边形，也就是一个俯视图
     public class RouteShape
     {
-        List<Point> pointList;
+        public List<Point> pointList;
         public RouteShape(List<Point> pointList)
         {
             this.pointList = pointList;
