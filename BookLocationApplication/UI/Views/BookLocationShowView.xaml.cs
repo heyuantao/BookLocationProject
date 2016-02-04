@@ -31,5 +31,12 @@ namespace UI.Views
             this.container = container;
             this.DataContext = viewModel;
         }
+        //用这个方法设定高度违背了设计原则，但实在找不到更合适的高度设置方式
+        protected override void OnRender(System.Windows.Media.DrawingContext drawingContext)
+        {
+            base.OnRender(drawingContext);
+            double height = Application.Current.MainWindow.ActualHeight;
+            //oneShelfMap.Height = height - 100;
+        }
     }
 }

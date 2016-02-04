@@ -39,8 +39,9 @@ namespace UI.ViewModels
             this.bookName = ""; this.bookAccessCode = ""; this.bookLocation = "";
             //初始化两个地图画板
             this.libraryMapService = this.container.Resolve<DrawMapService>();
-            this.libraryMapService.initOneShapMap(120, 180, 120, 180);
-            
+            this.libraryMapService.initOneShapMap(150, 180, 150, 180);
+            this.libraryMapService.drawOneShapeMapBackground(5);
+            this.OneShelfCanvas = this.OneShelfCanvas;
 
         }
         public bool IsNavigationTarget(NavigationContext navigationContext)
@@ -110,14 +111,13 @@ namespace UI.ViewModels
                 return this.bookLocationShowClearCommand;
             }
         }
-        public Canvas OneLibraryCanvas
+        public Canvas OneShelfCanvas
         {
             get { 
                 return this.libraryMapService.OneShelfMap; 
             }
             set
             {    //仅仅通知UI界面发生变化
-                //this.libraryMapService.OneShelfMap = value;
                 this.OnPropertyChanged("OneLibraryCanvas");
             }
         }
@@ -174,9 +174,9 @@ namespace UI.ViewModels
                 {
                     this.BookLocation = bookLocationString;
                     //test code here ,delete it 
-                    this.libraryMapService.drawOneShapeMapBackground(5);
-                    this.OneLibraryCanvas = this.OneLibraryCanvas;
-                });   
+                    
+                    
+                });
             }
         }
         private void clearBookInformation()

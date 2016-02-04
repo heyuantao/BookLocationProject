@@ -64,7 +64,10 @@ namespace UI.Models
             this.mapHeight = mapHeight; this.mapWidth = mapWidth;
             this.heightRatio = this.canvasHeight / this.mapHeight;
             this.widthRatio = this.canvasWidth / this.mapWidth;
-            this.currentCanvas.Background = new SolidColorBrush(Colors.Black);
+
+            this.currentCanvas.Width = canvasWidth;
+            this.currentCanvas.Height = canvasHeight;
+            //this.currentCanvas.Background = new SolidColorBrush(Colors.Black);
             //this.currentCanvas.Background = System.Windows.Media.Brushes.Red;
         }
         public void drawBackGround()

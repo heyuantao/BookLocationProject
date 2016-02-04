@@ -61,7 +61,7 @@ namespace UI.Services
         //该函数能够画出一个书架的正视图，参数为层数。也就是画出几层的书架
         public void drawOneShapeMapBackground(int layers)
         {//定义一个五层的书架
-            double leftMargin = 20; double topMargin = 10;
+            double leftMargin = 20; double topMargin = 30;
             ShelfShape layer5 = new ShelfShape(new Point(leftMargin, topMargin+0), new Point(leftMargin+100,   topMargin+20));
             ShelfShape layer4 = new ShelfShape(new Point(leftMargin, topMargin+20), new Point(leftMargin + 100, topMargin + 40));
             ShelfShape layer3 = new ShelfShape(new Point(leftMargin, topMargin+40), new Point(leftMargin + 100, topMargin + 60));
@@ -77,8 +77,8 @@ namespace UI.Services
             List<Point> contourPointList = new List<Point>();
             Point a1 = new Point(leftMargin + 0, topMargin + 0);
             Point a2 = new Point(leftMargin + 100, topMargin + 0);
-            Point a3 = new Point(leftMargin + 100, topMargin + 80);
-            Point a4 = new Point(leftMargin + 0, topMargin + 80);
+            Point a3 = new Point(leftMargin + 100, topMargin + 100);
+            Point a4 = new Point(leftMargin + 0, topMargin + 100);
             contourPointList.Add(a1);
             contourPointList.Add(a2);
             contourPointList.Add(a3);
