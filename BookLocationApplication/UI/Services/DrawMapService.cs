@@ -86,7 +86,12 @@ namespace UI.Services
             this.oneShelfDrawer.initCanvas(canvasWidth,canvasHeight,mapWidth,mapHeight);
             this.oneShelfDrawer.CurrentCanvas.Background = System.Windows.Media.Brushes.LightSeaGreen;    
         }
-
+        //重新初始化单个书架画布的各项尺寸参数
+        public void reinitOneShapMap()
+        {
+            this.oneShelfDrawer.reinitCanvas();
+            this.oneShelfDrawer.CurrentCanvas.Background = System.Windows.Media.Brushes.LightSeaGreen;
+        }
         //给上层提供的访问函数
         //该函数能够画出一个书架的正视图，默认为5层。也就是画出几层的书架
         public void drawOneShapeMapBackground()

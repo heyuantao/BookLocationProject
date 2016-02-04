@@ -70,6 +70,18 @@ namespace UI.Models
             //this.currentCanvas.Background = new SolidColorBrush(Colors.Black);
             //this.currentCanvas.Background = System.Windows.Media.Brushes.Red;
         }
+        public void reinitCanvas()
+        {   
+            //重新绘制
+            this.heightRatio = this.canvasHeight / this.mapHeight;
+            this.widthRatio = this.canvasWidth / this.mapWidth;
+
+            this.currentCanvas = new Canvas();
+            this.currentCanvas.Width = canvasWidth;
+            this.currentCanvas.Height = canvasHeight;
+            //this.currentCanvas.Background = new SolidColorBrush(Colors.Black);
+            //this.currentCanvas.Background = System.Windows.Media.Brushes.Red;
+        }
         public void drawBackGround()
         {
             //画出背景的，例如书架，入口，以及轮廓

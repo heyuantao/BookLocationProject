@@ -41,7 +41,7 @@ namespace UI.ViewModels
             this.libraryMapService = this.container.Resolve<DrawMapService>();
             this.libraryMapService.initOneShapMap(150, 180, 150, 180);
             this.libraryMapService.drawOneShapeMapBackground();
-            this.OneShelfCanvas = this.OneShelfCanvas;
+            this.OneShelfCanvas = this.OneShelfCanvas; //通知更新UI
 
         }
         public bool IsNavigationTarget(NavigationContext navigationContext)
@@ -118,7 +118,7 @@ namespace UI.ViewModels
             }
             set
             {    //仅仅通知UI界面发生变化
-                this.OnPropertyChanged("OneLibraryCanvas");
+                this.OnPropertyChanged("OneShelfCanvas");
             }
         }
 
@@ -175,14 +175,19 @@ namespace UI.ViewModels
                     this.BookLocation = bookLocationString;
                     //test code here ,delete it 
                     //在选定的书架层上绘图
+                    this.libraryMapService.reinitOneShapMap();//刷新UI
+                    this.libraryMapService.drawOneShapeMapBackground();
                     this.libraryMapService.drawSelectedLayerOneShapeMap(bookLocationString);
-                    
+                    this.OneShelfCanvas = this.OneShelfCanvas; //通知更新UI
                 });
             }
         }
         private void clearBookInformation()
         {
             this.BookName = ""; this.BookAccessCode = ""; this.BookLocation = "";
+            this.libraryMapService.reinitOneShapMap();//刷新UI
+            this.libraryMapService.drawOneShapeMapBackground();
+            this.OneShelfCanvas = this.OneShelfCanvas; //通知更新UI
         }
         //########################################
         //########################################
