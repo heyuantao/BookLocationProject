@@ -162,7 +162,7 @@ namespace UI.ViewModels
                 List<String> bookNameList = bookInformationService.getBookNameListByRfidList(newItem.bookRfidList);
                 List<String> bookAccessCodeList = bookInformationService.getBookAccessCodeListByRfidList(newItem.bookRfidList);
                 this.dispatcherService.Dispatch(() =>
-                {
+                {//显示图书基本信息
                     this.BookName = bookNameList[0];
                     this.BookAccessCode = bookAccessCodeList[0];
                 });               
@@ -174,8 +174,8 @@ namespace UI.ViewModels
                 {
                     this.BookLocation = bookLocationString;
                     //test code here ,delete it 
-                    //在选定的曾上画图
-                    this.libraryMapService.drawSelectedLayerOneShapeMap(2);
+                    //在选定的书架层上绘图
+                    this.libraryMapService.drawSelectedLayerOneShapeMap(bookLocationString);
                     
                 });
             }

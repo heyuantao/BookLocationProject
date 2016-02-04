@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -98,10 +99,16 @@ namespace UI.Services
         }
 
         //该函数能够在一个已有的书架正视图上画出被选中的书架层，这个层小于书架的总层数
-        public void drawSelectedLayerOneShapeMap(int layer)
-        {
+        public void drawSelectedLayerOneShapeMap(String locationString)
+        {            
             try
             {
+                int layer = 1;
+                String patternString = "第[0-9]+层$";
+                String match = Regex.Match(locationString, patternString).Value;
+                match = match.Replace("第", "").Replace("层", "");
+                layer = Convert.ToInt32(match);
+                layer = 4 - (layer - 1);
                 ShelfShape oneshape = this.oneShelfBoxList[layer];
                 this.oneShelfDrawer.drawSelectedShelf(oneshape.topLeft, oneshape.bottomRight);
             }
