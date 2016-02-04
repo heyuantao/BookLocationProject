@@ -40,7 +40,7 @@ namespace UI.ViewModels
             //初始化两个地图画板
             this.libraryMapService = this.container.Resolve<DrawMapService>();
             this.libraryMapService.initOneShapMap(150, 180, 150, 180);
-            this.libraryMapService.drawOneShapeMapBackground(5);
+            this.libraryMapService.drawOneShapeMapBackground();
             this.OneShelfCanvas = this.OneShelfCanvas;
 
         }
@@ -174,7 +174,8 @@ namespace UI.ViewModels
                 {
                     this.BookLocation = bookLocationString;
                     //test code here ,delete it 
-                    
+                    //在选定的曾上画图
+                    this.libraryMapService.drawSelectedLayerOneShapeMap(2);
                     
                 });
             }

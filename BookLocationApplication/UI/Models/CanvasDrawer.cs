@@ -94,6 +94,12 @@ namespace UI.Models
             rect.Fill = System.Windows.Media.Brushes.Red;
             this.currentCanvas.Children.Add(rect);
         }
+        public void drawSelectedShelf(Point leftTop, Point rightBottom) //画被选中的书架，俯视图或者正视图
+        {
+            Rectangle rect = this.drawOneRectangle(leftTop, rightBottom);
+            rect.Fill = System.Windows.Media.Brushes.Red;
+            this.currentCanvas.Children.Add(rect);
+        }
         public void drawShelf(Point leftTop, Point rightBottom) //画书架，俯视图或者正视图
         {
             Rectangle rect = this.drawOneRectangle(leftTop, rightBottom);

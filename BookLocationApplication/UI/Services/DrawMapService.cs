@@ -37,6 +37,35 @@ namespace UI.Services
             //初始化各种图形参数
             this.oneShelfBoxList = new List<ShelfShape>();
             this.shelfMapShelfList = new List<ShelfShape>();
+            initVariableValue();
+        }
+
+        private void initVariableValue()
+        { //定义一个五层的书架
+            double leftMargin = 20; double topMargin = 30;
+            ShelfShape layer5 = new ShelfShape(new Point(leftMargin, topMargin + 0), new Point(leftMargin + 100, topMargin + 20));
+            ShelfShape layer4 = new ShelfShape(new Point(leftMargin, topMargin + 20), new Point(leftMargin + 100, topMargin + 40));
+            ShelfShape layer3 = new ShelfShape(new Point(leftMargin, topMargin + 40), new Point(leftMargin + 100, topMargin + 60));
+            ShelfShape layer2 = new ShelfShape(new Point(leftMargin, topMargin + 60), new Point(leftMargin + 100, topMargin + 80));
+            ShelfShape layer1 = new ShelfShape(new Point(leftMargin, topMargin + 80), new Point(leftMargin + 100, topMargin + 100));
+
+            this.oneShelfBoxList.Add(layer5);
+            this.oneShelfBoxList.Add(layer4);
+            this.oneShelfBoxList.Add(layer3);
+            this.oneShelfBoxList.Add(layer2);
+            this.oneShelfBoxList.Add(layer1);
+
+            List<Point> contourPointList = new List<Point>();
+            Point a1 = new Point(leftMargin + 0, topMargin + 0);
+            Point a2 = new Point(leftMargin + 100, topMargin + 0);
+            Point a3 = new Point(leftMargin + 100, topMargin + 100);
+            Point a4 = new Point(leftMargin + 0, topMargin + 100);
+            contourPointList.Add(a1);
+            contourPointList.Add(a2);
+            contourPointList.Add(a3);
+            contourPointList.Add(a4);
+
+            this.oneShelfBoxContour = new ContourShape(contourPointList);
         }
         public Canvas OneShelfMap
         {
@@ -58,35 +87,9 @@ namespace UI.Services
         }
 
         //给上层提供的访问函数
-        //该函数能够画出一个书架的正视图，参数为层数。也就是画出几层的书架
-        public void drawOneShapeMapBackground(int layers)
-        {//定义一个五层的书架
-            double leftMargin = 20; double topMargin = 30;
-            ShelfShape layer5 = new ShelfShape(new Point(leftMargin, topMargin+0), new Point(leftMargin+100,   topMargin+20));
-            ShelfShape layer4 = new ShelfShape(new Point(leftMargin, topMargin+20), new Point(leftMargin + 100, topMargin + 40));
-            ShelfShape layer3 = new ShelfShape(new Point(leftMargin, topMargin+40), new Point(leftMargin + 100, topMargin + 60));
-            ShelfShape layer2 = new ShelfShape(new Point(leftMargin, topMargin+60), new Point(leftMargin + 100, topMargin + 80));
-            ShelfShape layer1 = new ShelfShape(new Point(leftMargin, topMargin+80), new Point(leftMargin + 100, topMargin + 100));
-
-            this.oneShelfBoxList.Add(layer5);
-            this.oneShelfBoxList.Add(layer4);
-            this.oneShelfBoxList.Add(layer3);
-            this.oneShelfBoxList.Add(layer2);
-            this.oneShelfBoxList.Add(layer1);
-
-            List<Point> contourPointList = new List<Point>();
-            Point a1 = new Point(leftMargin + 0, topMargin + 0);
-            Point a2 = new Point(leftMargin + 100, topMargin + 0);
-            Point a3 = new Point(leftMargin + 100, topMargin + 100);
-            Point a4 = new Point(leftMargin + 0, topMargin + 100);
-            contourPointList.Add(a1);
-            contourPointList.Add(a2);
-            contourPointList.Add(a3);
-            contourPointList.Add(a4);
-
-            this.oneShelfBoxContour = new ContourShape(contourPointList);
-
-            //开始在画布上画图
+        //该函数能够画出一个书架的正视图，默认为5层。也就是画出几层的书架
+        public void drawOneShapeMapBackground()
+        {//开始在画布上画图
             foreach(ShelfShape shapeItem in this.oneShelfBoxList){
                 this.oneShelfDrawer.drawShelf(shapeItem.topLeft, shapeItem.bottomRight);
             }
@@ -97,8 +100,14 @@ namespace UI.Services
         //该函数能够在一个已有的书架正视图上画出被选中的书架层，这个层小于书架的总层数
         public void drawSelectedLayerOneShapeMap(int layer)
         {
-            ShelfShape oneshape = this.oneShelfBoxList[layer];
-            this.oneShelfDrawer.drawShelf(oneshape.topLeft, oneshape.bottomRight);
+            try
+            {
+                ShelfShape oneshape = this.oneShelfBoxList[layer];
+                this.oneShelfDrawer.drawSelectedShelf(oneshape.topLeft, oneshape.bottomRight);
+            }
+            catch (Exception){
+                //是否需要处理异常 
+            }            
         }
         //该函数能够画出一个书库的背景图片，包含书架，轮廓和门，参数为该图书馆名称，参数即为Map表中的location字段
         public void LibraryShelfMapBackgroundByLibraryName(String libraryname)
