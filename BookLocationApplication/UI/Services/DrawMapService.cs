@@ -71,9 +71,7 @@ namespace UI.Services
         public Canvas OneShelfMap
         {
             get {
-                Canvas ca = this.oneShelfDrawer.CurrentCanvas;
-                return this.oneShelfDrawer.CurrentCanvas; 
-                
+                return this.oneShelfDrawer.CurrentCanvas;                 
             }
         }
         public Canvas LibraryShelfMap
@@ -92,6 +90,20 @@ namespace UI.Services
             this.oneShelfDrawer.reinitCanvas();
             this.oneShelfDrawer.CurrentCanvas.Background = System.Windows.Media.Brushes.LightSeaGreen;
         }
+
+        //初始化书库俯视图画布的各项尺寸参数
+        public void initLibraryShelfMap(float canvasWidth, float canvasHeight, float mapWidth, float mapHeight)
+        {
+            this.libraryShelfDrawer.initCanvas(canvasWidth, canvasHeight, mapWidth, mapHeight);
+            this.libraryShelfDrawer.CurrentCanvas.Background = System.Windows.Media.Brushes.LightSeaGreen;
+        }
+        //重新初始化书库俯视图画布的各项尺寸参数
+        public void reinitLibraryShelfMap()
+        {
+            this.libraryShelfDrawer.reinitCanvas();
+            this.libraryShelfDrawer.CurrentCanvas.Background = System.Windows.Media.Brushes.LightSeaGreen;
+        }
+
         //给上层提供的访问函数
         //该函数能够画出一个书架的正视图，默认为5层。也就是画出几层的书架
         public void drawOneShapeMapBackground()
@@ -122,7 +134,12 @@ namespace UI.Services
             }            
         }
         //该函数能够画出一个书库的背景图片，包含书架，轮廓和门，参数为该图书馆名称，参数即为Map表中的location字段
-        public void LibraryShelfMapBackgroundByLibraryName(String libraryname)
+        public void drawLibraryShelfMapBackgroundByLibraryName(String libraryName)
+        {
+
+        }
+        //该函数能够画出目标书架在书库中的位置
+        public void drawSelectedShelfLibraryShelfMapByLibraryName(String shelfRfid)
         {
 
         }
