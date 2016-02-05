@@ -1,4 +1,5 @@
-﻿using Microsoft.Practices.Unity;
+﻿using Infrastructure;
+using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,9 +36,13 @@ namespace UI.Services
             //初始化其他变量
             this.oneShelfDrawer = new CanvasDrawer();
             this.libraryShelfDrawer = new CanvasDrawer();
-            //初始化各种图形参数
+            //初始化各种图形参数,先初始化一个值，不管是否有意义，以免在后续引用中出错。
             this.oneShelfBoxList = new List<ShelfShape>();
+            this.oneShelfBoxContour = new ContourShape(new List<Point>());
             this.shelfMapShelfList = new List<ShelfShape>();
+            this.shelfMapDoor = new DoorShape(new Point(0,0),new Point(0,0));
+            this.shelfMapContour = new ContourShape(new List<Point>());
+            this.shelfMapRoute = new RouteShape(new List<Point>());
             initVariableValue();
         }
 
@@ -132,6 +137,65 @@ namespace UI.Services
         //该函数能够画出一个书库的背景图片，包含书架，轮廓和门，参数为该图书馆名称，参数即为Map表中的location字段
         public void drawLibraryShelfMapBackgroundByLibraryName(String libraryName)
         {
+            String libraryNameInTable = this.bookLocationStringToLibraryName(libraryName);
+            //获取图书位置信息数据库的引用
+            IBookLocationService bookLocationService = this.container.Resolve<IBookLocationService>();
+            
+            //获取某个书库中所有的书架
+            List<String> shelfPositionStringList = bookLocationService.getItemPositionStringListByLocationAndType(libraryNameInTable, "SHELF");
+            //从数据库中读到的字符串列表中解析出所有的书架地理位置信息，并加入到this.shelfMapShelfList中
+            this.shelfMapShelfList = new List<ShelfShape>();
+            foreach (String stringItem in shelfPositionStringList)
+            {//stringItem is a string ,such as "13000,1500,1500,1000",startpoint x,y,and width,height
+                char[] separator = { '，', ',' };
+                String[] pointDescInString = stringItem.Split(separator);
+                if (pointDescInString.Length != 4) { continue; } //如果不为4个数字，则意味着可能出现了解析或者存储错误
+                double[] pointDescInDouble = new double[] { 
+                    Convert.ToDouble(pointDescInString[0]), 
+                    Convert.ToDouble(pointDescInString[1]), 
+                    Convert.ToDouble(pointDescInString[2]), 
+                    Convert.ToDouble(pointDescInString[3]) 
+                };
+                Point leftTop = new Point(pointDescInDouble[0], pointDescInDouble[1]);
+                Point rightBottom = new Point(pointDescInDouble[0] + pointDescInDouble[2], pointDescInDouble[1]+pointDescInDouble[3]);
+                //把书架的位置信息放入结构体的变量中shelfMapShelfList
+                this.shelfMapShelfList.Add(new ShelfShape(new Point(), new Point()));
+            }
+
+            //获得某个书库的轮廓
+            List<String> shelfContourPostionStringList = bookLocationService.getItemPositionStringListByLocationAndType(libraryNameInTable, "CONTOUR");
+            String shelfContourPostionString="";
+            //如果获得的轮廓个数小于零，则说明数据出现了问题.其实一个书库的轮廓只能有一个
+            if (shelfContourPostionStringList.Count >0)
+            {
+                shelfContourPostionString = shelfContourPostionStringList[0];
+                char[] separator = { '，', ',' };
+                String[] pointDescInString = shelfContourPostionString.Split(separator);
+                //轮廓点的个数只能是偶数个,如果解析和读取数据的时候出现任何错误，则花图书轮廓的程序终止
+                if ((pointDescInString.Length / 2 == 0) && (pointDescInString.Length>=2))
+                {
+                    List<Double> pointXList =new List<Double>(); 
+                    List<Double> pointYList =new List<Double>();
+                    for (int i = 0; i < pointDescInString.Length; i = i + 2)
+                    {
+                        pointXList.Add( Convert.ToDouble(pointDescInString[i]) );
+                        pointXList.Add( Convert.ToDouble(pointDescInString[i+1]) );
+                    }
+                    if (pointXList.Count == pointYList.Count)
+                    {
+                        List<Point> contourPointList=new List<Point>();
+                        for(int i=0;i<pointXList.Count();i++){
+                            Point onePoint=new Point(pointXList[i],pointYList[i]);
+                            contourPointList.Add(onePoint);
+                        }
+                        this.shelfMapContour = new ContourShape(contourPointList);
+                    }
+                }
+
+            }
+
+
+            //画出大门的位置//暂时未实现//to be continue
 
         }
         //该函数能够画出目标书架在书库中的位置
@@ -178,16 +242,18 @@ namespace UI.Services
                 String patternStringForselectionChar = "^图书馆[A-Za-z]+区";
                 String matchForSelection = Regex.Match(bookLocationString, patternStringForselectionChar).Value;
                 selectionChar = matchForSelection.Replace("图书馆", "").Replace("区", "");
+                selectionChar = selectionChar.Replace(" ", "");
 
                 String patternStringForfloorChar = "^区[0-9]层";
                 String matchForFloor = Regex.Match(bookLocationString, patternStringForfloorChar).Value;
                 floorChar = matchForFloor.Replace("图书馆", "").Replace("区", "");
+                floorChar = floorChar.Replace(" ", "");
 
                 if (String.IsNullOrEmpty(selectionChar) || String.IsNullOrEmpty(floorChar))
                 {
                     return "";
                 }
-                return selectionChar.ToUpper() + floorChar;
+                return floorChar+selectionChar.ToUpper();
             }
             catch (Exception)
             {
