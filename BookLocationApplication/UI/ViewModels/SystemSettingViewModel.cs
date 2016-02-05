@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using UI.Services;
 
@@ -151,6 +152,8 @@ namespace UI.ViewModels
             service.Speed = Serial.Speed;
             //保存配置
             databaseAndSerialSettingsServices.saveSerialSettings(Serial);
+            //配合串口后提示重启该软件
+            MessageBox.Show("更改串口配置后请重启该软件!");
         }
         //########################################
         //########################################

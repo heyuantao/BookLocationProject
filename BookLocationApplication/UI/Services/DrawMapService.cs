@@ -120,12 +120,7 @@ namespace UI.Services
         {            
             try
             {
-                int layer = 1;
-                String patternString = "第[0-9]+层$";
-                String match = Regex.Match(locationString, patternString).Value;
-                match = match.Replace("第", "").Replace("层", "");
-                layer = Convert.ToInt32(match);
-                layer = 4 - (layer - 1);
+                int layer = this.bookLocationStringToLayerOfShelf(locationString);
                 ShelfShape oneshape = this.oneShelfBoxList[layer];
                 this.oneShelfDrawer.drawSelectedShelf(oneshape.topLeft, oneshape.bottomRight);
             }
@@ -147,6 +142,54 @@ namespace UI.Services
         public void drawRouteOnLibraryShelfMap(String shelfRfid)
         {
 
+        }
+        //从UI上显示的图书的中文地址信息中提取出楼层的信息，并转换为整数,如果找到了就返回该值，否则就返回-1
+        //输入的字符串为 "图书馆W区6层22行3列A面书架第4层"
+        private int bookLocationStringToLayerOfShelf(String bookLocationString)
+        {
+            try
+            {
+                int layer;
+                String patternString = "第[0-9]+层$";
+                String match = Regex.Match(bookLocationString, patternString).Value;
+                match = match.Replace("第", "").Replace("层", "");
+                layer = Convert.ToInt32(match);
+                layer = 4 - (layer - 1);
+                return layer;
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+            
+        }
+        //从UI上显示的图书的中文地址信息中提取出图书馆的名称信息，返回值是字符串，否则返回空字符串
+        //输入的字符串为 "图书馆W区6层22行3列A面书架第4层" 返回值为6W ,如果没找到就返回空字符串
+        private string bookLocationStringToLibraryName(String bookLocationString)
+        {
+            try
+            {
+                String selectionChar = ""; //"W" or "E"
+                String floorChar = "";//1,2,3,4,..5 is a number
+
+                String patternStringForselectionChar = "^图书馆[A-Za-z]+区";
+                String matchForSelection = Regex.Match(bookLocationString, patternStringForselectionChar).Value;
+                selectionChar = matchForSelection.Replace("图书馆", "").Replace("区", "");
+
+                String patternStringForfloorChar = "^区[0-9]层";
+                String matchForFloor = Regex.Match(bookLocationString, patternStringForfloorChar).Value;
+                floorChar = matchForFloor.Replace("图书馆", "").Replace("区", "");
+
+                if (String.IsNullOrEmpty(selectionChar) || String.IsNullOrEmpty(floorChar))
+                {
+                    return "";
+                }
+                return selectionChar.ToUpper() + floorChar;
+            }
+            catch (Exception)
+            {
+                return "";
+            }            
         }
     }
     
