@@ -159,7 +159,7 @@ namespace UI.Services
                 Point leftTop = new Point(pointDescInDouble[0], pointDescInDouble[1]);
                 Point rightBottom = new Point(pointDescInDouble[0] + pointDescInDouble[2], pointDescInDouble[1]+pointDescInDouble[3]);
                 //把书架的位置信息放入结构体的变量中shelfMapShelfList
-                this.shelfMapShelfList.Add(new ShelfShape(new Point(), new Point()));
+                this.shelfMapShelfList.Add(new ShelfShape(leftTop, rightBottom));
             }
 
             //获得某个书库的轮廓
@@ -195,8 +195,36 @@ namespace UI.Services
             }
 
 
-            //画出大门的位置//暂时未实现//to be continue
+            //设置某个书库大门的位置
+            try
+            {
+                List<String> doorPostionStringList = bookLocationService.getItemPositionStringListByLocationAndType(libraryNameInTable, "DOOR");
+                if (doorPostionStringList.Count > 0)
+                {
+                    String doorPostionString = doorPostionStringList[0];
+                    char[] separator = { '，', ',' };
+                    String[] pointDescInString = doorPostionString.Split(separator);
+                    if (pointDescInString.Length == 4)
+                    {
+                        double[] pointDescInDouble = new double[] { 
+                        Convert.ToDouble(pointDescInString[0]), 
+                        Convert.ToDouble(pointDescInString[1]), 
+                        Convert.ToDouble(pointDescInString[2]), 
+                        Convert.ToDouble(pointDescInString[3]) 
+                    };
+                        Point leftTop = new Point(pointDescInDouble[0], pointDescInDouble[1]);
+                        Point rightBottom = new Point(pointDescInDouble[0] + pointDescInDouble[2], pointDescInDouble[1] + pointDescInDouble[3]);
+                        //把书库大门的位置信息放入结构体的变量中shelfMapShelfList
+                        this.shelfMapDoor = new DoorShape(leftTop, rightBottom);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                //如果发生错误那就什么都不错，是否要在此引入事件发布器，在界面上显示信息
+            }
 
+            
         }
         //该函数能够画出目标书架在书库中的位置
         public void drawSelectedShelfLibraryShelfMapByLibraryName(String shelfRfid)
