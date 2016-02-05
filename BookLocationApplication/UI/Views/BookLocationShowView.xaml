@@ -41,7 +41,7 @@
             <Viewbox Grid.Column="0"  Stretch="Uniform" StretchDirection="Both" VerticalAlignment="Top">
                 <ContentPresenter  Content="{Binding OneShelfCanvas}" Focusable="true" Margin="10" />
             </Viewbox>
-            <Viewbox Grid.Column="1" Stretch="UniformToFill" StretchDirection="Both" Margin="0,0,12,0" VerticalAlignment="Top">
+            <Viewbox Grid.Column="1" Stretch="Uniform" StretchDirection="Both" Margin="0,0,12,0" VerticalAlignment="Top">
                 <ContentPresenter  Content="{Binding LibraryShelfCanvas}" Focusable="true" Margin="10" />
 
             </Viewbox>

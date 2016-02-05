@@ -154,7 +154,9 @@ namespace UI.Services
                 {//stringItem is a string ,such as "13000,1500,1500,1000",startpoint x,y,and width,height
                     char[] separator = { '，', ',' };
                     String[] pointDescInString = stringItem.Split(separator);
-                    if (pointDescInString.Length != 4) { continue; } //如果不为4个数字，则意味着可能出现了解析或者存储错误
+                    if (pointDescInString.Length != 4) { 
+                        continue; 
+                    } //如果不为4个数字，则意味着可能出现了解析或者存储错误
                     double[] pointDescInDouble = new double[] { 
                     Convert.ToDouble(pointDescInString[0]), 
                     Convert.ToDouble(pointDescInString[1]), 
@@ -169,7 +171,8 @@ namespace UI.Services
             }
             catch (Exception)
             {
-                //如果发生错误那就什么都不错，是否要在此引入事件发布器，在界面上显示信息
+                this.eventAggregator.GetEvent<DatabaseEvent>().Publish("DrawMapService:从数据库中获取书架信息出错！");
+                //如果发生错误那发布事件
             }
 
 
@@ -185,14 +188,14 @@ namespace UI.Services
                     char[] separator = { '，', ',' };
                     String[] pointDescInString = shelfContourPostionString.Split(separator);
                     //轮廓点的个数只能是偶数个,如果解析和读取数据的时候出现任何错误，则花图书轮廓的程序终止
-                    if ((pointDescInString.Length / 2 == 0) && (pointDescInString.Length >= 2))
+                    if ((pointDescInString.Length % 2 == 0) && (pointDescInString.Length >= 2))
                     {
                         List<Double> pointXList = new List<Double>();
                         List<Double> pointYList = new List<Double>();
                         for (int i = 0; i < pointDescInString.Length; i = i + 2)
                         {
                             pointXList.Add(Convert.ToDouble(pointDescInString[i]));
-                            pointXList.Add(Convert.ToDouble(pointDescInString[i + 1]));
+                            pointYList.Add(Convert.ToDouble(pointDescInString[i + 1]));
                         }
                         if (pointXList.Count == pointYList.Count)
                         {
@@ -209,7 +212,8 @@ namespace UI.Services
                 }
             }catch(Exception)
             {
-                //如果发生错误那就什么都不错，是否要在此引入事件发布器，在界面上显示信息
+                this.eventAggregator.GetEvent<DatabaseEvent>().Publish("DrawMapService:从数据库中获取书库轮廓信息出错！");
+                //如果发生错误那发布事件
             }
             
 
@@ -240,19 +244,28 @@ namespace UI.Services
             }
             catch (Exception)
             {
-                //如果发生错误那就什么都不错，是否要在此引入事件发布器，在界面上显示信息
+                this.eventAggregator.GetEvent<DatabaseEvent>().Publish("DrawMapService:从数据库中获取书库大门信息出错！");
+                //如果发生错误那发布事件
             }
 
+            //将对象创建成功，下一步开始正式加入Canvas
+            //绘制书库中的多个书架
+            foreach (ShelfShape oneShelf in this.shelfMapShelfList)
+            {
+                this.libraryShelfDrawer.drawShelf(oneShelf.topLeft, oneShelf.bottomRight);
+            }
             
         }
         //该函数能够画出目标书架在书库中的位置
         public void drawSelectedShelfLibraryShelfMapByLibraryName(String shelfRfid)
         {
+            this.eventAggregator.GetEvent<DatabaseEvent>().Publish("DrawMapService:此功能未实现！");
 
         }
         //该函数能够画出取书的路线，也就是从入口到目的书架的折线图，参数为Map表中的rfidOfShelf字段
         public void drawRouteOnLibraryShelfMap(String shelfRfid)
         {
+            this.eventAggregator.GetEvent<DatabaseEvent>().Publish("DrawMapService:此功能未实现！");
 
         }
         
@@ -291,9 +304,9 @@ namespace UI.Services
                 selectionChar = matchForSelection.Replace("图书馆", "").Replace("区", "");
                 selectionChar = selectionChar.Replace(" ", "");
 
-                String patternStringForfloorChar = "^区[0-9]层";
+                String patternStringForfloorChar = "区[0-9]层";
                 String matchForFloor = Regex.Match(bookLocationString, patternStringForfloorChar).Value;
-                floorChar = matchForFloor.Replace("图书馆", "").Replace("区", "");
+                floorChar = matchForFloor.Replace("区", "").Replace("层", "");
                 floorChar = floorChar.Replace(" ", "");
 
                 if (String.IsNullOrEmpty(selectionChar) || String.IsNullOrEmpty(floorChar))

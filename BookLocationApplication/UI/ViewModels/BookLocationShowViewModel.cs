@@ -43,6 +43,9 @@ namespace UI.ViewModels
             this.libraryMapService.drawOneShapeMapBackground();
             this.OneShelfCanvas = this.OneShelfCanvas; //通知更新UI
 
+            this.libraryMapService.initLibraryShelfMap(600,400,25000,25000);
+            this.LibraryShelfCanvas = this.LibraryShelfCanvas;//通知更新UI
+
         }
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
@@ -55,6 +58,7 @@ namespace UI.ViewModels
             rfidService.stop();
             eventAggregator.GetEvent<RFIDNewItemEvent>().Unsubscribe(handleNewItemFromRFID);
             eventAggregator.GetEvent<RFIDHardwareEvent>().Unsubscribe(handleErrorFromRFID);
+            eventAggregator.GetEvent<DatabaseEvent>().Unsubscribe(handleErrorFromDatabase);
         }
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
@@ -67,9 +71,12 @@ namespace UI.ViewModels
             eventAggregator.GetEvent<RFIDNewItemEvent>().Subscribe(handleNewItemFromRFID);
             //开始订阅RFID服务发出的事件，这个事件是扫描到的条码的信息，在该view非激活时务必取消此事件的订阅
             eventAggregator.GetEvent<RFIDHardwareEvent>().Subscribe(handleErrorFromRFID);
+            eventAggregator.GetEvent<DatabaseEvent>().Subscribe(handleErrorFromDatabase);
 
             rfidService.start();//开启rfid的后台扫描线程
         }
+
+        
         public String BookName
         {
             get { return this.bookName; }
@@ -125,14 +132,15 @@ namespace UI.ViewModels
         {
             get
             {
-                Canvas can = new Canvas();
-                can.Height = 400; can.Width = 600;
-                can.Background = System.Windows.Media.Brushes.Yellow;
-                return can;
+                return this.libraryMapService.LibraryShelfMap;
+                //Canvas can = new Canvas();
+                //can.Height = 400; can.Width = 600;
+                //can.Background = System.Windows.Media.Brushes.Yellow;
+                //return can;
             }
             set
             {    //仅仅通知UI界面发生变化
-                //this.OnPropertyChanged("OneShelfCanvas");
+                this.OnPropertyChanged("LibraryShelfCanvas");
             }
         }
         private Boolean onBookLocationShowClearCommandCanExecute()
@@ -157,6 +165,11 @@ namespace UI.ViewModels
         {
             this.clearBookInformation();
         }
+
+        private void handleErrorFromDatabase(string errorMessage)
+        {//数据库读操作或者解析失败
+            MessageBox.Show(errorMessage);
+        }
         private void handleErrorFromRFID(string errorMessage)
         {
             MessageBox.Show(errorMessage);
@@ -164,7 +177,6 @@ namespace UI.ViewModels
             this.regionManager.RequestNavigate("MainRegion", new Uri("SystemSettingView", UriKind.Relative));
 
         }
-
         private void handleNewItemFromRFID(RFIDContent newItem)
         {
             if (newItem.bookRfidList.Count() != 0)
@@ -183,15 +195,20 @@ namespace UI.ViewModels
                 String shelfRfid = bookLocationService.getShelfRfidbyBookRfid(newItem.bookRfidList[0]);
                 String bookLocationString = bookLocationService.getShelfNameByShelfRfid(shelfRfid);
 
+                //在选定的书架层上绘图
                 this.dispatcherService.Dispatch(() =>
                 {
                     this.BookLocation = bookLocationString;
                     //test code here ,delete it 
-                    //在选定的书架层上绘图
                     this.libraryMapService.reinitOneShapMap();//刷新UI
                     this.libraryMapService.drawOneShapeMapBackground();
                     this.libraryMapService.drawSelectedLayerOneShapeMap(bookLocationString);
                     this.OneShelfCanvas = this.OneShelfCanvas; //通知更新UI
+
+                    this.libraryMapService.reinitLibraryShelfMap();
+                    this.libraryMapService.drawLibraryShelfMapBackgroundByLibraryName(bookLocationString);
+                    this.LibraryShelfCanvas = this.LibraryShelfCanvas;//通知更新UI
+
                 });
             }
         }
@@ -201,6 +218,9 @@ namespace UI.ViewModels
             this.libraryMapService.reinitOneShapMap();//刷新UI
             this.libraryMapService.drawOneShapeMapBackground();
             this.OneShelfCanvas = this.OneShelfCanvas; //通知更新UI
+
+            this.libraryMapService.reinitLibraryShelfMap();
+            this.LibraryShelfCanvas = this.LibraryShelfCanvas;//通知更新UI
         }
         //########################################
         //########################################

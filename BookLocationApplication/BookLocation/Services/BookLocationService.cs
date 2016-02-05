@@ -131,7 +131,7 @@ namespace BookLocation
         {
             //这个查询功能与数据库的内容存放有着密切的关系，在程序处理中一定要仔细查看数据库内容是怎么存储的
             List<String> positionStringList = new List<String>();
-            var findItemList=dbEntities.Map.Where((item) => item.location == location);
+            var findItemList=dbEntities.Map.Where((item) => item.location == location&&item.type==type);
             foreach (Map item in findItemList)
             {   //获取到的在某一个书库的位置列表可能会有重复的部分，因此在程序中把重复的部分清除掉
                 //这是因为在一个相同的位置上，通常放置了五个或者六个书柜，这些书柜垂直放置成多层
