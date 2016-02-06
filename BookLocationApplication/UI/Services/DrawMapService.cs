@@ -76,6 +76,7 @@ namespace UI.Services
 
             this.oneShelfBoxContour = new ContourShape(contourPointList);
         }
+        //这两个GET 与SET用于返回绘制的两个地图，一个书架的正视图，一个是书库的俯视图
         public Canvas OneShelfMap
         {
             get {

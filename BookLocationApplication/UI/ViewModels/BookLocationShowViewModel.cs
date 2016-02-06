@@ -126,7 +126,7 @@ namespace UI.ViewModels
                 return this.libraryMapService;
             }
             set
-            {    //仅仅通知UI界面发生变化
+            {    //由于Canvas是只读的，因此set不做任何具体操作仅仅通知UI界面发生变化
                 this.OnPropertyChanged("LibraryMapService");
             }
         }
