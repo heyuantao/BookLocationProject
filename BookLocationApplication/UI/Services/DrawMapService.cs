@@ -27,10 +27,10 @@ namespace UI.Services
         List<ShelfShape> oneShelfBoxList;  //书架正视图中的几层的矩形图
         ContourShape oneShelfBoxContour;     //书架正视图的外部轮廓
 
-        List<ShelfShape> shelfMapShelfList; //一个书库俯视图中所有书柜的列表
-        DoorShape shelfMapDoor;             //一个书库门的位置
-        ContourShape shelfMapContour;       //一个书库的外部轮廓
-        RouteShape shelfMapRoute;           //取书的路径列表
+        //List<ShelfShape> shelfMapShelfList; //一个书库俯视图中所有书柜的列表
+        //DoorShape shelfMapDoor;             //一个书库门的位置
+        //ContourShape shelfMapContour;       //一个书库的外部轮廓
+        //RouteShape shelfMapRoute;           //取书的路径列表
 
         public DrawMapService(IUnityContainer container)
         {
@@ -42,10 +42,10 @@ namespace UI.Services
             //初始化各种图形参数,先初始化一个值，不管是否有意义，以免在后续引用中出错。
             this.oneShelfBoxList = new List<ShelfShape>();
             this.oneShelfBoxContour = new ContourShape(new List<Point>());
-            this.shelfMapShelfList = new List<ShelfShape>();
-            this.shelfMapDoor = new DoorShape(new Point(0,0),new Point(0,0));
-            this.shelfMapContour = new ContourShape(new List<Point>());
-            this.shelfMapRoute = new RouteShape(new List<Point>());
+            //this.shelfMapShelfList = new List<ShelfShape>();
+            //this.shelfMapDoor = new DoorShape(new Point(0,0),new Point(0,0));
+            //this.shelfMapContour = new ContourShape(new List<Point>());
+            //this.shelfMapRoute = new RouteShape(new List<Point>());
             initVariableValue();
         }
 
@@ -76,6 +76,7 @@ namespace UI.Services
 
             this.oneShelfBoxContour = new ContourShape(contourPointList);
         }
+
         //这两个GET 与SET用于返回绘制的两个地图，一个书架的正视图，一个是书库的俯视图
         public Canvas OneShelfMap
         {
@@ -150,7 +151,7 @@ namespace UI.Services
                 //获取某个书库中所有的书架
                 List<String> shelfPositionStringList = bookLocationService.getItemPositionStringListByLocationAndType(libraryNameInTable, "SHELF");
                 //从数据库中读到的字符串列表中解析出所有的书架地理位置信息，并加入到this.shelfMapShelfList中
-                this.shelfMapShelfList = new List<ShelfShape>();
+                List<ShelfShape>  shelfMapShelfList = new List<ShelfShape>();
                 foreach (String stringItem in shelfPositionStringList)
                 {//stringItem is a string ,such as "13000,1500,1500,1000",startpoint x,y,and width,height
                     char[] separator = { '，', ',' };
@@ -163,11 +164,16 @@ namespace UI.Services
                     Convert.ToDouble(pointDescInString[1]), 
                     Convert.ToDouble(pointDescInString[2]), 
                     Convert.ToDouble(pointDescInString[3]) 
-                };
+                    };
                     Point leftTop = new Point(pointDescInDouble[0], pointDescInDouble[1]);
                     Point rightBottom = new Point(pointDescInDouble[0] + pointDescInDouble[2], pointDescInDouble[1] + pointDescInDouble[3]);
                     //把书架的位置信息放入结构体的变量中shelfMapShelfList
-                    this.shelfMapShelfList.Add(new ShelfShape(leftTop, rightBottom));
+                    shelfMapShelfList.Add(new ShelfShape(leftTop, rightBottom));
+                }
+                //开始绘制俯视图中的书架
+                foreach (ShelfShape oneShelf in shelfMapShelfList)
+                {
+                    this.libraryShelfDrawer.drawShelf(oneShelf.topLeft, oneShelf.bottomRight);
                 }
             }
             catch (Exception)
@@ -182,6 +188,7 @@ namespace UI.Services
             {
                 List<String> shelfContourPostionStringList = bookLocationService.getItemPositionStringListByLocationAndType(libraryNameInTable, "CONTOUR");
                 String shelfContourPostionString = "";
+                ContourShape shelfMapContour ; //轮廓信息存放的地点
                 //如果获得的轮廓个数小于零，则说明数据出现了问题.其实一个书库的轮廓只能有一个
                 if (shelfContourPostionStringList.Count > 0)
                 {
@@ -206,7 +213,8 @@ namespace UI.Services
                                 Point onePoint = new Point(pointXList[i], pointYList[i]);
                                 contourPointList.Add(onePoint);
                             }
-                            this.shelfMapContour = new ContourShape(contourPointList);
+                            shelfMapContour = new ContourShape(contourPointList);
+                            this.libraryShelfDrawer.drawContour(shelfMapContour.pointList);
                         }
                     }
 
@@ -223,6 +231,7 @@ namespace UI.Services
             try
             {
                 List<String> doorPostionStringList = bookLocationService.getItemPositionStringListByLocationAndType(libraryNameInTable, "DOOR");
+                DoorShape shelfMapDoor;//入口信息存放的位置
                 if (doorPostionStringList.Count > 0)
                 {
                     String doorPostionString = doorPostionStringList[0];
@@ -235,11 +244,13 @@ namespace UI.Services
                         Convert.ToDouble(pointDescInString[1]), 
                         Convert.ToDouble(pointDescInString[2]), 
                         Convert.ToDouble(pointDescInString[3]) 
-                    };
+                        };
                         Point leftTop = new Point(pointDescInDouble[0], pointDescInDouble[1]);
                         Point rightBottom = new Point(pointDescInDouble[0] + pointDescInDouble[2], pointDescInDouble[1] + pointDescInDouble[3]);
                         //把书库大门的位置信息放入结构体的变量中shelfMapShelfList
-                        this.shelfMapDoor = new DoorShape(leftTop, rightBottom);
+                        shelfMapDoor = new DoorShape(leftTop, rightBottom);
+                        //开始绘制入口
+                        this.libraryShelfDrawer.drawDoor(shelfMapDoor.topLeft, shelfMapDoor.bottomRight);
                     }
                 }
             }
@@ -249,19 +260,31 @@ namespace UI.Services
                 //如果发生错误那发布事件
             }
 
-            //将对象创建成功，下一步开始正式加入Canvas
-            //绘制书库中的多个书架
-            foreach (ShelfShape oneShelf in this.shelfMapShelfList)
-            {
-                this.libraryShelfDrawer.drawShelf(oneShelf.topLeft, oneShelf.bottomRight);
-            }
-            
+                        
         }
         //该函数能够画出目标书架在书库中的位置
         public void drawSelectedShelfLibraryShelfMapByLibraryName(String shelfRfid)
         {
-            this.eventAggregator.GetEvent<DatabaseEvent>().Publish("DrawMapService:此功能未实现！");
-
+            //获取图书位置信息数据库的引用
+            IBookLocationService bookLocationService = this.container.Resolve<IBookLocationService>();
+            String shelfLocationString = bookLocationService.getItemPositionStringByShelfRfid(shelfRfid);
+            //把位置字符解析为具体的图形
+            char[] separator = { '，', ',' };
+            String[] pointDescInString = shelfLocationString.Split(separator);
+            if (pointDescInString.Length == 4)
+            {
+                double[] pointDescInDouble = new double[] { 
+                        Convert.ToDouble(pointDescInString[0]), 
+                        Convert.ToDouble(pointDescInString[1]), 
+                        Convert.ToDouble(pointDescInString[2]), 
+                        Convert.ToDouble(pointDescInString[3]) 
+                };
+                Point leftTop = new Point(pointDescInDouble[0], pointDescInDouble[1]);
+                Point rightBottom = new Point(pointDescInDouble[0] + pointDescInDouble[2], pointDescInDouble[1] + pointDescInDouble[3]);
+                //把书库大门的位置信息放入结构体的变量中shelfMapShelfList
+                //在地图上画出选中的书库
+                this.libraryShelfDrawer.drawSelectedShelf(leftTop, rightBottom);
+            }
         }
         //该函数能够画出取书的路线，也就是从入口到目的书架的折线图，参数为Map表中的rfidOfShelf字段
         public void drawRouteOnLibraryShelfMap(String shelfRfid)

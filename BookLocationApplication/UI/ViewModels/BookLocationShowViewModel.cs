@@ -194,6 +194,7 @@ namespace UI.ViewModels
 
                     this.libraryMapService.reinitLibraryShelfMap();
                     this.libraryMapService.drawLibraryShelfMapBackgroundByLibraryName(bookLocationString);
+                    this.libraryMapService.drawSelectedShelfLibraryShelfMapByLibraryName(shelfRfid);
                     this.LibraryMapService = this.LibraryMapService;//通知更新UI
 
                 });

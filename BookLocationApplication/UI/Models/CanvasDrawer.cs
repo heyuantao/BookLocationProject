@@ -82,11 +82,10 @@ namespace UI.Models
             //this.currentCanvas.Background = new SolidColorBrush(Colors.Black);
             //this.currentCanvas.Background = System.Windows.Media.Brushes.Red;
         }
+        /***
         public void drawBackGround()
-        {
-            //画出背景的，例如书架，入口，以及轮廓
-
-        }
+        {//画出背景的，例如书架，入口，以及轮廓}
+        ***/
         public void drawRoute(List<Point> pointList)
         {
             //画出取书的路线,现在还没有画上开始和结束的标记
@@ -103,7 +102,7 @@ namespace UI.Models
         public void drawDoor(Point leftTop, Point rightBottom)
         {
             Rectangle rect = this.drawOneRectangle(leftTop, rightBottom);
-            rect.Fill = System.Windows.Media.Brushes.Red;
+            rect.Fill = System.Windows.Media.Brushes.Blue;
             this.currentCanvas.Children.Add(rect);
         }
         public void drawSelectedShelf(Point leftTop, Point rightBottom) //画被选中的书架，俯视图或者正视图
