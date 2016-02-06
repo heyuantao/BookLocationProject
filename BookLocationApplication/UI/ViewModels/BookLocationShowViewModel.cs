@@ -43,7 +43,7 @@ namespace UI.ViewModels
             this.libraryMapService.drawOneShapeMapBackground();
             //this.LibraryMapService = this.LibraryMapService; //通知更新UI
 
-            this.libraryMapService.initLibraryShelfMap(600,400,25000,25000);
+            this.libraryMapService.initLibraryShelfMap(600,400,25000,22000);
             this.LibraryMapService = this.LibraryMapService;//通知更新UI
 
         }

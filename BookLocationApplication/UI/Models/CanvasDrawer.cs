@@ -46,9 +46,9 @@ namespace UI.Models
     public class CanvasDrawer
     {
         Canvas currentCanvas;
-        float canvasWidth, canvasHeight;
-        float mapWidth, mapHeight;
-        float widthRatio, heightRatio;
+        public float canvasWidth, canvasHeight;
+        public float mapWidth, mapHeight;
+        public float widthRatio, heightRatio;
         public CanvasDrawer()
         {
             this.currentCanvas = new Canvas();
@@ -67,6 +67,14 @@ namespace UI.Models
 
             this.currentCanvas.Width = canvasWidth;
             this.currentCanvas.Height = canvasHeight;
+
+            //在画布周围画上黑色边框
+            List<Point> pointList = new List<Point>();
+            pointList.Add(new Point(0, 0));
+            pointList.Add(new Point(this.mapWidth, 0));
+            pointList.Add(new Point(this.mapWidth, this.mapHeight));
+            pointList.Add(new Point(0, this.mapHeight));
+            this.drawContour(pointList);
             //this.currentCanvas.Background = new SolidColorBrush(Colors.Black);
             //this.currentCanvas.Background = System.Windows.Media.Brushes.Red;
         }
@@ -79,6 +87,14 @@ namespace UI.Models
             this.currentCanvas = new Canvas();
             this.currentCanvas.Width = canvasWidth;
             this.currentCanvas.Height = canvasHeight;
+
+            //在画布周围画上黑色边框
+            List<Point> pointList = new List<Point>();
+            pointList.Add(new Point(0,0));
+            pointList.Add(new Point(this.mapWidth, 0));
+            pointList.Add(new Point(this.mapWidth, this.mapHeight));
+            pointList.Add(new Point(0, this.mapHeight));             
+            this.drawContour(pointList);
             //this.currentCanvas.Background = new SolidColorBrush(Colors.Black);
             //this.currentCanvas.Background = System.Windows.Media.Brushes.Red;
         }

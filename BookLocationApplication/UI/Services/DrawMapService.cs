@@ -111,6 +111,8 @@ namespace UI.Services
             }
             //开始画轮廓
             this.oneShelfDrawer.drawContour(this.oneShelfBoxContour.pointList);
+            //在图片四周绘制边框
+            //this.oneShelfDrawer.drawShelf(new Point(0, 0), new Point(this.oneShelfDrawer.canvasWidth,this.oneShelfDrawer.canvasHeight));
         }
         //该函数能够在一个已有的书架正视图上画出被选中的书架层，这个层小于书架的总层数
         public void drawSelectedLayerOneShapeMap(String locationString)
