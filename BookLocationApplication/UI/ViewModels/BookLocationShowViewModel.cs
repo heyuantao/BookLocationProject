@@ -41,10 +41,10 @@ namespace UI.ViewModels
             this.libraryMapService = this.container.Resolve<DrawMapService>();
             this.libraryMapService.initOneShapMap(150, 180, 150, 180);
             this.libraryMapService.drawOneShapeMapBackground();
-            this.OneShelfCanvas = this.OneShelfCanvas; //通知更新UI
+            //this.LibraryMapService = this.LibraryMapService; //通知更新UI
 
             this.libraryMapService.initLibraryShelfMap(600,400,25000,25000);
-            this.LibraryShelfCanvas = this.LibraryShelfCanvas;//通知更新UI
+            this.LibraryMapService = this.LibraryMapService;//通知更新UI
 
         }
         public bool IsNavigationTarget(NavigationContext navigationContext)
@@ -118,29 +118,16 @@ namespace UI.ViewModels
                 return this.bookLocationShowClearCommand;
             }
         }
-        public Canvas OneShelfCanvas
-        {
-            get { 
-                return this.libraryMapService.OneShelfMap; 
-            }
-            set
-            {    //仅仅通知UI界面发生变化
-                this.OnPropertyChanged("OneShelfCanvas");
-            }
-        }
-        public Canvas LibraryShelfCanvas
+ 
+        public DrawMapService LibraryMapService //这个用于UI上的绑定，用于显示两个地图
         {
             get
             {
-                return this.libraryMapService.LibraryShelfMap;
-                //Canvas can = new Canvas();
-                //can.Height = 400; can.Width = 600;
-                //can.Background = System.Windows.Media.Brushes.Yellow;
-                //return can;
+                return this.libraryMapService;
             }
             set
             {    //仅仅通知UI界面发生变化
-                this.OnPropertyChanged("LibraryShelfCanvas");
+                this.OnPropertyChanged("LibraryMapService");
             }
         }
         private Boolean onBookLocationShowClearCommandCanExecute()
@@ -203,11 +190,11 @@ namespace UI.ViewModels
                     this.libraryMapService.reinitOneShapMap();//刷新UI
                     this.libraryMapService.drawOneShapeMapBackground();
                     this.libraryMapService.drawSelectedLayerOneShapeMap(bookLocationString);
-                    this.OneShelfCanvas = this.OneShelfCanvas; //通知更新UI
+                    //this.LibraryMapService = this.LibraryMapService; //通知更新UI，没必要重复了，等下面操作一起刷新
 
                     this.libraryMapService.reinitLibraryShelfMap();
                     this.libraryMapService.drawLibraryShelfMapBackgroundByLibraryName(bookLocationString);
-                    this.LibraryShelfCanvas = this.LibraryShelfCanvas;//通知更新UI
+                    this.LibraryMapService = this.LibraryMapService;//通知更新UI
 
                 });
             }
@@ -217,10 +204,10 @@ namespace UI.ViewModels
             this.BookName = ""; this.BookAccessCode = ""; this.BookLocation = "";
             this.libraryMapService.reinitOneShapMap();//刷新UI
             this.libraryMapService.drawOneShapeMapBackground();
-            this.OneShelfCanvas = this.OneShelfCanvas; //通知更新UI
+            //this.LibraryMapService = this.LibraryMapService; //通知更新UI，没必要重复了，等下面操作一起刷新
 
             this.libraryMapService.reinitLibraryShelfMap();
-            this.LibraryShelfCanvas = this.LibraryShelfCanvas;//通知更新UI
+            this.LibraryMapService = this.LibraryMapService;//通知更新UI
         }
         //########################################
         //########################################
