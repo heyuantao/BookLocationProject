@@ -11,10 +11,12 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Button Height="50" Width="120" Grid.Row="0" Margin="0,10,0,0" Command="{Binding BookLocationShowViewICommand}">图书位置查询</Button>
         <Button Height="50" Width="120" Grid.Row="1" Margin="0,10,0,0" Command="{Binding RecodeBookLocationViewICommand}">图书位置录入</Button>
-        <Button Height="50" Width="120" Grid.Row="2" Margin="0,10,0,0" Command="{Binding SystemSettingViewICommand}">系统设置</Button>
-        
+        <Button Height="50" Width="120" Grid.Row="2" Margin="0,10,0,0" Command="{Binding WrongBookLocationViewICommand}">错架盘查</Button>
+        <Button Height="50" Width="120" Grid.Row="3" Margin="0,10,0,0" Command="{Binding SystemSettingViewICommand}">系统设置</Button>
+
     </Grid>
 </UserControl>

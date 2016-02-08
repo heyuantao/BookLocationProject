@@ -99,6 +99,9 @@
     <Compile Include="Views\SystemSettingView.xaml.cs">
       <DependentUpon>SystemSettingView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\WrongBookLocationView.xaml.cs">
+      <DependentUpon>WrongBookLocationView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -128,6 +131,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SystemSettingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WrongBookLocationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

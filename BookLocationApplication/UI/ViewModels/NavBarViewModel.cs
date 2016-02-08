@@ -27,6 +27,10 @@ namespace UI.ViewModels
         {
             get { return new DelegateCommand(switchRecodeBookLocationView); }
         }
+        public ICommand WrongBookLocationViewICommand
+        {
+            get { return new DelegateCommand(switchWrongBookLocationView); }
+        }
 
         public ICommand SystemSettingViewICommand
         {
@@ -36,6 +40,11 @@ namespace UI.ViewModels
         {
             regionManager.RequestNavigate("MainRegion", new Uri("RecodeBookLocationView", UriKind.Relative));
         }
+        private void switchWrongBookLocationView()
+        {
+            regionManager.RequestNavigate("MainRegion", new Uri("WrongBookLocationView", UriKind.Relative));
+        }
+
         private void switchSystemSettingView()
         {
             regionManager.RequestNavigate("MainRegion", new Uri("SystemSettingView", UriKind.Relative));

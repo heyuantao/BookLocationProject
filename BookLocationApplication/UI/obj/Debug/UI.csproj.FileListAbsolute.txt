@@ -127,3 +127,5 @@ C:\Users\he_yu\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\
 C:\Users\he_yu\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\UI.g.resources
 C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\UI_MarkupCompile.lref
 C:\Users\he_yu\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\UI_MarkupCompile.lref
+C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\Views\WrongBookLocationView.baml
+C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\Views\WrongBookLocationView.g.cs

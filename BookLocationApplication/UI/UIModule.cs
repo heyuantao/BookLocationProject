@@ -40,6 +40,7 @@ namespace UI
 
             container.RegisterType<SystemSettingView, SystemSettingView>();
             //SystemSettingViewModel必须先初始化，这样系统配置信息才能载入容器中的对象
+            container.RegisterType<WrongBookLocationView, WrongBookLocationView>();
             container.RegisterType<NavBarView, NavBarView>();
             container.RegisterType<BookLocationShowView, BookLocationShowView>();
             container.RegisterType<RecodeBookLocationView, RecodeBookLocationView>();
@@ -53,6 +54,8 @@ namespace UI
             regionManager.RegisterViewWithRegion("MainRegion", typeof(SystemSettingView));
             regionManager.RegisterViewWithRegion("MainRegion", typeof(RecodeBookLocationView));
             regionManager.RegisterViewWithRegion("MainRegion", typeof(BookLocationShowView));
+            regionManager.RegisterViewWithRegion("MainRegion", typeof(WrongBookLocationView));
+
         }
     }
 }
