@@ -27,5 +27,15 @@ namespace UI.Views
             InitializeComponent();
             this.container = container;
         }
+        //用这个方法设定高度违背了设计原则，但实在找不到更合适的高度设置方式
+        protected override void OnRender(System.Windows.Media.DrawingContext drawingContext)
+        {
+            base.OnRender(drawingContext);
+            double height = Application.Current.MainWindow.ActualHeight;
+            //this.tableDataGrid.Height = height - 200;
+            double margin = 300; //除了两个grid之外预留的位置
+            this.allBookOnShelfDataGrid.Height = (height - margin) / 2;
+            this.notOnShlefBookDataGrid.Height = (height - margin) / 2;
+        }
     }
 }
