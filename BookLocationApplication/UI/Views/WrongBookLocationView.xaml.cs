@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UI.ViewModels;
 
 namespace UI.Views
 {
@@ -22,10 +23,11 @@ namespace UI.Views
     public partial class WrongBookLocationView : UserControl
     {
         IUnityContainer container;
-        public WrongBookLocationView(IUnityContainer container)
+        public WrongBookLocationView(IUnityContainer container, WrongBookLocationViewModel viewModel)
         {
             InitializeComponent();
             this.container = container;
+            this.DataContext = viewModel;
         }
         //用这个方法设定高度违背了设计原则，但实在找不到更合适的高度设置方式
         protected override void OnRender(System.Windows.Media.DrawingContext drawingContext)

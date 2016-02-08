@@ -87,6 +87,7 @@
     <Compile Include="ViewModels\NavBarViewModel.cs" />
     <Compile Include="ViewModels\RecodeBookLocationViewModel.cs" />
     <Compile Include="ViewModels\SystemSettingViewModel.cs" />
+    <Compile Include="ViewModels\WrongBookLocationViewModel.cs" />
     <Compile Include="Views\BookLocationShowView.xaml.cs">
       <DependentUpon>BookLocationShowView.xaml</DependentUpon>
     </Compile>
