@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace UI.ViewModels
@@ -45,30 +46,56 @@ namespace UI.ViewModels
             this.notOnThisShelfBookList = new ObservableCollection<BookItemOfWrongLocation>();
             this.wrongBookLocationCleanAllCommand = new DelegateCommand(wrongBookLocationCleanAllCommandExecute, wrongBookLocationCleanAllCommandCanExecute);
         }
-
+        //program logic
         private bool wrongBookLocationCleanAllCommandCanExecute()
         {
             //判断清除按钮是否可以被激活
-            if (! String.IsNullOrEmpty(this.shelfLocationString))
+            if (! String.IsNullOrEmpty(this.ShelfLocationString))
             {
                 return true;
             }
-            if (this.onThisShelfAllBookList.Count() > 0)
+            if (this.OnThisShelfAllBookList.Count() > 0)
             {
                 return true;
             }
-            if (this.notOnThisShelfBookList.Count() > 0)
+            if (this.NotOnThisShelfBookList.Count() > 0)
             {
                 return true;
             }
             return false;
         }
-
         private void wrongBookLocationCleanAllCommandExecute()
-        {
-            throw new NotImplementedException();
+        {//清除UI上的内容，并刷新UI
+            this.ShelfLocationString = "";
+            this.OnThisShelfAllBookList.Clear();
+            this.OnThisShelfAllBookList = this.OnThisShelfAllBookList;
+            this.NotOnThisShelfBookList.Clear();
+            this.NotOnThisShelfBookList = this.NotOnThisShelfBookList;
         }
-        //Bind variable and Icommand on UI
+        private void handleNewItemFromRFID(RFIDContent newItem)
+        {
+            if (newItem.bookRfidList.Count() != 0)
+            {
+                
+            }
+            if (newItem.shelfRfidList.Count() != 0)
+            {
+                //在书架位置的文本框内显示数据的位置
+                IBookLocationService bookLocationService = this.container.Resolve<IBookLocationService>();
+                this.shelfRfid = newItem.shelfRfidList[0];
+                this.ShelfLocationString = bookLocationService.getShelfNameByShelfRfid(newItem.shelfRfidList[0]);                
+                //查询数据库，在本书架应有图书中显示所有的图书
+
+            }
+        }
+        private void handleErrorFromRFID(string errorMessage)
+        {
+            MessageBox.Show(errorMessage);
+            //当串口设置出错时提示信息并转移到串口设置界面
+            this.regionManager.RequestNavigate("MainRegion", new Uri("SystemSettingView", UriKind.Relative));
+
+        }
+        //Bind variable and ICommand on UI
         public String ShelfLocationString
         {
             get { return this.shelfLocationString; }
@@ -115,18 +142,16 @@ namespace UI.ViewModels
             //throw new NotImplementedException();
             return true;
         }
-
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
             //throw new NotImplementedException();
             //取消订阅该事件,在此之前先关闭rfid后台扫描线程
             IRFIDService rfidService = container.Resolve<IRFIDService>();
             rfidService.stop();
-            //eventAggregator.GetEvent<RFIDNewItemEvent>().Unsubscribe(handleNewItemFromRFID);
-            //eventAggregator.GetEvent<RFIDHardwareEvent>().Unsubscribe(handleErrorFromRFID);
+            eventAggregator.GetEvent<RFIDNewItemEvent>().Unsubscribe(handleNewItemFromRFID);
+            eventAggregator.GetEvent<RFIDHardwareEvent>().Unsubscribe(handleErrorFromRFID);
 
         }
-
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             //throw new NotImplementedException();
@@ -136,13 +161,14 @@ namespace UI.ViewModels
             IRFIDService rfidService = container.Resolve<IRFIDService>();
 
             //开始读取RFID的信息，并查询数据库
-            //eventAggregator.GetEvent<RFIDNewItemEvent>().Subscribe(handleNewItemFromRFID);
+            eventAggregator.GetEvent<RFIDNewItemEvent>().Subscribe(handleNewItemFromRFID);
             //开始订阅RFID服务发出的事件，这个事件是扫描到的条码的信息，在该view非激活时务必取消此事件的订阅
-            //eventAggregator.GetEvent<RFIDHardwareEvent>().Subscribe(handleErrorFromRFID);
+            eventAggregator.GetEvent<RFIDHardwareEvent>().Subscribe(handleErrorFromRFID);
 
             rfidService.start();//开启rfid的后台扫描线程
 
         }
+
 
         private void OnPropertyChanged(String propertyName)
         {
