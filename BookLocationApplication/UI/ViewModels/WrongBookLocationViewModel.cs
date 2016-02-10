@@ -78,6 +78,33 @@ namespace UI.ViewModels
         }
         private void handleNewItemFromRFID(RFIDContent newItem)
         {
+            if (newItem.bookRfidList.Count() != 0)
+            {//只有当当前在某个书架上的图书不为空的时候才继续处理
+                if (this.OnThisShelfAllBookList.Count() != 0)
+                {   //在NotOnThisShelfBookList所绑定的datagrid内的元素做循环，查找其内部的图书的rfid与新扫描到的
+                    //图书的rfid是否有重复，删除掉重复的部分，并刷新UI
+                    //如果出现不在该架位的图书，则提示（未实现）
+                    foreach (BookItemOfWrongLocation item in this.NotOnThisShelfBookList)
+                    {
+                        foreach (String bookRfidInReader in newItem.bookRfidList)
+                        {
+                            if (item.BookRFIDCode == bookRfidInReader)
+                            {
+                                this.dispatcherService.Dispatch(() =>
+                                {
+                                    this.NotOnThisShelfBookList.Remove(item);
+                                });
+                                break;
+                            }
+                        }
+                    }
+                    //刷新UI
+                    this.dispatcherService.Dispatch(() =>
+                    {
+                        this.NotOnThisShelfBookList = this.NotOnThisShelfBookList;
+                    });  
+                }
+            }
             if (newItem.shelfRfidList.Count() != 0)
             {
                 //清除原有信息
