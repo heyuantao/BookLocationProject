@@ -111,47 +111,21 @@ namespace UI.ViewModels
                     {
                         foreach (BookItemOfWrongLocation item in this.NotOnThisShelfBookList)
                         {
-                            foreach (String bookRfidInReader in newItem.bookRfidList)
-                            {
-                                if (item.BookRFIDCode == bookRfidInReader)
+                            if(newItem.bookRfidList.Contains(item.BookRFIDCode)){
+                                this.dispatcherService.Dispatch(() =>
                                 {
-                                    this.dispatcherService.Dispatch(() =>
+                                    this.NotOnThisShelfBookList.Remove(item);
+                                    int beginCount = 1;
+                                    foreach (BookItemOfWrongLocation renewItem in this.NotOnThisShelfBookList)
                                     {
-                                        this.NotOnThisShelfBookList.Remove(item);
-                                    });
-                                    break;
-                                }
+                                        //renewItem.ID = Convert.ToString(beginCount);
+                                        renewItem.ID = "123";
+                                        beginCount = beginCount + 1;
+                                    }
+                                });
                             }
                         }
                     }
-
-
-                    //更新ID，让ID连续，因为删除过某些元素后ID可能不再连续
-                    lock (this)
-                    {
-                        int newID = 1;
-                        List<BookItemOfWrongLocation> newObserableCollection = new List<BookItemOfWrongLocation>();
-                        foreach (BookItemOfWrongLocation item in this.NotOnThisShelfBookList)
-                        {
-                            BookItemOfWrongLocation newItemInGrid = (BookItemOfWrongLocation)item.Clone();
-                            newItemInGrid.ID = Convert.ToString(newID);
-                            newObserableCollection.Add(newItemInGrid);
-                            newID = newID + 1;
-                        }
-                        this.dispatcherService.Dispatch(() =>
-                        {
-                            this.NotOnThisShelfBookList.Clear();
-                        });
-                        
-                        foreach (BookItemOfWrongLocation item in newObserableCollection)
-                        {
-                            this.dispatcherService.Dispatch(() =>
-                            {
-                                this.NotOnThisShelfBookList.Add(item);
-                            });                            
-                        }
-                    }
-                    
                     //刷新UI
                     this.dispatcherService.Dispatch(() =>
                     {
