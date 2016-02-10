@@ -15,12 +15,16 @@ using System.Windows.Input;
 
 namespace UI.ViewModels
 {
-    public class BookItemOfWrongLocation //这个数据结构用于组成一个ObservableCollection<BookItem>()
+    public class BookItemOfWrongLocation:ICloneable //这个数据结构用于组成一个ObservableCollection<BookItem>()
     {//用于在ui界面中显示一个列表型的图书信息
         public String ID { get; set; }  //按递增顺序排列
         public String BookName { get; set; }
         public String BookAccessCode { get; set; }
         public String BookRFIDCode { get; set; }
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
     public class WrongBookLocationViewModel : INavigationAware, INotifyPropertyChanged  
     {
@@ -74,17 +78,48 @@ namespace UI.ViewModels
         }
         private void handleNewItemFromRFID(RFIDContent newItem)
         {
-            if (newItem.bookRfidList.Count() != 0)
-            {
-                
-            }
             if (newItem.shelfRfidList.Count() != 0)
             {
+                //清除原有信息
+                this.dispatcherService.Dispatch(() =>
+                {
+                    this.OnThisShelfAllBookList.Clear();
+                    this.NotOnThisShelfBookList.Clear();
+                });          
                 //在书架位置的文本框内显示数据的位置
+                IBookInformationService bookInformationService = container.Resolve<IBookInformationService>();
                 IBookLocationService bookLocationService = this.container.Resolve<IBookLocationService>();
                 this.shelfRfid = newItem.shelfRfidList[0];
                 this.ShelfLocationString = bookLocationService.getShelfNameByShelfRfid(newItem.shelfRfidList[0]);                
                 //查询数据库，在本书架应有图书中显示所有的图书
+                List<String> bookRfidList = bookLocationService.getBookRfidListOnShelfRfid(this.shelfRfid);
+                List<String> bookNameList=bookInformationService.getBookNameListByRfidList(bookRfidList);
+                List<String> bookAccessCodeList=bookInformationService.getBookAccessCodeListByRfidList(bookRfidList);
+                if ((bookRfidList.Count() == bookNameList.Count()) && (bookNameList.Count() == bookAccessCodeList.Count()))
+                {//查询到的图书名称和图书索取码必须与图书rfid字符串长度相等
+                    for (int i = 0; i < bookRfidList.Count(); i++)
+                    {
+
+                        BookItemOfWrongLocation newBookItem = new BookItemOfWrongLocation() 
+                        {
+                            ID=Convert.ToString(i+1),
+                            BookName=bookNameList[i],
+                            BookAccessCode=bookAccessCodeList[i],
+                            BookRFIDCode=bookRfidList[i]
+                        };
+                        BookItemOfWrongLocation newBookItemInOtherGrid = (BookItemOfWrongLocation)newBookItem.Clone();
+                        this.dispatcherService.Dispatch(() =>
+                        {
+                            this.OnThisShelfAllBookList.Add(newBookItem);
+                            this.notOnThisShelfBookList.Add(newBookItemInOtherGrid);
+                        });
+                    }
+                    this.dispatcherService.Dispatch(() =>
+                    {
+                        this.OnThisShelfAllBookList = this.OnThisShelfAllBookList;
+                        this.NotOnThisShelfBookList = this.NotOnThisShelfBookList;
+                    });
+                }
 
             }
         }

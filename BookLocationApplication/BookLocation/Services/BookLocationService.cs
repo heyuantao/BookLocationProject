@@ -125,7 +125,7 @@ namespace BookLocation
             dbEntities.SaveChanges();
             return true;
         }
-        List<String> getBookRfidListOnShelfRfid(String shelfRfidCode)
+        public List<String> getBookRfidListOnShelfRfid(String shelfRfidCode)
         {//从书架RFID查询登记在该书架上的所有图书,返回值为一个列表，列表的内容是图书的rfid列表
             if (String.IsNullOrEmpty(shelfRfidCode)) 
             { 
