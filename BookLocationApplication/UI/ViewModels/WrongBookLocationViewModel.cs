@@ -80,10 +80,33 @@ namespace UI.ViewModels
         {
             if (newItem.bookRfidList.Count() != 0)
             {//只有当当前在某个书架上的图书不为空的时候才继续处理
+                IBookInformationService bookInformationService = container.Resolve<IBookInformationService>();
+                IBookLocationService bookLocationService = this.container.Resolve<IBookLocationService>();
                 if (this.OnThisShelfAllBookList.Count() != 0)
-                {   //在NotOnThisShelfBookList所绑定的datagrid内的元素做循环，查找其内部的图书的rfid与新扫描到的
-                    //图书的rfid是否有重复，删除掉重复的部分，并刷新UI
-                    //如果出现不在该架位的图书，则提示（未实现）
+                {
+                    //如果出现不在该架位的图书，则提示该书不属于当前书架
+                    foreach (String bookrfid in newItem.bookRfidList)
+                    {
+                        String shelfRfid=bookLocationService.getShelfRfidbyBookRfid(bookrfid);
+                        if (shelfRfid != this.shelfRfid)
+                        {
+                            try
+                            {
+                                List<String> bookNameList = bookInformationService.getBookNameListByRfidList(new List<String>() { bookrfid });
+                                String bookName = bookNameList[0];
+                                String message = "图书名称:" + bookName + "图书扫描码:" + bookrfid + "不属于该书架";
+                                MessageBox.Show(message);
+                            }
+                            catch (Exception)
+                            {
+                                String message = "查询数据库出错，图书扫描码为:" + bookrfid+",请检查是否登记该图书 ！";
+                                MessageBox.Show(message);
+                            }                            
+                        }
+                    }
+                    //执行到此位置时，这本书肯定属于当前书架
+                    //在NotOnThisShelfBookList所绑定的datagrid内的元素做循环，查找其内部的图书的rfid与新扫描到的
+                    //图书的rfid是否有重复，删除掉重复的部分，并刷新UI                    
                     foreach (BookItemOfWrongLocation item in this.NotOnThisShelfBookList)
                     {
                         foreach (String bookRfidInReader in newItem.bookRfidList)
