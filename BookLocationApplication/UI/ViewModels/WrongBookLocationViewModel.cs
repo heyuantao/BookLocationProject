@@ -82,7 +82,7 @@ namespace UI.ViewModels
             {//只有当当前在某个书架上的图书不为空的时候才继续处理
                 IBookInformationService bookInformationService = container.Resolve<IBookInformationService>();
                 IBookLocationService bookLocationService = this.container.Resolve<IBookLocationService>();
-                if (this.OnThisShelfAllBookList.Count() != 0)
+                if (this.NotOnThisShelfBookList.Count() != 0)
                 {
                     //如果出现不在该架位的图书，则提示该书不属于当前书架
                     foreach (String bookrfid in newItem.bookRfidList)
@@ -106,21 +106,52 @@ namespace UI.ViewModels
                     }
                     //执行到此位置时，这本书肯定属于当前书架
                     //在NotOnThisShelfBookList所绑定的datagrid内的元素做循环，查找其内部的图书的rfid与新扫描到的
-                    //图书的rfid是否有重复，删除掉重复的部分，并刷新UI                    
-                    foreach (BookItemOfWrongLocation item in this.NotOnThisShelfBookList)
+                    //图书的rfid是否有重复，删除掉重复的部分，并刷新UI，但ID编号可能不连续，重新更新ID编号                 
+                    lock (this)
                     {
-                        foreach (String bookRfidInReader in newItem.bookRfidList)
+                        foreach (BookItemOfWrongLocation item in this.NotOnThisShelfBookList)
                         {
-                            if (item.BookRFIDCode == bookRfidInReader)
+                            foreach (String bookRfidInReader in newItem.bookRfidList)
                             {
-                                this.dispatcherService.Dispatch(() =>
+                                if (item.BookRFIDCode == bookRfidInReader)
                                 {
-                                    this.NotOnThisShelfBookList.Remove(item);
-                                });
-                                break;
+                                    this.dispatcherService.Dispatch(() =>
+                                    {
+                                        this.NotOnThisShelfBookList.Remove(item);
+                                    });
+                                    break;
+                                }
                             }
                         }
                     }
+
+
+                    //更新ID，让ID连续，因为删除过某些元素后ID可能不再连续
+                    lock (this)
+                    {
+                        int newID = 1;
+                        List<BookItemOfWrongLocation> newObserableCollection = new List<BookItemOfWrongLocation>();
+                        foreach (BookItemOfWrongLocation item in this.NotOnThisShelfBookList)
+                        {
+                            BookItemOfWrongLocation newItemInGrid = (BookItemOfWrongLocation)item.Clone();
+                            newItemInGrid.ID = Convert.ToString(newID);
+                            newObserableCollection.Add(newItemInGrid);
+                            newID = newID + 1;
+                        }
+                        this.dispatcherService.Dispatch(() =>
+                        {
+                            this.NotOnThisShelfBookList.Clear();
+                        });
+                        
+                        foreach (BookItemOfWrongLocation item in newObserableCollection)
+                        {
+                            this.dispatcherService.Dispatch(() =>
+                            {
+                                this.NotOnThisShelfBookList.Add(item);
+                            });                            
+                        }
+                    }
+                    
                     //刷新UI
                     this.dispatcherService.Dispatch(() =>
                     {
@@ -200,7 +231,8 @@ namespace UI.ViewModels
         {
             get { return this.onThisShelfAllBookList; }
             set { 
-                this.onThisShelfAllBookList = value; this.OnPropertyChanged("OnThisShelfAllBookList");
+                this.onThisShelfAllBookList = value; 
+                this.OnPropertyChanged("OnThisShelfAllBookList");
                 this.dispatcherService.Dispatch(() =>
                 {
                     ((DelegateCommand)this.WrongBookLocationCleanAllCommand).RaiseCanExecuteChanged();
@@ -211,7 +243,8 @@ namespace UI.ViewModels
         {
             get { return this.notOnThisShelfBookList; }
             set { 
-                this.notOnThisShelfBookList = value; this.OnPropertyChanged("NotOnThisShelfBookList");
+                this.notOnThisShelfBookList = value;
+                this.OnPropertyChanged("NotOnThisShelfBookList");
                 this.dispatcherService.Dispatch(() =>
                 {
                     ((DelegateCommand)this.WrongBookLocationCleanAllCommand).RaiseCanExecuteChanged();
