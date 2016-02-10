@@ -104,36 +104,45 @@ namespace UI.ViewModels
                             }                            
                         }
                     }
-                    //执行到此位置时，这本书肯定属于当前书架
-                    //在NotOnThisShelfBookList所绑定的datagrid内的元素做循环，查找其内部的图书的rfid与新扫描到的
                     //图书的rfid是否有重复，删除掉重复的部分，并刷新UI，但ID编号可能不连续，重新更新ID编号                 
-                    lock (this)
-                    {
-                        foreach (BookItemOfWrongLocation item in this.NotOnThisShelfBookList)
-                        {
-                            if(newItem.bookRfidList.Contains(item.BookRFIDCode)){
-                                this.dispatcherService.Dispatch(() =>
-                                {
-                                    this.NotOnThisShelfBookList.Remove(item);
-                                    int beginCount = 1;
-                                    foreach (BookItemOfWrongLocation renewItem in this.NotOnThisShelfBookList)
-                                    {
-                                        //renewItem.ID = Convert.ToString(beginCount);
-                                        renewItem.ID = "123";
-                                        beginCount = beginCount + 1;
-                                    }
-                                });
-                            }
-                        }
-                    }
-                    //刷新UI
                     this.dispatcherService.Dispatch(() =>
                     {
+                        List<BookItemOfWrongLocation> tempList = new List<BookItemOfWrongLocation>();
+                        //把原始的datagrid中的内容存入临时的列表中，并清空该列表
+                        foreach (BookItemOfWrongLocation item in this.NotOnThisShelfBookList)
+                        {
+                            tempList.Add(item);
+                        }
+                        this.NotOnThisShelfBookList.Clear();
+                        //查看临时列表中与新读入标签重复的地方
+                        int index=0;
+                        while(true){
+                            if (index >= tempList.Count())
+                            {
+                                break;
+                            }
+                            BookItemOfWrongLocation item = tempList[index];
+                            if (newItem.bookRfidList.Contains(item.BookRFIDCode))
+                            {
+                                tempList.Remove(item);
+                            }
+                            index = index + 1;
+                        }
+                        //把临时标签的内容复制入datagrid,并重新计算ID,因为ID可能经过删除有不连续的现象
+                        int count = 1;
+                        foreach (BookItemOfWrongLocation item in tempList)
+                        {
+                            item.ID = Convert.ToString(count);
+                            this.NotOnThisShelfBookList.Add(item);
+                            count = count + 1;
+                        }
+                        //刷新UI
                         this.NotOnThisShelfBookList = this.NotOnThisShelfBookList;
-                    });  
+
+                    });
                 }
             }
-            if (newItem.shelfRfidList.Count() != 0)
+            if (newItem.shelfRfidList.Count() != 0) //发现有新的书架信息
             {
                 //清除原有信息
                 this.dispatcherService.Dispatch(() =>
