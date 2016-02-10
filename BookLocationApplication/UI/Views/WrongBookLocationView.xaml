@@ -13,15 +13,16 @@
         <DockPanel Grid.Row="0" Margin="0">            
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
                 <TextBlock FontSize="18">当前书架</TextBlock>
-                <TextBox Width="400" Margin="20,0,0,0" Height="25"  FontSize="18"  IsReadOnly="True"></TextBox>
+                <TextBox Text="{Binding ShelfLocationString}" Width="400" Margin="20,0,0,0" Height="25"  FontSize="18"  IsReadOnly="True"></TextBox>
             </StackPanel>
             <StackPanel DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="0,0,20,0">
-                <Button Width="100"  Height="25"  FontSize="18">清除</Button>
+                <Button Command="{Binding WrongBookLocationCleanAllCommand}"  Width="100"  Height="25"  FontSize="18">清除</Button>
             </StackPanel>
         </DockPanel>
         <DockPanel Grid.Row="1" Margin="0,10,10,0">
             <GroupBox Header="应有图书" DockPanel.Dock="Top" FontSize="16" VerticalAlignment="Top" Margin="0" BorderThickness="0">
-                <DataGrid x:Name="allBookOnShelfDataGrid" Height="200"  Margin="0,5,0,-1">
+                <DataGrid x:Name="allBookOnShelfDataGrid" ItemsSource="{Binding OnThisShelfAllBookList}"
+                          Height="200"  Margin="0,5,0,-1">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding ID}" ClipboardContentBinding="{x:Null}" Header="序列号" Width="*" FontSize="16"/>
                         <DataGridTextColumn Binding="{Binding BookName}" ClipboardContentBinding="{x:Null}" Header="图书名称" Width="3*" FontSize="16"/>
@@ -31,7 +32,8 @@
                 </DataGrid>
             </GroupBox>
             <GroupBox Header="未在架图书" DockPanel.Dock="Bottom" FontSize="16" VerticalAlignment="Top" Margin="0,10,0,0" BorderThickness="0">
-                <DataGrid x:Name="notOnShlefBookDataGrid" Height="200" Margin="0,5">
+                <DataGrid x:Name="notOnShlefBookDataGrid" ItemsSource="{Binding NotOnThisShelfBookList}"
+                          Height="200" Margin="0,5">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding ID}" ClipboardContentBinding="{x:Null}" Header="序列号" Width="*" FontSize="16"/>
                         <DataGridTextColumn Binding="{Binding BookName}" ClipboardContentBinding="{x:Null}" Header="图书名称" Width="3*" FontSize="16"/>
