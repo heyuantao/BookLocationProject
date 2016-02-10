@@ -82,7 +82,7 @@ namespace UI.ViewModels
             {//只有当当前在某个书架上的图书不为空的时候才继续处理
                 IBookInformationService bookInformationService = container.Resolve<IBookInformationService>();
                 IBookLocationService bookLocationService = this.container.Resolve<IBookLocationService>();
-                if (this.OnThisShelfAllBookList.Count() != 0)
+                if(!String.IsNullOrEmpty(this.ShelfLocationString))//  书架位置信息不空，这时有必要继续执行
                 {
                     //如果出现不在该架位的图书，则提示该书不属于当前书架
                     foreach (String bookrfid in newItem.bookRfidList)
