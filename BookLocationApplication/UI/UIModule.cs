@@ -32,7 +32,7 @@ namespace UI
             container.RegisterInstance<IDispatcherService>(uIDispatcherService);
 
             
-            //container.RegisterType<SystemSettingViewModel, SystemSettingViewModel>();
+            container.RegisterType<SystemSettingViewModel, SystemSettingViewModel>();
             //SystemSettingViewModel必须先初始化，这样系统配置信息才能载入容器中的对象
             container.RegisterType<NavBarViewModel, NavBarViewModel>();
             container.RegisterType<BookLocationShowViewModel, BookLocationShowViewModel>();

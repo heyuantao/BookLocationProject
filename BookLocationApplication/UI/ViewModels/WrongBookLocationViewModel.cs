@@ -191,8 +191,9 @@ namespace UI.ViewModels
         {
             MessageBox.Show(errorMessage);
             //当串口设置出错时提示信息并转移到串口设置界面
-            this.regionManager.RequestNavigate("MainRegion", new Uri("SystemSettingView", UriKind.Relative));
-
+            //this.regionManager.RequestNavigate("MainRegion", new Uri("SystemSettingView", UriKind.Relative));
+            //NavBarViewModel vm = this.container.Resolve<NavBarViewModel>();
+            //vm.switchSystemSettingView();
         }
         //Bind variable and ICommand on UI
         public String ShelfLocationString
