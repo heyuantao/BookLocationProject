@@ -51,23 +51,28 @@ namespace UI.ViewModels
         {
             get { return this.systemSettingViewICommand; }
         }
-        //页面切换功能
+        //页面切换功能，对currentViewNameInMainRegion的赋值必须在regionManager.RequestNavigate
+        //的前面，因为regionManager.RequestNavigate的执行可能会改变currentViewNameInMainRegion
+        //的值，从而使程序产生不可预知的结果
         public void switchRecodeBookLocationView()
         {
-            regionManager.RequestNavigate("MainRegion", new Uri("RecodeBookLocationView", UriKind.Relative));
             this.currentViewNameInMainRegion = "RecodeBookLocationView";
+            updateNavigationButtonStatus();
+            regionManager.RequestNavigate("MainRegion", new Uri("RecodeBookLocationView", UriKind.Relative));
             updateNavigationButtonStatus();
         }
         public void switchWrongBookLocationView()
         {
-            regionManager.RequestNavigate("MainRegion", new Uri("WrongBookLocationView", UriKind.Relative));
             this.currentViewNameInMainRegion = "WrongBookLocationView";
+            updateNavigationButtonStatus();
+            regionManager.RequestNavigate("MainRegion", new Uri("WrongBookLocationView", UriKind.Relative));
             updateNavigationButtonStatus();
         }
         public void switchSystemSettingView()
         {
-            regionManager.RequestNavigate("MainRegion", new Uri("SystemSettingView", UriKind.Relative));
             this.currentViewNameInMainRegion = "SystemSettingView";
+            updateNavigationButtonStatus();
+            regionManager.RequestNavigate("MainRegion", new Uri("SystemSettingView", UriKind.Relative));
             updateNavigationButtonStatus();
         }
         public void switchBookLocationShowView()
@@ -78,8 +83,9 @@ namespace UI.ViewModels
             mainRegion.Add(view);
              * **/
             //regionManager.Regions["MainRegion"].Deactivate;
-            regionManager.RequestNavigate("MainRegion", new Uri("BookLocationShowView", UriKind.Relative));
             this.currentViewNameInMainRegion = "BookLocationShowView";
+            updateNavigationButtonStatus();
+            regionManager.RequestNavigate("MainRegion", new Uri("BookLocationShowView", UriKind.Relative));
             updateNavigationButtonStatus();
             //regionManager.RegisterViewWithRegion("MainRegion", ()=>container.Resolve<BookLocationShowView>());
         }

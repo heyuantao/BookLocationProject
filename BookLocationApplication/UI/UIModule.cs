@@ -31,12 +31,13 @@ namespace UI
             UIDispatcherService uIDispatcherService = new UIDispatcherService(Application.Current.MainWindow.Dispatcher);
             container.RegisterInstance<IDispatcherService>(uIDispatcherService);
 
+
+            //SystemSettingViewModel必须先初始化，这样系统配置信息才能载入容器中的对象,加上单例属性来测试
+            container.RegisterType<SystemSettingViewModel, SystemSettingViewModel>(new ContainerControlledLifetimeManager());
+            container.RegisterType<NavBarViewModel, NavBarViewModel>(new ContainerControlledLifetimeManager());
+            container.RegisterType<BookLocationShowViewModel, BookLocationShowViewModel>(new ContainerControlledLifetimeManager());
+            container.RegisterType<RecodeBookLocationViewModel, RecodeBookLocationViewModel>(new ContainerControlledLifetimeManager());
             
-            container.RegisterType<SystemSettingViewModel, SystemSettingViewModel>();
-            //SystemSettingViewModel必须先初始化，这样系统配置信息才能载入容器中的对象
-            container.RegisterType<NavBarViewModel, NavBarViewModel>();
-            container.RegisterType<BookLocationShowViewModel, BookLocationShowViewModel>();
-            container.RegisterType<RecodeBookLocationViewModel, RecodeBookLocationViewModel>();
 
             container.RegisterType<SystemSettingView, SystemSettingView>();
             //SystemSettingViewModel必须先初始化，这样系统配置信息才能载入容器中的对象
