@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using UI.Models;
 
@@ -75,6 +76,17 @@ namespace UI.Services
             contourPointList.Add(a4);
 
             this.oneShelfBoxContour = new ContourShape(contourPointList);
+            //新的代码，用于形成背景图片，开始
+            BitmapImage bitmapImage = new BitmapImage();
+            Uri uri = new Uri("pack://application:,,,/Resource/images/shelf.png", UriKind.RelativeOrAbsolute);
+            bitmapImage.BeginInit();
+            bitmapImage.UriSource = uri;
+            bitmapImage.EndInit();
+
+            Image backgroundImage = new Image();
+            backgroundImage.Source = bitmapImage;
+            this.OneShelfMap.Children.Add(backgroundImage);
+            //新的代码，用于形成背景图片，结束
         }
 
         //这两个GET 与SET用于返回绘制的两个地图，一个书架的正视图，一个是书库的俯视图
