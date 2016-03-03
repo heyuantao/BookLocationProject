@@ -4,17 +4,17 @@
 library
 C#
 .cs
-C:\Users\he_yu\Documents\Visual Studio 2013\Projects\BookLocationProject\BookLocationApplication\UI\obj\Debug\
+D:\Files\文档\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\
 UI
 none
 false
 DEBUG;TRACE
 
 51555441640
-3-231177333
-211695667835
-21-1930437295
+223284761
+211392249365
+211380643156
 Views\BookLocationShowView.xaml;Views\NavBarView.xaml;Views\RecodeBookLocationView.xaml;Views\SystemSettingView.xaml;Views\WrongBookLocationView.xaml;
 
-False
+True
 

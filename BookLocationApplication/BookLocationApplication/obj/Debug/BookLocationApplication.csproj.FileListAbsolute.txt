@@ -260,3 +260,7 @@ C:\Users\he_yu\Documents\Visual Studio 2013\Projects\BookLocationProject\BookLoc
 C:\Users\he_yu\Documents\Visual Studio 2013\Projects\BookLocationProject\BookLocationApplication\BookLocationApplication\obj\Debug\BookLocationApplication.g.resources
 C:\Users\he_yu\Documents\Visual Studio 2013\Projects\BookLocationProject\BookLocationApplication\BookLocationApplication\obj\Debug\BookLocationApplication.Properties.Resources.resources
 C:\Users\he_yu\Documents\Visual Studio 2013\Projects\BookLocationProject\BookLocationApplication\BookLocationApplication\obj\Debug\BookLocationApplication.csproj.GenerateResource.Cache
+D:\Files\文档\Visual Studio 2013\Projects\BookLocationApplication\BookLocationApplication\bin\Debug\RFID.dll
+D:\Files\文档\Visual Studio 2013\Projects\BookLocationApplication\BookLocationApplication\bin\Debug\ReaderComSDK.dll
+D:\Files\文档\Visual Studio 2013\Projects\BookLocationApplication\BookLocationApplication\bin\Debug\RFID.pdb
+D:\Files\文档\Visual Studio 2013\Projects\BookLocationApplication\BookLocationApplication\bin\Debug\ReaderComSDK.xml

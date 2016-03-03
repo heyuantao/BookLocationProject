@@ -177,3 +177,11 @@ C:\Users\he_yu\Documents\Visual Studio 2013\Projects\BookLocationProject\BookLoc
 C:\Users\he_yu\Documents\Visual Studio 2013\Projects\BookLocationProject\BookLocationApplication\UI\obj\Debug\UI.g.resources
 C:\Users\he_yu\Documents\Visual Studio 2013\Projects\BookLocationProject\BookLocationApplication\UI\obj\Debug\UI.dll
 C:\Users\he_yu\Documents\Visual Studio 2013\Projects\BookLocationProject\BookLocationApplication\UI\obj\Debug\UI.pdb
+D:\Files\文档\Visual Studio 2013\Projects\BookLocationApplication\UI\bin\Debug\UI.dll.config
+D:\Files\文档\Visual Studio 2013\Projects\BookLocationApplication\UI\bin\Debug\Infrastructure.dll
+D:\Files\文档\Visual Studio 2013\Projects\BookLocationApplication\UI\bin\Debug\Infrastructure.pdb
+D:\Files\文档\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\Views\WrongBookLocationView.baml
+D:\Files\文档\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\Views\RecodeBookLocationView.g.cs
+D:\Files\文档\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\Views\WrongBookLocationView.g.cs
+D:\Files\文档\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\UI_MarkupCompile.lref
+D:\Files\文档\Visual Studio 2013\Projects\BookLocationApplication\UI\obj\Debug\Views\RecodeBookLocationView.baml

@@ -20,7 +20,6 @@ D:\Files\文档\Visual Studio 2013\Projects\BookLocationApplication\Infrastructu
 D:\Files\文档\Visual Studio 2013\Projects\BookLocationApplication\Infrastructure\bin\Debug\ru\System.Windows.Interactivity.resources.dll
 D:\Files\文档\Visual Studio 2013\Projects\BookLocationApplication\Infrastructure\bin\Debug\zh-Hans\System.Windows.Interactivity.resources.dll
 D:\Files\文档\Visual Studio 2013\Projects\BookLocationApplication\Infrastructure\bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll
-D:\Files\文档\Visual Studio 2013\Projects\BookLocationApplication\Infrastructure\obj\Debug\Infrastructure.csprojResolveAssemblyReference.cache
 D:\Files\文档\Visual Studio 2013\Projects\BookLocationApplication\Infrastructure\obj\Debug\Infrastructure.dll
 D:\Files\文档\Visual Studio 2013\Projects\BookLocationApplication\Infrastructure\obj\Debug\Infrastructure.pdb
 C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\Infrastructure\bin\Debug\Infrastructure.dll

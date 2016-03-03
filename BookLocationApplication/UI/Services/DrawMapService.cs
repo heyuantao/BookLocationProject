@@ -52,19 +52,45 @@ namespace UI.Services
 
         private void initVariableValue()
         { //定义一个五层的书架
-            double leftMargin = 20; double topMargin = 30;
-            ShelfShape layer5 = new ShelfShape(new Point(leftMargin, topMargin + 0), new Point(leftMargin + 100, topMargin + 20));
-            ShelfShape layer4 = new ShelfShape(new Point(leftMargin, topMargin + 20), new Point(leftMargin + 100, topMargin + 40));
-            ShelfShape layer3 = new ShelfShape(new Point(leftMargin, topMargin + 40), new Point(leftMargin + 100, topMargin + 60));
-            ShelfShape layer2 = new ShelfShape(new Point(leftMargin, topMargin + 60), new Point(leftMargin + 100, topMargin + 80));
-            ShelfShape layer1 = new ShelfShape(new Point(leftMargin, topMargin + 80), new Point(leftMargin + 100, topMargin + 100));
+            double leftMargin = 20; double topMargin = 95;
+            double[] layerHeightArray = { 27, 27, 33, 33, 33, 33 };
+            double[] layerBorderArray={10,10,10,10,10,10};
+            double[] layerWidthArray = { 100, 100, 100, 100, 100 };
+            double[] layerHeightArraySum = { 0, 0, 0, 0, 0, 0 };
+            double[] layerBorderArraySum = { 0, 0, 0, 0, 0, 0 };
+            for (int i = 0; i < layerHeightArraySum.Length; i++)
+            {
+                double sum=0;
+                for(int j=0;j<=i;j++){
+                    sum=sum+layerHeightArray[j];
+                }
+                layerHeightArraySum[i] = sum;
+            }
+            for (int i = 0; i < layerBorderArray.Length; i++)
+            {
+                double sum = 0;
+                for (int j = 0; j <= i; j++)
+                {
+                    sum = sum + layerBorderArray[j];
+                }
+                layerBorderArraySum[i] = sum;
+            }
 
+            ShelfShape layer6 = new ShelfShape(new Point(leftMargin, topMargin                                                  ), new Point(leftMargin + layerWidthArray[0], topMargin + layerHeightArraySum[0] + layerBorderArraySum[0]));
+            ShelfShape layer5 = new ShelfShape(new Point(leftMargin, topMargin + layerHeightArraySum[0] + layerBorderArraySum[0]), new Point(leftMargin + layerWidthArray[0], topMargin + layerHeightArraySum[1] + layerBorderArraySum[1]));
+            ShelfShape layer4 = new ShelfShape(new Point(leftMargin, topMargin + layerHeightArraySum[1] + layerBorderArraySum[1]), new Point(leftMargin + layerWidthArray[0], topMargin + layerHeightArraySum[2] + layerBorderArraySum[2]));
+            ShelfShape layer3 = new ShelfShape(new Point(leftMargin, topMargin + layerHeightArraySum[2] + layerBorderArraySum[2]), new Point(leftMargin + layerWidthArray[0], topMargin + layerHeightArraySum[3] + layerBorderArraySum[3]));
+            ShelfShape layer2 = new ShelfShape(new Point(leftMargin, topMargin + layerHeightArraySum[3] + layerBorderArraySum[3]), new Point(leftMargin + layerWidthArray[0], topMargin + layerHeightArraySum[4] + layerBorderArraySum[4]));
+            ShelfShape layer1 = new ShelfShape(new Point(leftMargin, topMargin + layerHeightArraySum[4] + layerBorderArraySum[4]), new Point(leftMargin + layerWidthArray[0], topMargin + layerHeightArraySum[5] + layerBorderArraySum[5]));
+
+            this.oneShelfBoxList.Add(layer6);
             this.oneShelfBoxList.Add(layer5);
             this.oneShelfBoxList.Add(layer4);
             this.oneShelfBoxList.Add(layer3);
             this.oneShelfBoxList.Add(layer2);
             this.oneShelfBoxList.Add(layer1);
 
+            /**取消边框图
             List<Point> contourPointList = new List<Point>();
             Point a1 = new Point(leftMargin + 0, topMargin + 0);
             Point a2 = new Point(leftMargin + 100, topMargin + 0);
@@ -74,19 +100,9 @@ namespace UI.Services
             contourPointList.Add(a2);
             contourPointList.Add(a3);
             contourPointList.Add(a4);
-
+            
             this.oneShelfBoxContour = new ContourShape(contourPointList);
-            //新的代码，用于形成背景图片，开始
-            BitmapImage bitmapImage = new BitmapImage();
-            Uri uri = new Uri("pack://application:,,,/Resource/images/shelf.png", UriKind.RelativeOrAbsolute);
-            bitmapImage.BeginInit();
-            bitmapImage.UriSource = uri;
-            bitmapImage.EndInit();
-
-            Image backgroundImage = new Image();
-            backgroundImage.Source = bitmapImage;
-            this.OneShelfMap.Children.Add(backgroundImage);
-            //新的代码，用于形成背景图片，结束
+            ***/
         }
 
         //这两个GET 与SET用于返回绘制的两个地图，一个书架的正视图，一个是书库的俯视图
@@ -106,13 +122,28 @@ namespace UI.Services
         public void initOneShapMap(float canvasWidth, float canvasHeight, float mapWidth, float mapHeight)
         {
             this.oneShelfDrawer.initCanvas(canvasWidth,canvasHeight,mapWidth,mapHeight);
-            this.oneShelfDrawer.CurrentCanvas.Background = System.Windows.Media.Brushes.LightSeaGreen;    
+            this.oneShelfDrawer.CurrentCanvas.Background = System.Windows.Media.Brushes.Beige;
+
+            //新的代码，用于形成背景图片，开始载入并生成背景图
+            BitmapImage bitmapImage = new BitmapImage();
+            Uri uri = new Uri("pack://application:,,,/UI;component/Resource/images/shelf.png", UriKind.RelativeOrAbsolute);
+            bitmapImage.BeginInit();
+            bitmapImage.UriSource = uri;
+            bitmapImage.EndInit();
+
+            Image backgroundImage = new Image();
+            backgroundImage.Source = bitmapImage;
+            backgroundImage.Height = canvasHeight; backgroundImage.Width = canvasWidth;
+            Canvas.SetLeft(backgroundImage, 0); Canvas.SetTop(backgroundImage, 0);
+            Canvas.SetZIndex(backgroundImage, -10);
+            this.OneShelfMap.Children.Add(backgroundImage);
+            //新的代码，用于形成背景图片，结束
         }
         //重新初始化单个书架画布的各项尺寸参数
         public void reinitOneShapMap()
         {
             this.oneShelfDrawer.reinitCanvas();
-            this.oneShelfDrawer.CurrentCanvas.Background = System.Windows.Media.Brushes.LightSeaGreen;
+            //this.oneShelfDrawer.CurrentCanvas.Background = System.Windows.Media.Brushes.LightSeaGreen;
         }
         //给上层提供的访问函数
         //该函数能够画出一个书架的正视图，默认为5层。也就是画出几层的书架

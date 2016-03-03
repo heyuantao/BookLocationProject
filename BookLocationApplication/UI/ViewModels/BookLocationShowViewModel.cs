@@ -39,11 +39,12 @@ namespace UI.ViewModels
             this.bookName = ""; this.bookAccessCode = ""; this.bookLocation = "";
             //初始化两个地图画板
             this.libraryMapService = this.container.Resolve<DrawMapService>();
-            this.libraryMapService.initOneShapMap(150, 180, 150, 180);
+            this.libraryMapService.initOneShapMap(150, 400, 150, 400);
             this.libraryMapService.drawOneShapeMapBackground();
             //this.LibraryMapService = this.LibraryMapService; //通知更新UI
 
-            this.libraryMapService.initLibraryShelfMap(600,400,25000,22000);
+            //this.libraryMapService.initLibraryShelfMap(600,400,25000,22000);
+            this.libraryMapService.initLibraryShelfMap(660, 400, 25000, 22000);
             this.LibraryMapService = this.LibraryMapService;//通知更新UI
 
         }
@@ -159,11 +160,12 @@ namespace UI.ViewModels
         }
         private void handleErrorFromRFID(string errorMessage)
         {
+            /***
             MessageBox.Show(errorMessage);
             //当串口设置出错时提示信息并转移到串口设置界面
-            //this.regionManager.RequestNavigate("MainRegion", new Uri("SystemSettingView", UriKind.Relative));
             NavBarViewModel vm = this.container.Resolve<NavBarViewModel>();
             vm.switchSystemSettingView();
+             * **/
         }
         private void handleNewItemFromRFID(RFIDContent newItem)
         {

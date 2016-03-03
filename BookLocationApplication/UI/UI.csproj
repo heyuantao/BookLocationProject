@@ -146,9 +146,7 @@
   <ItemGroup>
     <Content Include="Resource\images\glass.png" />
     <Content Include="Resource\images\oneShelf.png" />
-    <Content Include="Resource\images\shelf.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="Resource\images\shelf.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
