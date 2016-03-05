@@ -52,36 +52,40 @@ namespace UI.Services
 
         private void initVariableValue()
         { //定义一个五层的书架
-            double leftMargin = 20; double topMargin = 95;
-            double[] layerHeightArray = { 27, 27, 33, 33, 33, 33 };
-            double[] layerBorderArray={10,10,10,10,10,10};
-            double[] layerWidthArray = { 100, 100, 100, 100, 100 };
+            double leftMargin = 20; double topMargin = 93;
+            double[] layerHeightArray = { 30, 27, 33, 33, 33, 33 }; //每一层书架的高度
+            double[] layerBorderArray={0,5,5,2,2,2};          //从上到下每一层书架见的垂直间距，间距为6个，最顶层的间距为0
+            double[] layerWidthArray = { 107, 120, 120, 120, 120 }; //每层书架的宽度，一共六层
             double[] layerHeightArraySum = { 0, 0, 0, 0, 0, 0 };
             double[] layerBorderArraySum = { 0, 0, 0, 0, 0, 0 };
-            for (int i = 0; i < layerHeightArraySum.Length; i++)
-            {
-                double sum=0;
-                for(int j=0;j<=i;j++){
-                    sum=sum+layerHeightArray[j];
-                }
-                layerHeightArraySum[i] = sum;
-            }
-            for (int i = 0; i < layerBorderArray.Length; i++)
-            {
-                double sum = 0;
-                for (int j = 0; j <= i; j++)
+            {  //该区域的代码用来计算layerHeightArraySum，和layerBorderArraySum ，用于在显示时使用
+                for (int i = 0; i < layerHeightArraySum.Length; i++)
                 {
-                    sum = sum + layerBorderArray[j];
+                    double sum = 0;
+                    for (int j = 0; j <= i; j++)
+                    {
+                        sum = sum + layerHeightArray[j];
+                    }
+                    layerHeightArraySum[i] = sum;
                 }
-                layerBorderArraySum[i] = sum;
+                for (int i = 0; i < layerBorderArray.Length; i++)
+                {
+                    double sum = 0;
+                    for (int j = 0; j <= i; j++)
+                    {
+                        sum = sum + layerBorderArray[j];
+                    }
+                    layerBorderArraySum[i] = sum;
+                }
             }
 
-            ShelfShape layer6 = new ShelfShape(new Point(leftMargin, topMargin                                                  ), new Point(leftMargin + layerWidthArray[0], topMargin + layerHeightArraySum[0] + layerBorderArraySum[0]));
-            ShelfShape layer5 = new ShelfShape(new Point(leftMargin, topMargin + layerHeightArraySum[0] + layerBorderArraySum[0]), new Point(leftMargin + layerWidthArray[0], topMargin + layerHeightArraySum[1] + layerBorderArraySum[1]));
-            ShelfShape layer4 = new ShelfShape(new Point(leftMargin, topMargin + layerHeightArraySum[1] + layerBorderArraySum[1]), new Point(leftMargin + layerWidthArray[0], topMargin + layerHeightArraySum[2] + layerBorderArraySum[2]));
-            ShelfShape layer3 = new ShelfShape(new Point(leftMargin, topMargin + layerHeightArraySum[2] + layerBorderArraySum[2]), new Point(leftMargin + layerWidthArray[0], topMargin + layerHeightArraySum[3] + layerBorderArraySum[3]));
-            ShelfShape layer2 = new ShelfShape(new Point(leftMargin, topMargin + layerHeightArraySum[3] + layerBorderArraySum[3]), new Point(leftMargin + layerWidthArray[0], topMargin + layerHeightArraySum[4] + layerBorderArraySum[4]));
-            ShelfShape layer1 = new ShelfShape(new Point(leftMargin, topMargin + layerHeightArraySum[4] + layerBorderArraySum[4]), new Point(leftMargin + layerWidthArray[0], topMargin + layerHeightArraySum[5] + layerBorderArraySum[5]));
+
+            ShelfShape layer6 = new ShelfShape(new Point(leftMargin, topMargin                          + layerBorderArraySum[0]), new Point(leftMargin + layerWidthArray[0], topMargin + layerHeightArraySum[0] + layerBorderArraySum[0]));
+            ShelfShape layer5 = new ShelfShape(new Point(leftMargin, topMargin + layerHeightArraySum[0] + layerBorderArraySum[1]), new Point(leftMargin + layerWidthArray[0], topMargin + layerHeightArraySum[1] + layerBorderArraySum[1]));
+            ShelfShape layer4 = new ShelfShape(new Point(leftMargin, topMargin + layerHeightArraySum[1] + layerBorderArraySum[2]), new Point(leftMargin + layerWidthArray[0], topMargin + layerHeightArraySum[2] + layerBorderArraySum[2]));
+            ShelfShape layer3 = new ShelfShape(new Point(leftMargin, topMargin + layerHeightArraySum[2] + layerBorderArraySum[3]), new Point(leftMargin + layerWidthArray[0], topMargin + layerHeightArraySum[3] + layerBorderArraySum[3]));
+            ShelfShape layer2 = new ShelfShape(new Point(leftMargin, topMargin + layerHeightArraySum[3] + layerBorderArraySum[4]), new Point(leftMargin + layerWidthArray[0], topMargin + layerHeightArraySum[4] + layerBorderArraySum[4]));
+            ShelfShape layer1 = new ShelfShape(new Point(leftMargin, topMargin + layerHeightArraySum[4] + layerBorderArraySum[5]), new Point(leftMargin + layerWidthArray[0], topMargin + layerHeightArraySum[5] + layerBorderArraySum[5]));
 
             this.oneShelfBoxList.Add(layer6);
             this.oneShelfBoxList.Add(layer5);
@@ -148,12 +152,14 @@ namespace UI.Services
         //给上层提供的访问函数
         //该函数能够画出一个书架的正视图，默认为5层。也就是画出几层的书架
         public void drawOneShapeMapBackground()
-        {//开始在画布上画图
+        {//开始在画布上画图 ,调试边框位置需要
+            /***
             foreach(ShelfShape shapeItem in this.oneShelfBoxList){
                 this.oneShelfDrawer.drawShelf(shapeItem.topLeft, shapeItem.bottomRight);
             }
-            //开始画轮廓
-            this.oneShelfDrawer.drawContour(this.oneShelfBoxContour.pointList);
+             * **/
+            ShelfShape oneshape = this.oneShelfBoxList[3];
+            this.oneShelfDrawer.drawSelectedShelf(oneshape.topLeft, oneshape.bottomRight);
             //在图片四周绘制边框
             //this.oneShelfDrawer.drawShelf(new Point(0, 0), new Point(this.oneShelfDrawer.canvasWidth,this.oneShelfDrawer.canvasHeight));
         }
