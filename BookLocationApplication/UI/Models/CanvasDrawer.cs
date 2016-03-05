@@ -121,6 +121,7 @@ namespace UI.Models
             rect.Fill = System.Windows.Media.Brushes.Blue;
             this.currentCanvas.Children.Add(rect);
         }
+        /***
         public void drawSelectedShelf(Point leftTop, Point rightBottom) //画被选中的书架，俯视图或者正视图
         {
             Rectangle rect = this.drawOneRectangle(leftTop, rightBottom);
@@ -128,6 +129,21 @@ namespace UI.Models
             rect.Fill = System.Windows.Media.Brushes.Red;
             rect.StrokeThickness = 0;
             this.currentCanvas.Children.Add(rect);
+        }
+         * **/
+        public void drawSelectedRectangle(Point leftTop, Point rightBottom) //画被被选定的矩形区域
+        {
+            Rectangle rect = this.drawOneRectangle(leftTop, rightBottom);
+            rect.Opacity = 0.5;
+            rect.Fill = System.Windows.Media.Brushes.Red;
+            rect.StrokeThickness = 0;
+            this.currentCanvas.Children.Add(rect);
+        }
+        //在画布上画出一定的图形，左上和右下这两个点用于确定图片的区域，也就是正好填满该区域
+        //direction表示图片的方向
+        public void drawImage(Point leftTop, Point rightBottom, Image image, String direction) 
+        {
+
         }
         public void drawShelf(Point leftTop, Point rightBottom) //画书架，俯视图或者正视图
         {

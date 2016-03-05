@@ -150,7 +150,7 @@ namespace UI.Services
             //this.oneShelfDrawer.CurrentCanvas.Background = System.Windows.Media.Brushes.LightSeaGreen;
         }
         //给上层提供的访问函数
-        //该函数能够画出一个书架的正视图，默认为5层。也就是画出几层的书架
+        //该函数能够画出一个书架的正视图，默认为6层。也就是画出几层的书架
         public void drawOneShapeMapBackground()
         {//开始在画布上画图 ,调试边框位置需要
             /***
@@ -159,7 +159,7 @@ namespace UI.Services
             }
              * **/
             ShelfShape oneshape = this.oneShelfBoxList[3]; //画出第三层
-            this.oneShelfDrawer.drawSelectedShelf(oneshape.topLeft, oneshape.bottomRight);
+            this.oneShelfDrawer.drawSelectedRectangle(oneshape.topLeft, oneshape.bottomRight);
             //在图片四周绘制边框
             //this.oneShelfDrawer.drawShelf(new Point(0, 0), new Point(this.oneShelfDrawer.canvasWidth,this.oneShelfDrawer.canvasHeight));
         }
@@ -170,7 +170,7 @@ namespace UI.Services
             {
                 int layer = this.bookLocationStringToLayerOfShelf(locationString);
                 ShelfShape oneshape = this.oneShelfBoxList[layer];
-                this.oneShelfDrawer.drawSelectedShelf(oneshape.topLeft, oneshape.bottomRight);
+                this.oneShelfDrawer.drawSelectedRectangle(oneshape.topLeft, oneshape.bottomRight);
             }
             catch (Exception){
                 //是否需要处理异常 
@@ -182,13 +182,13 @@ namespace UI.Services
         public void initLibraryShelfMap(float canvasWidth, float canvasHeight, float mapWidth, float mapHeight)
         {
             this.libraryShelfDrawer.initCanvas(canvasWidth, canvasHeight, mapWidth, mapHeight);
-            this.libraryShelfDrawer.CurrentCanvas.Background = System.Windows.Media.Brushes.LightSeaGreen;
+            this.libraryShelfDrawer.CurrentCanvas.Background = System.Windows.Media.Brushes.Azure;
         }
         //重新初始化书库俯视图画布的各项尺寸参数
         public void reinitLibraryShelfMap()
         {
             this.libraryShelfDrawer.reinitCanvas();
-            this.libraryShelfDrawer.CurrentCanvas.Background = System.Windows.Media.Brushes.LightSeaGreen;
+            this.libraryShelfDrawer.CurrentCanvas.Background = System.Windows.Media.Brushes.Azure;
         }
         //该函数能够画出一个书库的背景图片，包含书架，轮廓和门，参数为该图书馆名称，参数即为Map表中的location字段
         public void drawLibraryShelfMapBackgroundByLibraryName(String libraryName)
@@ -334,7 +334,7 @@ namespace UI.Services
                 Point rightBottom = new Point(pointDescInDouble[0] + pointDescInDouble[2], pointDescInDouble[1] + pointDescInDouble[3]);
                 //把书库大门的位置信息放入结构体的变量中shelfMapShelfList
                 //在地图上画出选中的书库
-                this.libraryShelfDrawer.drawSelectedShelf(leftTop, rightBottom);
+                this.libraryShelfDrawer.drawSelectedRectangle(leftTop, rightBottom);
             }
         }
         //该函数能够画出取书的路线，也就是从入口到目的书架的折线图，参数为Map表中的rfidOfShelf字段
