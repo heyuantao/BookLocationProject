@@ -158,7 +158,7 @@ namespace UI.Services
                 this.oneShelfDrawer.drawShelf(shapeItem.topLeft, shapeItem.bottomRight);
             }
              * **/
-            ShelfShape oneshape = this.oneShelfBoxList[3];
+            ShelfShape oneshape = this.oneShelfBoxList[3]; //画出第三层
             this.oneShelfDrawer.drawSelectedShelf(oneshape.topLeft, oneshape.bottomRight);
             //在图片四周绘制边框
             //this.oneShelfDrawer.drawShelf(new Point(0, 0), new Point(this.oneShelfDrawer.canvasWidth,this.oneShelfDrawer.canvasHeight));
