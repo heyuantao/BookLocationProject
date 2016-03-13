@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace UI.Models
@@ -145,12 +146,17 @@ namespace UI.Models
         {
 
         }
-        public void drawShelf(Point leftTop, Point rightBottom) //画书架，俯视图或者正视图
+        //这段代码基本要被废弃，用于绘制一些矩形边框
+        public void drawShelf(Point leftTop, Point rightBottom) 
         {
             Rectangle rect = this.drawOneRectangle(leftTop, rightBottom);
             rect.Stroke = System.Windows.Media.Brushes.Red;
-            //rect.Fill = System.Windows.Media.Brushes.LightSeaGreen;
             this.currentCanvas.Children.Add(rect);
+        }
+        //该方法用于在画布上绘制一个图形，两个点用于表示图像的填充区域，image是原始的图片，angle是角度，只有{0,90,180,270}三个角度可选
+        public void drawImage(Point leftTop, Point rightBottom,BitmapImage image, int angle)
+        {
+
         }
         public void drawContour(List<Point> pointList) //画轮廓（图书馆，书架）
         {

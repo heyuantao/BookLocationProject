@@ -222,9 +222,17 @@ namespace UI.Services
                     shelfMapShelfList.Add(new ShelfShape(leftTop, rightBottom));
                 }
                 //开始绘制俯视图中的书架
+                BitmapImage bitmapImage = new BitmapImage();
+                Uri uri = new Uri("pack://application:,,,/UI;component/Resource/images/oneShelf.png", UriKind.RelativeOrAbsolute);
+                bitmapImage.BeginInit();
+                bitmapImage.UriSource = uri;
+                bitmapImage.EndInit();
+
                 foreach (ShelfShape oneShelf in shelfMapShelfList)
                 {
-                    this.libraryShelfDrawer.drawShelf(oneShelf.topLeft, oneShelf.bottomRight);
+                    //原始代码是绘制矩形框，现在改为绘制图片
+                    //this.libraryShelfDrawer.drawShelf(oneShelf.topLeft, oneShelf.bottomRight);
+                    this.libraryShelfDrawer.drawImage(oneShelf.topLeft, oneShelf.bottomRight,bitmapImage,0);
                 }
             }
             catch (Exception)

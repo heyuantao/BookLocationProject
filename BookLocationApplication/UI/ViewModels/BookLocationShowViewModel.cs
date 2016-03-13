@@ -45,6 +45,9 @@ namespace UI.ViewModels
 
             //this.libraryMapService.initLibraryShelfMap(600,400,25000,22000);
             this.libraryMapService.initLibraryShelfMap(660, 400, 25000, 22000);
+            //测试代码开始
+            this.libraryMapService.drawLibraryShelfMapBackgroundByLibraryName("图书馆W区6层22行3列A面书架第4层");//画出主书库的背景图，例如地板，测试代码
+            //测试代码结束
             this.LibraryMapService = this.LibraryMapService;//通知更新UI
 
         }
