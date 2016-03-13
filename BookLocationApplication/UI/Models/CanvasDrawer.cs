@@ -152,11 +152,11 @@ namespace UI.Models
         {
             Image shelfImage = new Image();
             shelfImage.Source = bitmapImage;
-            shelfImage.Width = 10;
-            shelfImage.Height = 10;
-            Canvas.SetTop(shelfImage,leftTop.Y);
+            shelfImage.Width = 20;
+            shelfImage.Height = 20;
+            Canvas.SetTop(shelfImage,leftTop.Y);//adjust the postion
             Canvas.SetLeft(shelfImage,leftTop.X);
-            Canvas.SetZIndex(shelfImage, 1);
+            Canvas.SetZIndex(shelfImage, -10);
             this.currentCanvas.Children.Add(shelfImage);
         }
         public void drawContour(List<Point> pointList) //画轮廓（图书馆，书架）
