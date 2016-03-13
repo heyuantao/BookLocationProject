@@ -140,12 +140,6 @@ namespace UI.Models
             rect.StrokeThickness = 0;
             this.currentCanvas.Children.Add(rect);
         }
-        //在画布上画出一定的图形，左上和右下这两个点用于确定图片的区域，也就是正好填满该区域
-        //direction表示图片的方向
-        public void drawImage(Point leftTop, Point rightBottom, Image image, String direction) 
-        {
-
-        }
         //这段代码基本要被废弃，用于绘制一些矩形边框
         public void drawShelf(Point leftTop, Point rightBottom) 
         {
@@ -154,9 +148,16 @@ namespace UI.Models
             this.currentCanvas.Children.Add(rect);
         }
         //该方法用于在画布上绘制一个图形，两个点用于表示图像的填充区域，image是原始的图片，angle是角度，只有{0,90,180,270}三个角度可选
-        public void drawImage(Point leftTop, Point rightBottom,BitmapImage image, int angle)
+        public void drawImage(Point leftTop, Point rightBottom, BitmapImage bitmapImage, int angle)
         {
-
+            Image shelfImage = new Image();
+            shelfImage.Source = bitmapImage;
+            shelfImage.Width = 10;
+            shelfImage.Height = 10;
+            Canvas.SetTop(shelfImage,leftTop.Y);
+            Canvas.SetLeft(shelfImage,leftTop.X);
+            Canvas.SetZIndex(shelfImage, 1);
+            this.currentCanvas.Children.Add(shelfImage);
         }
         public void drawContour(List<Point> pointList) //画轮廓（图书馆，书架）
         {

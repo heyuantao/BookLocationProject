@@ -232,8 +232,9 @@ namespace UI.Services
                 {
                     //原始代码是绘制矩形框，现在改为绘制图片
                     //this.libraryShelfDrawer.drawShelf(oneShelf.topLeft, oneShelf.bottomRight);
-                    this.libraryShelfDrawer.drawImage(oneShelf.topLeft, oneShelf.bottomRight,bitmapImage,0);
+                    this.libraryShelfDrawer.drawImage(oneShelf.topLeft, oneShelf.bottomRight, bitmapImage, 0);
                 }
+                //bitmapImage.EndInit();
             }
             catch (Exception)
             {

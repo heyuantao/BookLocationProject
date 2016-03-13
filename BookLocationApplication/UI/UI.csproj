@@ -144,8 +144,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resource\images\glass.png" />
-    <Content Include="Resource\images\oneShelf.png" />
+    <Resource Include="Resource\images\glass.png" />
+    <Resource Include="Resource\images\oneShelf.png" />
     <Resource Include="Resource\images\shelf.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
