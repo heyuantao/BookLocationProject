@@ -150,12 +150,23 @@ namespace UI.Models
         //该方法用于在画布上绘制一个图形，两个点用于表示图像的填充区域，image是原始的图片，angle是角度，只有{0,90,180,270}三个角度可选
         public void drawImage(Point leftTop, Point rightBottom, BitmapImage bitmapImage, int angle)
         {
+            double left = leftTop.X;
+            double top = leftTop.Y;
+            double width = Math.Abs(leftTop.X - rightBottom.X);
+            double height = Math.Abs(leftTop.Y - rightBottom.Y);
+
+            double leftWithRatio = left * this.widthRatio;
+            double topWithRatio = top * this.heightRatio;
+            double widthWithRatio = width * this.widthRatio;
+            double heightWithRatio = height * this.heightRatio;
+
             Image shelfImage = new Image();
             shelfImage.Source = bitmapImage;
-            shelfImage.Width = 20;
-            shelfImage.Height = 20;
-            Canvas.SetTop(shelfImage,leftTop.Y);//adjust the postion
-            Canvas.SetLeft(shelfImage,leftTop.X);
+            shelfImage.Width = widthWithRatio;
+            shelfImage.Height = heightWithRatio;
+
+            Canvas.SetTop(shelfImage,leftWithRatio);//adjust the postion
+            Canvas.SetLeft(shelfImage,topWithRatio);
             Canvas.SetZIndex(shelfImage, -10);
             this.currentCanvas.Children.Add(shelfImage);
         }
