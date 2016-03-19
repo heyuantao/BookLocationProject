@@ -161,12 +161,15 @@ namespace UI.Models
             double heightWithRatio = height * this.heightRatio;
 
             Image shelfImage = new Image();
+            //RotateTransform rotateTransform = new RotateTransform(angle);
             shelfImage.Source = bitmapImage;
-            shelfImage.Width = widthWithRatio;
-            shelfImage.Height = heightWithRatio;
+            shelfImage.Stretch = Stretch.Uniform;
+            //shelfImage.RenderTransform = rotateTransform;
+            //shelfImage.Width = widthWithRatio;shelfImage.Height = heightWithRatio;
+            shelfImage.Width = heightWithRatio; shelfImage.Height = widthWithRatio;
 
-            Canvas.SetTop(shelfImage,leftWithRatio);//adjust the postion
-            Canvas.SetLeft(shelfImage,topWithRatio);
+            Canvas.SetTop(shelfImage,topWithRatio);//adjust the postion
+            Canvas.SetLeft(shelfImage, leftWithRatio);
             Canvas.SetZIndex(shelfImage, -10);
             this.currentCanvas.Children.Add(shelfImage);
         }

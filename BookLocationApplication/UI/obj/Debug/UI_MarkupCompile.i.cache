@@ -16,5 +16,5 @@ DEBUG;TRACE
 21-1640154294
 Views\BookLocationShowView.xaml;Views\NavBarView.xaml;Views\RecodeBookLocationView.xaml;Views\SystemSettingView.xaml;Views\WrongBookLocationView.xaml;
 
-False
+True
 
