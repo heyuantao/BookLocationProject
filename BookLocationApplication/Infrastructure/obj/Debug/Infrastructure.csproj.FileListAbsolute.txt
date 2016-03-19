@@ -37,3 +37,4 @@ C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\Infra
 C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\Infrastructure\bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll
 C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\Infrastructure\obj\Debug\Infrastructure.dll
 C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\Infrastructure\obj\Debug\Infrastructure.pdb
+C:\Users\hyt\Documents\Visual Studio 2013\Projects\BookLocationApplication\Infrastructure\obj\Debug\Infrastructure.csprojResolveAssemblyReference.cache

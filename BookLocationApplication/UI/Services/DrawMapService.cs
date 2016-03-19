@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using UI.Models;
@@ -196,7 +197,16 @@ namespace UI.Services
             String libraryNameInTable = this.bookLocationStringToLibraryName(libraryName);
             //获取图书位置信息数据库的引用
             IBookLocationService bookLocationService = this.container.Resolve<IBookLocationService>();
+            //画出书库的地板
+            BitmapImage floorTileBitmapImage = new BitmapImage();
+            floorTileBitmapImage.BeginInit();
+            //设置图片来源为地板砖图片
+            floorTileBitmapImage.UriSource = new Uri("pack://application:,,,/UI;component/Resource/images/glass.png", UriKind.RelativeOrAbsolute);
+            floorTileBitmapImage.EndInit();
+            this.libraryShelfDrawer.drawFloor(floorTileBitmapImage);
 
+            
+            //画出所有的书架
             try
             {
                 //获取某个书库中所有的书架
@@ -223,18 +233,28 @@ namespace UI.Services
                 }
                 //开始绘制俯视图中的书架
                 BitmapImage bitmapImage = new BitmapImage();
-                Uri uri = new Uri("pack://application:,,,/UI;component/Resource/images/oneShelf.png", UriKind.RelativeOrAbsolute);
+                //Uri uri = new Uri("pack://application:,,,/UI;component/Resource/images/oneShelf.png", UriKind.RelativeOrAbsolute);
                 bitmapImage.BeginInit();
-                bitmapImage.UriSource = uri;
+                bitmapImage.UriSource = new Uri("pack://application:,,,/UI;component/Resource/images/oneShelf.png", UriKind.RelativeOrAbsolute);
                 bitmapImage.EndInit();
-
+                //设置旋转效果和阴影效果，开始
+                RotateTransform rotateTransform = new RotateTransform(0);
+                DropShadowBitmapEffect bitmapEffect = new DropShadowBitmapEffect();
+                Color ShadowColor = new Color();
+                ShadowColor.ScA = 1;ShadowColor.ScB = 0;ShadowColor.ScG = 0;ShadowColor.ScR = 0;
+                bitmapEffect.Color = ShadowColor;
+                bitmapEffect.Direction = 320;
+                bitmapEffect.ShadowDepth = 10;
+                bitmapEffect.Softness = 0.1;
+                bitmapEffect.Opacity = 0.1;
+                //设置选择效果和阴影效果,结束
+                
                 foreach (ShelfShape oneShelf in shelfMapShelfList)
                 {
                     //原始代码是绘制矩形框，现在改为绘制图片
                     //this.libraryShelfDrawer.drawShelf(oneShelf.topLeft, oneShelf.bottomRight);
-                    this.libraryShelfDrawer.drawImage(oneShelf.topLeft, oneShelf.bottomRight, bitmapImage, 0);
+                    this.libraryShelfDrawer.drawImage(oneShelf.topLeft, oneShelf.bottomRight, bitmapImage, rotateTransform, bitmapEffect);
                 }
-                //bitmapImage.EndInit();
             }
             catch (Exception)
             {
@@ -243,7 +263,7 @@ namespace UI.Services
             }
 
 
-            //获得某个书库的轮廓
+            //画出某个书库的轮廓
             try
             {
                 List<String> shelfContourPostionStringList = bookLocationService.getItemPositionStringListByLocationAndType(libraryNameInTable, "CONTOUR");
@@ -287,7 +307,7 @@ namespace UI.Services
             
 
 
-            //设置某个书库大门的位置
+            //画出某个书库大门的位置
             try
             {
                 List<String> doorPostionStringList = bookLocationService.getItemPositionStringListByLocationAndType(libraryNameInTable, "DOOR");

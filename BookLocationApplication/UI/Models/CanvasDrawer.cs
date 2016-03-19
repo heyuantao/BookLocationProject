@@ -149,7 +149,8 @@ namespace UI.Models
             this.currentCanvas.Children.Add(rect);
         }
         //该方法用于在画布上绘制一个图形，两个点用于表示图像的填充区域，image是原始的图片，angle是角度，只有{0,90,180,270}三个角度可选
-        public void drawImage(Point leftTop, Point rightBottom, BitmapImage bitmapImage, int angle)
+        /***
+        public void drawImage(Point leftTop, Point rightBottom, BitmapImage bitmapImage)
         {
             double left = leftTop.X;
             double top = leftTop.Y;
@@ -162,23 +163,23 @@ namespace UI.Models
             double heightWithRatio = height * this.heightRatio;
 
             Image shelfImage = new Image();
-            RotateTransform rotateTransform = new RotateTransform(angle);
-            DropShadowBitmapEffect bitmapEffect = new DropShadowBitmapEffect();
-            Color myShadowColor = new Color();
-            myShadowColor.ScA = 1;
-            myShadowColor.ScB = 0;
-            myShadowColor.ScG = 0;
-            myShadowColor.ScR = 0;
-            bitmapEffect.Color = myShadowColor;
-            bitmapEffect.Direction = 320;
-            bitmapEffect.ShadowDepth = 10;
-            bitmapEffect.Softness = 0.1;
-            bitmapEffect.Opacity = 0.1;
-
+            //RotateTransform rotateTransform = new RotateTransform(angle);
+           
+            //DropShadowBitmapEffect bitmapEffect = new DropShadowBitmapEffect();
+            //Color myShadowColor = new Color();
+            //myShadowColor.ScA = 1;
+            //myShadowColor.ScB = 0;
+            //myShadowColor.ScG = 0;
+            //myShadowColor.ScR = 0;
+            //bitmapEffect.Color = myShadowColor;
+            //bitmapEffect.Direction = 320;
+            //bitmapEffect.ShadowDepth = 10;
+            //bitmapEffect.Softness = 0.1;
+            //bitmapEffect.Opacity = 0.1;
             shelfImage.Source = bitmapImage;
             shelfImage.Stretch = Stretch.Uniform;
-            shelfImage.BitmapEffect = bitmapEffect;
-            shelfImage.RenderTransform = rotateTransform;
+            //shelfImage.BitmapEffect = bitmapEffect;
+            //shelfImage.RenderTransform = rotateTransform;
             //shelfImage.Width = widthWithRatio;shelfImage.Height = heightWithRatio;
             shelfImage.Width = heightWithRatio; shelfImage.Height = widthWithRatio;            
 
@@ -187,11 +188,58 @@ namespace UI.Models
             Canvas.SetZIndex(shelfImage, -10);
             this.currentCanvas.Children.Add(shelfImage);
         }
+        ***/
+        public void drawImage(Point leftTop, Point rightBottom, BitmapImage bitmapImage, 
+            Transform rotateTransform, BitmapEffect bitmapEffect)
+        {
+            double left = leftTop.X;
+            double top = leftTop.Y;
+            double width = Math.Abs(leftTop.X - rightBottom.X);
+            double height = Math.Abs(leftTop.Y - rightBottom.Y);
+
+            double leftWithRatio = left * this.widthRatio;
+            double topWithRatio = top * this.heightRatio;
+            double widthWithRatio = width * this.widthRatio;
+            double heightWithRatio = height * this.heightRatio;
+
+            Image shelfImage = new Image();
+            shelfImage.Source = bitmapImage;
+            shelfImage.Stretch = Stretch.Uniform;
+            shelfImage.RenderTransform = rotateTransform;
+            shelfImage.BitmapEffect = bitmapEffect;            
+            //shelfImage.Width = widthWithRatio;shelfImage.Height = heightWithRatio;
+            shelfImage.Width = heightWithRatio; shelfImage.Height = widthWithRatio;
+
+            Canvas.SetTop(shelfImage, topWithRatio);//adjust the postion
+            Canvas.SetLeft(shelfImage, leftWithRatio);
+            Canvas.SetZIndex(shelfImage, -10);
+            this.currentCanvas.Children.Add(shelfImage);
+        }
+        public void drawFloor(BitmapImage floorTileBitmapImage)
+        {
+            double floorTileHeight = floorTileBitmapImage.Height;
+            double floorTileWidth = floorTileBitmapImage.Width;
+            double libraryHeight = this.canvasHeight;
+            double libraryWidth = this.canvasWidth;
+            int widthCount = (int)(libraryWidth / floorTileWidth) + 1;
+            int heightCount = (int)(libraryHeight / floorTileHeight) + 1;
+
+            Image floorTileImage = new Image();
+            floorTileImage.Source = floorTileBitmapImage;
+            floorTileImage.Height = floorTileHeight * this.heightRatio*20;
+            floorTileImage.Width = floorTileWidth * this.widthRatio*20;
+            floorTileImage.Opacity = 0.3;
+
+            Canvas.SetTop(floorTileImage, 0);//adjust the postion
+            Canvas.SetLeft(floorTileImage, 0);
+            Canvas.SetZIndex(floorTileImage, -11);
+            this.currentCanvas.Children.Add(floorTileImage);
+        }
         public void drawContour(List<Point> pointList) //画轮廓（图书馆，书架）
         {
             Polygon poly = this.drawOnePolygon(pointList);
             //poly.Fill = System.Windows.Media.Brushes.Black;
-            poly.Stroke = System.Windows.Media.Brushes.Red;
+            poly.Stroke = System.Windows.Media.Brushes.Aqua;
             poly.StrokeThickness = 2;
             this.currentCanvas.Children.Add(poly);
         }
