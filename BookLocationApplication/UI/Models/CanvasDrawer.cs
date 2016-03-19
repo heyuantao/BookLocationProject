@@ -196,7 +196,6 @@ namespace UI.Models
             double top = leftTop.Y;
             double width = Math.Abs(leftTop.X - rightBottom.X);
             double height = Math.Abs(leftTop.Y - rightBottom.Y);
-
             double leftWithRatio = left * this.widthRatio;
             double topWithRatio = top * this.heightRatio;
             double widthWithRatio = width * this.widthRatio;
@@ -204,11 +203,12 @@ namespace UI.Models
 
             Image shelfImage = new Image();
             shelfImage.Source = bitmapImage;
-            shelfImage.Stretch = Stretch.Uniform;
+            shelfImage.Stretch = Stretch.Fill;
             shelfImage.RenderTransform = rotateTransform;
-            shelfImage.BitmapEffect = bitmapEffect;            
-            //shelfImage.Width = widthWithRatio;shelfImage.Height = heightWithRatio;
-            shelfImage.Width = heightWithRatio; shelfImage.Height = widthWithRatio;
+            shelfImage.BitmapEffect = bitmapEffect;
+            shelfImage.Width = widthWithRatio-3;
+            shelfImage.Height = heightWithRatio;
+            //shelfImage.Width = heightWithRatio; shelfImage.Height = widthWithRatio;
 
             Canvas.SetTop(shelfImage, topWithRatio);//adjust the postion
             Canvas.SetLeft(shelfImage, leftWithRatio);
@@ -232,7 +232,7 @@ namespace UI.Models
 
             Canvas.SetTop(floorTileImage, 0);//adjust the postion
             Canvas.SetLeft(floorTileImage, 0);
-            Canvas.SetZIndex(floorTileImage, -11);
+            Canvas.SetZIndex(floorTileImage, -1);
             this.currentCanvas.Children.Add(floorTileImage);
         }
         public void drawContour(List<Point> pointList) //画轮廓（图书馆，书架）

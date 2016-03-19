@@ -197,14 +197,14 @@ namespace UI.Services
             String libraryNameInTable = this.bookLocationStringToLibraryName(libraryName);
             //获取图书位置信息数据库的引用
             IBookLocationService bookLocationService = this.container.Resolve<IBookLocationService>();
-            //画出书库的地板
+            //画出书库的地板,重复画出
+            /***
             BitmapImage floorTileBitmapImage = new BitmapImage();
             floorTileBitmapImage.BeginInit();
-            //设置图片来源为地板砖图片
             floorTileBitmapImage.UriSource = new Uri("pack://application:,,,/UI;component/Resource/images/glass.png", UriKind.RelativeOrAbsolute);
             floorTileBitmapImage.EndInit();
             this.libraryShelfDrawer.drawFloor(floorTileBitmapImage);
-
+            ***/
             
             //画出所有的书架
             try
@@ -329,8 +329,16 @@ namespace UI.Services
                         Point rightBottom = new Point(pointDescInDouble[0] + pointDescInDouble[2], pointDescInDouble[1] + pointDescInDouble[3]);
                         //把书库大门的位置信息放入结构体的变量中shelfMapShelfList
                         shelfMapDoor = new DoorShape(leftTop, rightBottom);
-                        //开始绘制入口
-                        this.libraryShelfDrawer.drawDoor(shelfMapDoor.topLeft, shelfMapDoor.bottomRight);
+                        //载入入口图片
+                        BitmapImage bitmapImage = new BitmapImage();
+                        bitmapImage.BeginInit();
+                        bitmapImage.UriSource = new Uri("pack://application:,,,/UI;component/Resource/images/door.png", UriKind.RelativeOrAbsolute);
+                        bitmapImage.EndInit();
+                        //设置旋转效果和阴影效果，开始
+                        RotateTransform rotateTransform = new RotateTransform(0);
+                        DropShadowBitmapEffect bitmapEffect = new DropShadowBitmapEffect();
+                        //this.libraryShelfDrawer.drawDoor(shelfMapDoor.topLeft, shelfMapDoor.bottomRight);
+                        this.libraryShelfDrawer.drawImage(shelfMapDoor.topLeft, shelfMapDoor.bottomRight, bitmapImage, rotateTransform, bitmapEffect);
                     }
                 }
             }
