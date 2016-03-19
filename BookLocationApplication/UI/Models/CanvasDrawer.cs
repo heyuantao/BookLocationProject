@@ -171,9 +171,9 @@ namespace UI.Models
             myShadowColor.ScR = 0;
             bitmapEffect.Color = myShadowColor;
             bitmapEffect.Direction = 320;
-            bitmapEffect.ShadowDepth = 25;
-            bitmapEffect.Softness = 1;
-            bitmapEffect.Opacity = 0.5;
+            bitmapEffect.ShadowDepth = 10;
+            bitmapEffect.Softness = 0.1;
+            bitmapEffect.Opacity = 0.1;
 
             shelfImage.Source = bitmapImage;
             shelfImage.Stretch = Stretch.Uniform;
