@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -161,12 +162,25 @@ namespace UI.Models
             double heightWithRatio = height * this.heightRatio;
 
             Image shelfImage = new Image();
-            //RotateTransform rotateTransform = new RotateTransform(angle);
+            RotateTransform rotateTransform = new RotateTransform(angle);
+            DropShadowBitmapEffect bitmapEffect = new DropShadowBitmapEffect();
+            Color myShadowColor = new Color();
+            myShadowColor.ScA = 1;
+            myShadowColor.ScB = 0;
+            myShadowColor.ScG = 0;
+            myShadowColor.ScR = 0;
+            bitmapEffect.Color = myShadowColor;
+            bitmapEffect.Direction = 320;
+            bitmapEffect.ShadowDepth = 25;
+            bitmapEffect.Softness = 1;
+            bitmapEffect.Opacity = 0.5;
+
             shelfImage.Source = bitmapImage;
             shelfImage.Stretch = Stretch.Uniform;
-            //shelfImage.RenderTransform = rotateTransform;
+            shelfImage.BitmapEffect = bitmapEffect;
+            shelfImage.RenderTransform = rotateTransform;
             //shelfImage.Width = widthWithRatio;shelfImage.Height = heightWithRatio;
-            shelfImage.Width = heightWithRatio; shelfImage.Height = widthWithRatio;
+            shelfImage.Width = heightWithRatio; shelfImage.Height = widthWithRatio;            
 
             Canvas.SetTop(shelfImage,topWithRatio);//adjust the postion
             Canvas.SetLeft(shelfImage, leftWithRatio);
